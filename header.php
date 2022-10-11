@@ -43,3 +43,4 @@
    
     <!-- Site container closed in footer -->
     <div class="container">
+        <?php get_template_part('template-parts/navbar'); ?>
