@@ -19,7 +19,8 @@
     <meta charset="<?php bloginfo('charset'); ?>" />
     <!--  Get title dynamically -->
     <title><?php wp_title(); ?></title>
-
+    
+    <meta name="google-site-verification" content="J3UH2byokx8a85G7t4Drx84xL1X1C3Mnh_cBHQ6O3Fk" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <!--Import Google Icon Font used in materialize css-->
