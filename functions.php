@@ -58,3 +58,15 @@ function register_my_menu()
     register_nav_menu('main-menu', __('Huvudmeny', 'REKO-ring-main-navigation'));
 }
 add_action('after_setup_theme', 'register_my_menu');
+
+
+
+
+/**
+ * Handle author update_profile form
+ */
+add_action('admin_post_update_profile', 'update_profile_callback');
+function update_profile_callback()
+{
+    require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/author-form-submit.php');
+}

@@ -11,3 +11,7 @@ Text Domain: Rekoring
 
 
 /*Write custom css below this line*/
+
+.text-capitalize {
+    text-transform: capitalize;
+}
