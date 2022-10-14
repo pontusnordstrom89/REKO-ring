@@ -72,9 +72,11 @@ function update_profile_callback()
 }
 
 //Removing admin bar for non admins 
-add_action('after_setup_theme', 'remove_admin_bar');
-function remove_admin_bar(){
-    if(!current_user_can('administrator') && !is_admin()) {
-        show_admin_bar(false);
+add_action( 'wp', 'wpdocs_maybe_hide_admin_bar' );
+add_action( 'admin_init', 'wpdocs_maybe_hide_admin_bar', 9 );
+
+function wpdocs_maybe_hide_admin_bar() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        show_admin_bar( false );
     }
 }
