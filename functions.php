@@ -71,12 +71,4 @@ function update_profile_callback()
     require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/author-form-submit.php');
 }
 
-//Removing admin bar for non admins 
-add_action( 'wp', 'wpdocs_maybe_hide_admin_bar' );
-add_action( 'admin_init', 'wpdocs_maybe_hide_admin_bar', 9 );
 
-function wpdocs_maybe_hide_admin_bar() {
-    if ( ! current_user_can( 'manage_options' ) ) {
-        show_admin_bar( false );
-    }
-}
