@@ -107,7 +107,7 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
         }
     } elseif (isset($_POST['description'])) {
 
-        // Sanitize input
+        // NO sanitazion, sanitazion removes formatting
         $textarea_value = $_POST['description'];
 
         if (!get_user_meta($user_id,
