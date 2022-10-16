@@ -108,7 +108,7 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
     } elseif (isset($_POST['description'])) {
 
         // Sanitize input
-        $textarea_value = sanitize_text_field($_POST['description']);
+        $textarea_value = $_POST['description'];
 
         if (!get_user_meta($user_id,
             'description',
@@ -193,7 +193,7 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
     }
 
     // redirect the user to the appropriate page
-    wp_redirect('http://reko-ring.dev.com/blog/author/' . get_the_author_meta('display_name', $user_id));
+    wp_redirect('http://reko-ring.dev.com/blog/author/' . get_the_author_meta('user_login', $user_id));
     // When finished, die(); is required.
     die();
 }

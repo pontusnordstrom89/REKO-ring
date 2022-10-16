@@ -21,6 +21,12 @@ function theme_add_style_script()
 
     // Get script.js
     wp_enqueue_script('script', get_template_directory_uri() . '/script.js', array(), null, true);
+
+    // If author.php is in use import custom css & style
+    if (is_author()) {
+        wp_enqueue_style('kalkylator-css', get_template_directory_uri() . '/resources/styles/authorStyle.css');
+        wp_enqueue_script('authorJS', get_template_directory_uri() . '/resources/scripts/authorScript.js', array(), null, true);
+    }
 }
 add_action('wp_enqueue_scripts', 'theme_add_style_script');
 
