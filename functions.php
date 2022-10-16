@@ -24,7 +24,7 @@ function theme_add_style_script()
 
     // If author.php is in use import custom css & style
     if (is_author()) {
-        wp_enqueue_style('kalkylator-css', get_template_directory_uri() . '/resources/styles/authorStyle.css');
+        wp_enqueue_style('authorCSS', get_template_directory_uri() . '/resources/styles/authorStyle.css');
         wp_enqueue_script('authorJS', get_template_directory_uri() . '/resources/scripts/authorScript.js', array(), null, true);
     }
 }
