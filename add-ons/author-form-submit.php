@@ -14,7 +14,6 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
 
     // First name
     if (empty($_POST['first_name'])) {
-        echo 'pre Delete meta';
         if (get_user_meta($user_id, 'first_name', true)) {
             // Delete user meta last name
             delete_user_meta($user_id, 'first_name', $_POST['first_name']);
@@ -24,13 +23,11 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
         // Sanitize input
         $first_name_value = sanitize_text_field( $_POST['first_name']);
 
-        echo 'isset meta';
         if (!get_user_meta($user_id, 'first_name', true)) {
             add_user_meta($user_id, 'first_name', $first_name_value);
         } else {
             if ($first_name_value === get_user_meta($user_id, 'first_name', true)) {
                 //Do nothing it's the same
-                echo 'No change meta';
             } else {
                 update_user_meta($user_id, 'first_name', $first_name_value);
             }
