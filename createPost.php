@@ -1,9 +1,9 @@
 <?php
 
 /**
- * page.php
+ * createPost.php
  *
- * Template used for displaying pages
+ * Template used for creating Posts
  * 
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  * @link https://developer.wordpress.org/themes/basics/template-files/
@@ -18,37 +18,6 @@
  */
 get_header();
 ?>
-
-
-<div class="row">
-
-
-    <h1>Nu används page.php </h1>
-
-    <?php
-    if (have_posts()) {
-        while (have_posts()) {
-            the_post();
-            // Post Content here
-    ?>
-
-
-            <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail('medium'); ?>
-            <?php endif; ?>
-
-            <h1><?php the_title(); ?></h1>
-            <p><?php the_content(); ?></p>
-
-
-
-
-    <?php
-            //
-        } // end while
-        
-    } // end if
-    ?>
 
 <form id="featured_upload" method="post" action="#" enctype="multipart/form-data">
     <label for="title">Titel</label>
@@ -71,7 +40,6 @@ get_header();
 
     <input id="submit_my_image_upload" name="submit_my_image_upload" type="submit" value="Publicera Annons">
 </form>
-</div>
 
 <?php
 $post_id = 0;
@@ -144,6 +112,7 @@ $media = get_attached_media('image', $post_id); // Get image attachment(s) to th
 //print_r($media);
 
 ?>
+</div>
 
 <?php
 /**

@@ -65,9 +65,6 @@ function register_my_menu()
 }
 add_action('after_setup_theme', 'register_my_menu');
 
-
-
-
 /**
  * Handle author update_profile form
  */
@@ -76,5 +73,3 @@ function update_profile_callback()
 {
     require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/author-form-submit.php');
 }
-
-
