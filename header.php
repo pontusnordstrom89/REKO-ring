@@ -21,7 +21,7 @@
     <title><?php wp_title(); ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!--Import Google Icon Font used in materialize css-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <?php
@@ -39,8 +39,9 @@
 
 </head>
 
-<body> <!-- Body starts here -->
-   
+<body>
+    <!-- Body starts here -->
+
     <!-- Site container closed in footer -->
     <div class="container">
         <?php get_template_part('template-parts/navbar'); ?>

@@ -11,3 +11,12 @@ Text Domain: Rekoring
 
 
 /*Write custom css below this line*/
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.border-bottom {
+    border-bottom: 1px solid rgba(78, 78, 78, 0.534);
+}
+
