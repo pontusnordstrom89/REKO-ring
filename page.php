@@ -135,6 +135,9 @@ if (
 		// The image was uploaded successfully!
 	}
 
+    // When finished, die(); is required.
+    die();
+
 } else {
 	// The security check failed, maybe show the user an error.
 }
