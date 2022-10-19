@@ -8,16 +8,14 @@ Tags: REKO-ring
 Text Domain: Rekoring
 */
 
-
-
 /*Write custom css below this line*/
 
 .text-capitalize {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .border-bottom {
-    border-bottom: 1px solid rgba(78, 78, 78, 0.534);
+  border-bottom: 1px solid rgba(78, 78, 78, 0.534);
 }
 
 .sticky-order-form {
@@ -34,3 +32,4 @@ Text Domain: Rekoring
 .comment-body {
     border-bottom: 1px solid grey;
 }
+
