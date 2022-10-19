@@ -1,3 +1,4 @@
+<?php /* Template Name: Create Post */ ?>
 <?php
 
 /**
@@ -21,7 +22,10 @@ get_header();
 
 <form id="featured_upload" method="post" action="#" enctype="multipart/form-data">
     <label for="title">Titel</label>
-    <input type="text" name="title" id="title" placeholder="Titel"/>
+    <input required type="text" name="title" id="title" placeholder="Titel"/>
+
+    <label for="distance">Distans till utlämning</label>
+    <input required type="text" name="distance" id="distance" placeholder="Distans till utlämning"/>
 
     <label for="desc">Beskrivning</label>
     <!--<textarea type="text" name="desc" id="desc" placeholder="Skriv din annons här"></textarea> -->
@@ -32,8 +36,7 @@ get_header();
 
     <br><br>
 
-    <input type="file" name="my_image_upload[]" id="my_image_upload"  multiple="multiple"/>
-	<input type="hidden" name="post_id" id="post_id" value="55" />
+    <input required type="file" name="my_image_upload[]" id="my_image_upload"  multiple="multiple"/>
 	<?php wp_nonce_field( 'my_image_upload', 'my_image_upload_nonce' ); ?>
 
     <br><br>
@@ -46,6 +49,8 @@ $post_id = 0;
 
 if(isset($_POST['title'], $_POST['desc'])) {
     $title = $_POST['title'];
+    $distance = $_POST['distance'];
+    print_r($distance);
     $desc = $_POST['desc'];
     if ( is_user_logged_in() ) {
         $userid = get_current_user_id();
@@ -55,6 +60,9 @@ if(isset($_POST['title'], $_POST['desc'])) {
             'post_status' => 'publish',
             'post_author' => $userid,
             'post_type' => 'post',
+            'meta_input' => array(
+                'distance_to_delivery' => $distance
+            )
         );
         print_r($args);
         $post_id = wp_insert_post($args);

@@ -14,8 +14,6 @@
 </div> <!-- Opened in header -->
 
 
-
-
 <?php
 /**
  * wp_footer is a core function that other functions can be hooked into. 
