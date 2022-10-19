@@ -17,3 +17,19 @@ Text Domain: Rekoring
 .border-bottom {
   border-bottom: 1px solid rgba(78, 78, 78, 0.534);
 }
+
+.sticky-order-form {
+    min-height: 50px;
+    position: fixed;
+    bottom: 0px;
+}
+
+#order-form {
+    display: none;
+    max-height: 200px !important;
+}
+
+.comment-body {
+    border-bottom: 1px solid grey;
+}
+

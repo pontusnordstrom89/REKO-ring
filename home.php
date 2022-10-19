@@ -22,7 +22,6 @@
 get_header();
 ?>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <div class="hero">
     <div class="hero-content">
@@ -37,6 +36,7 @@ get_header();
         <img src="https://cdn.discordapp.com/attachments/915592769764986881/1031936745031344168/Farmer_2x.png" />
     </div>
 </div>
+
 
 <div class="product">
     <div class="product-content container">
@@ -71,6 +71,22 @@ get_header();
                     <button class="post-button">Besök producent</button>
                 </div>
                 </div>
+
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><?php the_title(); ?><i class="material-icons right">more_vert</i></span>
+                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a>
+                    </div>
+
+
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><?php the_title(); ?><i class="material-icons right">close</i></span>
+                        <p><?php the_excerpt(); ?></p>
+
+                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                            Läs mer
+                        </a>
+                    </div>
+
             </div>
         <?php } ?>
         </div>

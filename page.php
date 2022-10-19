@@ -19,7 +19,41 @@
 get_header();
 ?>
 
+
 <h1>Page.php</h1>
+
+
+<div class="row">
+
+
+    <h1>Nu används page.php </h1>
+
+    <?php
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
+            // Post Content here
+    ?>
+
+
+            <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('medium'); ?>
+            <?php endif; ?>
+
+            <h1><?php the_title(); ?></h1>
+            <p><?php the_content(); ?></p>
+
+
+
+
+    <?php
+            //
+        } // end while
+        
+    } // end if
+    ?>
+
+
 
 <?php
 /**
