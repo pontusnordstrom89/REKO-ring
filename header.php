@@ -42,6 +42,8 @@
 <body>
     <!-- Body starts here -->
 
+    <!-- Get Navbar -->
+    <?php get_template_part('template-parts/navbar'); ?>
+    
     <!-- Site container closed in footer -->
     <div class="container">
-        <?php get_template_part('template-parts/navbar'); ?>
