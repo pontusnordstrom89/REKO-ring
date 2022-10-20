@@ -17,8 +17,8 @@ while (have_posts()) {
             <h4><?php the_title(); ?></h4>
             <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a>
             <hr>
-            <img src="http://reko-ring.dev.com/wp-content/uploads/<?php echo get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
-            
+            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
+
         </div>
         <div class="col s12 m8 carousel">
 
@@ -65,10 +65,19 @@ while (have_posts()) {
             <div id="order-form">
                 <div class="col s12 m6 offset-m3 teal">
                     <?php
-                    // If comments are open or we have at least one comment, load up the comment template.
-                    if (comments_open() || get_comments_number()) :
-                        comments_template();
-                    endif;
+
+                    if (is_user_logged_in()) {
+                        // If comments are open or we have at least one comment, load up the comment template.
+                        if (comments_open() || get_comments_number()) :
+                            comments_template();
+                        endif;
+                    } else { ?>
+                        <div>
+                            <h3 class="white-text">Logga in för att beställa</h3>
+                            <p><a class="white-text" href="<?php echo home_url() . '/wp-login' ?>">Klicka här för att logga in / skapa konto</a></p>
+                        </div>
+                    <?php }
+
                     ?>
 
                 </div>

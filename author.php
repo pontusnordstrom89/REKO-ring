@@ -8,11 +8,11 @@
     </div>
 
     <div class="col s12 m4">
-
+       
         <?php if (get_user_meta(get_the_author_meta('ID'), 'profile_picture', true)) {
 
         ?>
-            <img src="http://reko-ring.dev.com/wp-content/uploads/<?php echo get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img">
+            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img">
         <?php
         } else { ?>
             <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="mt-5 responsive-img">
@@ -112,7 +112,7 @@
                         <?php if (get_user_meta(get_the_author_meta('ID'), 'profile_picture', true)) {
 
                         ?>
-                            <img src="http://reko-ring.dev.com/wp-content/uploads/<?php echo get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
+                            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
                         <?php
                         } else { ?>
                             <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
