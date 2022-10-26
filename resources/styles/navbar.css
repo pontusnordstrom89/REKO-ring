@@ -42,4 +42,12 @@
   transform: scale(1, 1);
 }
 
+.sidenav-trigger {
+  color: var(--black);
+  display: flex;
+  justify-content: space-between;
+}
 
+.brand-logo {
+  margin: 0;
+}

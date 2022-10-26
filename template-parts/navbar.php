@@ -17,7 +17,6 @@
 
         <ul id="nav-mobile" class="sidenav">
             <div class="col">
-                '
                 <a id="logo-container" href="<?php echo home_url(); ?>" class="brand-logo"><img height="50px" src="<?php echo get_template_directory_uri() . '/img/text-logo.png' ?>"></a>
             </div>
             <div class="col">
@@ -34,6 +33,6 @@
             </div>
 
         </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons" color="black">menu</i></a>
     </div>
 </nav>
