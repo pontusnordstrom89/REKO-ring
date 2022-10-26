@@ -1,6 +1,6 @@
-<nav class="green" role="navigation">
+<nav class="z-depth-0 nav-cont" style="background: white;" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="<?php echo home_url(); ?>" class="brand-logo"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/icon/farmer.png' ?>"></a>
+        <a id="logo-container" href="<?php echo home_url(); ?>"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/icon/farmer.png' ?>"></a>
         <ul class="right hide-on-med-and-down">
 
             <?php

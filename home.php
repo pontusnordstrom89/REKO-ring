@@ -68,27 +68,11 @@ get_header();
                             <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
                                 ?> km</p>
                         </div>
-                        <div class="post-buttons center-align">
-                            <!--<button class="post-button">Besök producent</button>-->
-                            <a href="<?php the_permalink(); ?>" class="waves-effect waves-light btn red darken-1">Besök producent</a>
+                        <div class="post-button center-align">
+                            <!-- <button class="post-button">Besök producent</button> -->
+                            <a href="<?php the_permalink() ?>" class="post-button-text";>Besök producent</a>
                         </div>
                     </div>
-
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><?php //Sthe_title(); ?><i class="material-icons right">more_vert</i></span>
-                        <a href="<?php //echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php //echo esc_attr(get_the_author()); ?>"><?php //the_author(); ?></a>
-                    </div>
-
-
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><?php the_title(); ?><!--<i class="material-icons right">close</i></span>-->
-                        <p><?php //the_excerpt(); ?></p>
-
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                            Läs mer
-                        </a>
-                    </div>
-
                 </div>
             <?php } ?>
         </div>
