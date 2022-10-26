@@ -44,10 +44,6 @@
 
 .sidenav-trigger {
   color: var(--black);
-  display: flex;
-  justify-content: space-between;
 }
 
-.brand-logo {
-  margin: 0;
-}
+
