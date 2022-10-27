@@ -28,14 +28,14 @@ get_header();
         <div class="header-container">
             <img src="wp-content/themes/REKO-ring/Traktor - 84624.mp4"/>
         </div>
-            <div class="content">
-                <h1>En <span class="modernare">modernare</span> bondens-marknad</h1>
-                <p id="header-text">REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
-                <div class="hero-buttons">
-                    <button class="hero-cta">Besök Shoppen</button>
-                    <button class="hero-secondary secondary">Mer om oss</button>
-                </div>
+        <div class="content">
+            <h1>En <span class="modernare">modernare</span> bondens-marknad</h1>
+            <p id="header-text">REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
+            <div class="hero-buttons">
+                <button class="hero-cta">Besök Shoppen</button>
+                <button class="hero-secondary secondary">Mer om oss</button>
             </div>
+        </div>
     </div>
 </header>
 
