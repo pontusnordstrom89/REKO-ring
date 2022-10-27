@@ -23,19 +23,21 @@ get_header();
 ?>
 
 
-<div class="hero">
-    <div class="hero-content">
-        <h1>En <span class="hero-color">modernare</span> bondens-marknad</h1>
-        <p>REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
-        <div class="hero-buttons">
-            <button class="hero-cta">Besök Shoppen</button>
-            <button class="hero-secondary">Mer om oss</button>
+<header>
+    <div class="hero">
+        <div class="header-container">
+            <img src="wp-content/themes/REKO-ring/Traktor - 84624.mp4"/>
         </div>
+            <div class="content">
+                <h1>En <span class="modernare">modernare</span> bondens-marknad</h1>
+                <p id="header-text">REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
+                <div class="hero-buttons">
+                    <button class="hero-cta">Besök Shoppen</button>
+                    <button class="hero-secondary secondary">Mer om oss</button>
+                </div>
+            </div>
     </div>
-    <div class="hero-image">
-        <img src="https://cdn.discordapp.com/attachments/915592769764986881/1031936745031344168/Farmer_2x.png" />
-    </div>
-</div>
+</header>
 
 
 <div class="product">
@@ -64,7 +66,7 @@ get_header();
                             <p><?php echo get_the_author_meta('first_name'); ?></p>
                         </div>
                         <div class="post-item">
-                            <p class="post-title">Distans</p>
+                            <p class="post-title">Avstånd till utlämningsställe</p>
                             <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
                                 ?> km</p>
                         </div>
