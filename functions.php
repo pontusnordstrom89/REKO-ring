@@ -13,6 +13,9 @@ function theme_add_style_script()
     // Get style.css
     wp_enqueue_style('style-css', get_template_directory_uri() . '/style.css');
 
+    //get navbar style
+    wp_enqueue_style('nav-css', get_template_directory_uri() . '/resources/styles/navbar.css');
+
     // Get jQuery
     wp_enqueue_script('jQuery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), '3.6.0', false);
 

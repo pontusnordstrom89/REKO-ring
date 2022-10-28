@@ -1,0 +1,49 @@
+.nav-cont {
+    background-color: transparent !important;
+    padding: 1rem 0;
+  }
+
+  #logo-container a {
+    padding: 0 0 16px 0;
+  }
+  
+.nav-cont ul li a {
+    color: var(--black);
+    background-color: transparent;
+    border: 0;
+}
+
+.nav-cont ul li a {
+  position: relative;
+  padding: 0 0 16px 0;
+  margin: 8px 12px;
+  line-height: 16px;
+  transition: 0.1s,padding 0.2s ease-in;
+  color: #000;
+}
+.nav-cont ul li a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+  transform-origin: center;
+  transform: scale(0, 1);
+  transition: transform 0.2s ease-out;
+}
+.nav-cont ul li a:active::before {
+  background-color: #000;
+}
+.nav-cont ul li a:hover::before, a:focus::before {
+  transform-origin: center;
+  transform: scale(1, 1);
+}
+
+.sidenav-trigger {
+  color: var(--black);
+}
+
+
