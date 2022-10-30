@@ -65,7 +65,7 @@ get_header();
                         </div>
                         <div class="post-item">
                             <p class="post-title">Distans</p>
-                            <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
+                            <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
                                 ?> km</p>
                         </div>
                         <div class="post-buttons center-align">

@@ -152,7 +152,7 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
         $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
 
         // Trim file path, just store the unique part
-        $image_url = ltrim($movefile['url'], 'http://reko-ring.dev.com/wp-content/uploads/');
+        $image_url = ltrim($movefile['url'], home_url() . '/wp-content/uploads/');
 
         // If upload success
         if ($movefile && !isset($movefile['error'])) {
@@ -166,7 +166,7 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
 
             if ($has_picture) {
                 // Trim file path, just use the unique part
-                $delete_picture = ltrim($has_picture, 'http://reko-ring.dev.com/wp-content/uploads/');
+                $delete_picture = ltrim($has_picture, home_url() . '/wp-content/uploads/');
 
                 // Update filepath
                 update_user_meta($user_id, 'profile_picture', $image_url);
@@ -190,7 +190,7 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
     }
 
     // redirect the user to the appropriate page
-    wp_redirect('http://reko-ring.dev.com/blog/author/' . get_the_author_meta('user_login', $user_id));
+    wp_redirect( home_url() . '/blog/author/' . get_the_author_meta('user_login', $user_id));
     // When finished, die(); is required.
     die();
 }

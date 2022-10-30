@@ -1,6 +1,6 @@
 <nav class="green" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="<?php echo home_url(); ?>" class="brand-logo"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/icon/farmer.png' ?>"></a>
+        <a id="logo-container" href="<?php echo home_url(); ?>" class="brand-logo"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/img/Reko Logo 1.png' ?>"></a>
         <ul class="right hide-on-med-and-down">
 
             <?php
@@ -18,7 +18,7 @@
         <ul id="nav-mobile" class="sidenav">
             <div class="col">
                 '
-                <a id="logo-container" href="<?php echo home_url(); ?>" class="brand-logo"><img height="50px" src="<?php echo get_template_directory_uri() . '/img/text-logo.png' ?>"></a>
+                <a id="logo-container" href="<?php echo home_url(); ?>" class="brand-logo"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/img/Reko Logo 1.png' ?>"></a>
             </div>
             <div class="col">
                 <?php
