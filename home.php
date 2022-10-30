@@ -23,19 +23,21 @@ get_header();
 ?>
 
 
-<div class="hero">
-    <div class="hero-content">
-        <h1>En <span class="hero-color">modernare</span> bondens-marknad</h1>
-        <p>REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
-        <div class="hero-buttons">
-            <button class="hero-cta">Besök Shoppen</button>
-            <button class="hero-secondary">Mer om oss</button>
+<header>
+    <div class="hero">
+        <div class="header-container">
+            <img src="wp-content/themes/REKO-ring/Traktor - 84624.mp4"/>
+        </div>
+        <div class="content">
+            <h1>En <span class="modernare">modernare</span> bondens-marknad</h1>
+            <p id="header-text">REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
+            <div class="hero-buttons">
+                <button class="hero-cta">Besök Shoppen</button>
+                <button class="hero-secondary secondary">Mer om oss</button>
+            </div>
         </div>
     </div>
-    <div class="hero-image">
-        <img src="https://cdn.discordapp.com/attachments/915592769764986881/1031936745031344168/Farmer_2x.png" />
-    </div>
-</div>
+</header>
 
 
 <div class="product">
@@ -64,31 +66,15 @@ get_header();
                             <p><?php echo get_the_author_meta('first_name'); ?></p>
                         </div>
                         <div class="post-item">
-                            <p class="post-title">Distans</p>
-                            <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
+                            <p class="post-title">Avstånd till utlämningsställe</p>
+                            <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
                                 ?> km</p>
                         </div>
-                        <div class="post-buttons center-align">
-                            <!--<button class="post-button">Besök producent</button>-->
-                            <a href="<?php the_permalink(); ?>" class="waves-effect waves-light btn red darken-1">Besök producent</a>
+                        <div class="post-button center-align">
+                            <!-- <button class="post-button">Besök producent</button> -->
+                            <a href="<?php the_permalink() ?>" class="post-button-text";>Besök producent</a>
                         </div>
                     </div>
-
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><?php //Sthe_title(); ?><i class="material-icons right">more_vert</i></span>
-                        <a href="<?php //echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php //echo esc_attr(get_the_author()); ?>"><?php //the_author(); ?></a>
-                    </div>
-
-
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><?php the_title(); ?><!--<i class="material-icons right">close</i></span>-->
-                        <p><?php //the_excerpt(); ?></p>
-
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                            Läs mer
-                        </a>
-                    </div>
-
                 </div>
             <?php } ?>
         </div>

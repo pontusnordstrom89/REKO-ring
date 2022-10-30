@@ -12,5 +12,3 @@ $('#orderButton').click(function() {
 
     $('#order-form').toggle();
 })
-
-

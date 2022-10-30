@@ -13,7 +13,7 @@
 
 </div> <!-- Opened in header -->
 
-        <footer class="green lighten-1 page-footer">
+        <footer class="lighten-1 page-footer" style="background-color:#598b36">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
