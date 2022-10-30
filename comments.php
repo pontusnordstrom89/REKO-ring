@@ -37,7 +37,7 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
 
 
 <?php
-
+  
 } else {
 
 

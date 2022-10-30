@@ -31,7 +31,7 @@ function theme_add_style_script()
         wp_enqueue_script('authorJS', get_template_directory_uri() . '/resources/scripts/authorScript.js', array(), null, true);
     }
 
-    if(is_home()) {
+    if(is_home() || is_search() || is_category()) {
         wp_enqueue_style('authorCSS', get_template_directory_uri() . '/resources/styles/home.css');
         wp_enqueue_script('authorJS', get_template_directory_uri() . '/resources/scripts/home.js', array(), null, true);
     }
@@ -62,16 +62,7 @@ $args = array(
 );
 add_theme_support('custom-header', $args);
 
-/**
- * 
- * Register main menu and special submenus
- * 
- */
-function register_my_menu()
-{
-    register_nav_menu('main-menu', __('Huvudmeny', 'REKO-ring-main-navigation'));
-}
-add_action('after_setup_theme', 'register_my_menu');
+
 
 /**
  * Handle author update_profile form
@@ -90,3 +81,53 @@ function remove_admin_bar(){
     show_admin_bar(false);
 	}
 }
+
+
+/**
+ * 
+ * Register main menu and special submenus
+ * 
+ */
+function register_my_menu()
+{
+    register_nav_menu('main-menu', __('Huvudmeny', 'REKO-ring-main-navigation'));
+}
+add_action('after_setup_theme', 'register_my_menu');
+
+/**
+ * 
+ * Register extra items to main navigation
+ * 
+ */
+add_filter('wp_nav_menu_items', 'add_extra_item_to_nav_menu',10);
+function add_extra_item_to_nav_menu($items)
+{
+    $items .= '<li><a href="'. home_url() .'/blog/category/uncategorized/">Handla närodlat</a></li>';
+    
+    if (is_user_logged_in()) {
+        $items .= '<li><a href="' . wp_logout_url(home_url()) . '">Logga ut</a></li>';
+    } elseif (!is_user_logged_in()) {
+        $items .= '<li><a href="'. wp_login_url().'">Logga in / Registrera</a></li>';
+    }
+    
+    return $items;
+}
+
+
+/**
+ * 
+ * Style wordpress search form
+ * 
+ */
+function custom_search_form($form)
+{
+    $form = '<form role="search" method="get" id="searchform" class="searchform row col s12 m6 l4 offset-l4 center-align" action="' . home_url('/') . '" >
+        
+        <input style="font-size:24px; margin-top:10px;" class="col s10 m8 l8 white-text" type="text" placeholder="Sök" value="' . get_search_query() . '" name="s" id="s" />
+        <button class="waves-effect waves-light btn" type="submit" id="searchsubmit">Sök</button>
+      
+      </form>';
+
+    return $form;
+}
+add_filter('get_search_form', 'custom_search_form', 40);

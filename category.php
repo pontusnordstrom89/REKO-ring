@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Home.php
+ * Category.php
  *
  * By default, WordPress sets your site’s home page to display your latest blog posts. 
  * This page is called the blog posts index. You can also set your blog posts to display on a separate static page. 
@@ -20,32 +20,74 @@
  * Looks for header.php file if no parameter is passed
  */
 get_header();
+
+
+// Get all categories on site
+$all_categories = get_categories();
+
 ?>
 
 
-<header>
-    <div class="hero">
-        <div class="header-container">
-
-            <!-- Använd get_template_directory_uri() och spara i resources t.ex. <img src="<?php //echo get_template_directory_uri() . '/resources/video/Traktor - 84624.mp4' ?>">-->
-            <img src="wp-content/themes/REKO-ring/Traktor - 84624.mp4" />
-            <!-- ----------------------------------->
-        </div>
-        <div class="content">
-            <h1>En <span class="modernare">modernare</span> bondens-marknad</h1>
-            <p id="header-text">REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
-            <div class="hero-buttons">
-                <?php echo '<a class="hero-cta" href="' . home_url() . '/blog/category/uncategorized/">Handla närodlat</a>' ?>
-                <button class="hero-secondary secondary">Mer om oss</button>
-            </div>
-        </div>
-    </div>
-</header>
 
 
 <div class="product">
     <div class="product-content container">
-        <h2>Våra producenter</h2>
+
+
+        <nav style="margin-top:20px;" class="hide-on-small-only">
+            <div class="nav-wrapper row">
+                <?php get_search_form(); ?>
+                <div class="col s12 m6 l4 row right-align">
+
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger btn' href='#' data-target='categoryDropdown'>Välj kategori</a>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='categoryDropdown' class='dropdown-content left hide-on-med-and-down'>
+                        <?php foreach ($all_categories as $category) {
+                            $text_output = $category->name;
+                            if ($text_output == 'Uncategorized') {
+                                $text_output = 'Visa alla annonser';
+                            }
+                            echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="hide-on-med-and-up">
+            <?php get_search_form(); ?>
+            <div class="col s12 center-align">
+                <!-- Dropdown Trigger -->
+                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Välj kategori</a>
+
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content left'>
+                    <?php foreach ($all_categories as $category) {
+                        $text_output = $category->name;
+                        if ($text_output == 'Uncategorized') {
+                            $text_output = 'Visa alla annonser';
+                        }
+                        echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <?php
+        $term = get_queried_object();
+
+        if ($term->name == 'Uncategorized') {
+            echo '<h2>Alla annonser</h2>';
+        } else {
+            echo '<h2>Visar annonser i kategorin: <span class="green-text">' . $term->name . '</span></h2>';
+        }
+        ?>
         <div class="products">
             <?php
             while (have_posts()) {
@@ -83,39 +125,6 @@ get_header();
         </div>
     </div>
 </div>
-
-<div class="faq">
-    <div class="faq-content">
-        <div class="top">
-            <h2>FAQ</h2>
-            <p>Vanligt ställda frågor</p>
-        </div>
-        <ul class="collapsible expandable">
-            <li class="active">
-                <div class="collapsible-header">
-                    <p>Hur betalar jag när jag beställt?</p>
-                    <i class="material-icons white-text">remove</i>
-                </div>
-                <div class="collapsible-body"><span>Fråga Håkan</span></div>
-            </li>
-            <li>
-                <div class="collapsible-header collapsible-closed">
-                    <p>Är allt närodlat?</p>
-                    <i class="material-icons white-text">add</i>
-                </div>
-                <div class="collapsible-body"><span>Det hoppas jag!</span></div>
-            </li>
-            <li>
-                <div class="collapsible-header collapsible-closed">
-                    <p>Var hämtar jag ut mina varor?</p>
-                    <i class="material-icons white-text">add</i>
-                </div>
-                <div class="collapsible-body"><span>På parkeringen</span></div>
-            </li>
-        </ul>
-    </div>
-</div>
-
 <?php
 /**
  * get_footer @link https://developer.wordpress.org/reference/functions/get_footer/

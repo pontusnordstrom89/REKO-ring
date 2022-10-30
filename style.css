@@ -26,7 +26,8 @@ Text Domain: Rekoring
 
 #order-form {
     display: none;
-    max-height: 200px !important;
+    max-height: 80vh !important;
+    overflow-y: scroll;
 }
 
 .comment-body {
