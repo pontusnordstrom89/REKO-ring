@@ -36,7 +36,10 @@ $all_categories = get_categories();
 
         <nav style="margin-top:20px;" class="hide-on-small-only">
             <div class="nav-wrapper row">
+                
                 <?php get_search_form(); ?>
+                
+
                 <div class="col s12 m6 l4 row right-align">
 
                     <!-- Dropdown Trigger -->

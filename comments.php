@@ -22,26 +22,35 @@ $getUser = wp_get_current_user();
 
 if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
 ?>
-    <ul class="comment-list white">
-        <h3>Beställningar</h3>
+    <div class="left-align">
+        <a id="navigateBackComments" href="#">Tillbaka till kommentarerna</a>
+    </div>
+
+    <h3 id="orderCommentTitleText" class="white-text">Beställningar</h3>
+    <ul class="comment-list white left-align">
+
         <?php
-        wp_list_comments(array(
-            'style'       => 'ul',
-            'type'        => 'all',
-            'short_ping'  => false,
-            'avatar_size' => 10,
-            'echo'        => true
-        ));
+        wp_list_comments();
         ?>
     </ul>
 
 
-<?php
-  
+    <?php
+    if (isset($_GET['replytocom'])) {
+        $x = $_GET['replytocom'];
+
+        comment_form(array(
+            'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="btn waves-effect waves" />Publicera kommentar</button>',
+            'comment_field' => '<textarea class="materialize-textarea white" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
+            'title_reply' => '',
+            'title_reply_to' => 'Lämna en kommentar på ' . $getUser->user_login . '´s beställning <br>',
+            'comment_notes_after'=> ''
+        ));
+    }
 } else {
 
 
-?>
+    ?>
 
 
 
@@ -60,7 +69,8 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
             'logged_in_as' => $currentUser,
             'submit_button' => '<input name="%1$s" type="submit" id="%2$s" value="Beställ" class="btn waves-effect waves white-text" />',
             'comment_field' => '<textarea class="materialize-textarea white" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
-            'title_reply' => ''
+            'title_reply' => '',
+            'title_reply_to' => 'Svara',
         )); ?>
 
 
@@ -70,29 +80,19 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
             <ul class="comment-list white">
 
                 <?php
-                /** 
-                 *wp_list_comments(array(
-                 *    'style'       => 'ul',
-                 *    'type'        => 'all',
-                 *    'short_ping'  => false,
-                 *    'avatar_size' => 10,
-                 *    'echo'        => false
-                 *));
-                 */
-
 
                 $args = array(
                     'post_id' => get_the_ID()
                 );
                 $com = get_comments($args);
+                var_dump($com);
                 foreach ($com as $author) {
                     if ($getUser->user_login != $author->comment_author) {
                         //Do not show comment
                     } else {
-                        echo '<li>' . $author->comment_author . '<br>' . $author->comment_content . '<br>' . $author->comment_date_gmt . '</li>';
+                        echo '<li class="commentsBorder">' . $author->comment_author . '<br>' . $author->comment_content . '<br>' . $author->comment_date_gmt . '</li>';
                     }
-                }
-                //var_dump($com[0]);
+                };
 
 
                 ?>

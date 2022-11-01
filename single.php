@@ -2,9 +2,9 @@
 // single.php controls a single post from index.php
 ?>
 
-<?php get_header(); ?>
+<?php get_header();
 
-<?php
+
 while (have_posts()) {
     the_post();
 ?>
@@ -53,7 +53,7 @@ while (have_posts()) {
 
             $getUser = wp_get_current_user();
             if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
-                $orderButtonText = 'Se beställningar';
+                $orderButtonText = 'Du har ' . get_comments_number() . ' beställningar';
             } else {
                 $orderButtonText = 'Beställ av ' . get_the_author();
             }
@@ -63,7 +63,11 @@ while (have_posts()) {
             </button>
 
             <div id="order-form">
+
                 <div class="col s12 m6 offset-m3 teal">
+                    <div id="commentFormLoader" class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
                     <?php
 
                     if (is_user_logged_in()) {
