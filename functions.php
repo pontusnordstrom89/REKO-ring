@@ -38,9 +38,6 @@ function theme_add_style_script()
 }
 add_action('wp_enqueue_scripts', 'theme_add_style_script');
 
-
-
-
 /**
  * Add theme support so that logo, headers, menus etc can be changed in admin area
  * @link https://developer.wordpress.org/reference/functions/add_theme_support/
@@ -53,7 +50,6 @@ add_theme_support('post-thumbnails');
 // Add support for menus
 add_theme_support('menus');
 
-
 // Custom header
 $args = array(
     'width'         => 980,
@@ -61,8 +57,6 @@ $args = array(
     'default-image' => get_template_directory_uri() . '/img/banner.jpg',
 );
 add_theme_support('custom-header', $args);
-
-
 
 /**
  * Handle author update_profile form
@@ -73,7 +67,6 @@ function update_profile_callback()
     require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/author-form-submit.php');
 }
 
-
 //Metod för att visa wordpress-dashboard endast för administratörer
 add_action('after_setup_theme', 'remove_admin_bar');
 function remove_admin_bar(){
@@ -81,7 +74,6 @@ function remove_admin_bar(){
     show_admin_bar(false);
 	}
 }
-
 
 /**
  * 
@@ -93,26 +85,6 @@ function register_my_menu()
     register_nav_menu('main-menu', __('Huvudmeny', 'REKO-ring-main-navigation'));
 }
 add_action('after_setup_theme', 'register_my_menu');
-
-/**
- * 
- * Register extra items to main navigation
- * 
- */
-add_filter('wp_nav_menu_items', 'add_extra_item_to_nav_menu',10);
-function add_extra_item_to_nav_menu($items)
-{
-    $items .= '<li><a href="'. home_url() .'/blog/category/uncategorized/">Handla närodlat</a></li>';
-    
-    if (is_user_logged_in()) {
-        $items .= '<li><a href="' . wp_logout_url(home_url()) . '">Logga ut</a></li>';
-    } elseif (!is_user_logged_in()) {
-        $items .= '<li><a href="'. wp_login_url().'">Logga in / Registrera</a></li>';
-    }
-    
-    return $items;
-}
-
 
 /**
  * 
@@ -131,3 +103,11 @@ function custom_search_form($form)
     return $form;
 }
 add_filter('get_search_form', 'custom_search_form', 40);
+
+function add_additional_class_on_li($classes, $item, $args) {
+    if(isset($args->add_li_class)) {
+        $classes[] = $args->add_li_class;
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
