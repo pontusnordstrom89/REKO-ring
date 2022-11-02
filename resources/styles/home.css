@@ -287,9 +287,19 @@ h2 {
 }
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-settings: "FILL"0, "wght"400, "GRAD"0, "opsz"48;
   color: var(--white-sand);
 }
+
+#categoryNav {
+  background-color: var(--red);
+}
+
+#searchNav {
+  background-color: var(--red);
+}
+
+
 
 @media screen and (max-width: 1450px) {
   .post {
@@ -309,4 +319,3 @@ h2 {
 
 
 /* --------------------------------- */
-
