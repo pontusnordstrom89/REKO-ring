@@ -32,7 +32,7 @@ $all_categories = get_categories();
 
 <div class="product">
     <div class="product-content container">
-        <nav style="margin-top:20px;">
+        <nav id="searchNav" style="margin-top:20px;">
             <div class="nav-wrapper row">
                 <?php get_search_form(); ?>
                 <div class="col s12 m4 row right-align">
