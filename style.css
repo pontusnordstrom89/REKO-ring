@@ -10,6 +10,35 @@ Text Domain: Rekoring
 
 /*Write custom css below this line*/
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--white-sand);
+}
+
+*,
+h1,
+h2,
+h3,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --black: #252525;
+  --white: #eeeeee;
+  --white-sand: #fffcf4;
+  --dark-green: #598b36;
+  --darker-green: #3f6325;
+  --light-green: #d5dfce;
+  --red: #f66565;
+  --darker-red: #c54d4d;
+  --red-bg: #fcf2e8;
+}
+
 .text-capitalize {
   text-transform: capitalize;
 }
@@ -72,6 +101,3 @@ Text Domain: Rekoring
 .modernare {
   color: rgb(65, 175, 65);
 }
-
-
-
