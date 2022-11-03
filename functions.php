@@ -62,7 +62,7 @@ function create_pages_if_not_exist() {
     $find_create_page_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'create-post'");
 
     // Check if order view
-    $find_corder_view_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'order-view'");
+    $find_order_view_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'order-view'");
     
     if ($find_create_page_slug) {
         //Create post exists
@@ -94,7 +94,7 @@ function create_pages_if_not_exist() {
         ));
     }
 
-    if ($find_corder_view_slug) {
+    if ($find_order_view_slug) {
         // Order view exists
     } else {
         // Create new page + template for order view
