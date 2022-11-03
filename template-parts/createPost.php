@@ -70,7 +70,7 @@ get_header();
             <fieldset>
                 <legend>Välj kategori för din annons (möjligt att välja fler)</legend>
                 <?php
-                $categories = get_categories();
+                $categories = get_categories(array('hide_empty' => false));
                 foreach ($categories as $cat) {
                     if ($cat->term_id == 1) {
                         // Skip, don't show uncategorized

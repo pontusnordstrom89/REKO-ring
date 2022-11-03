@@ -58,7 +58,7 @@ if (
     }
 
     // Assign post categories
-    $categories = get_categories();
+    $categories = get_categories(array('hide_empty' => false));
 
     // Create array for categories
     $set_categories = array(1,);

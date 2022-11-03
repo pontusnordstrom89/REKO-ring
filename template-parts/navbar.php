@@ -1,101 +1,101 @@
 <div class="nav">
     <div class="container nav-flex">
         <a class="image-a" href="<?php echo home_url(); ?>"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/img/reko_black.png' ?>"></a>
-        
+
         <div class="nav-selections">
             <?php
-                $curr_site = get_current_blog_id();
+            $curr_site = get_current_blog_id();
             ?>
             <ul class="nav-ul">
                 <li class="nav-li"><a href="<?php echo home_url() ?>">Om oss</a></li>
                 <li class="nav-li"><a href="<?php echo home_url() ?>/blog/category/uncategorized/">Handla</a></li>
                 <?php
-                    if (is_user_logged_in() && current_user_can('author')) {
+                if (is_user_logged_in() && current_user_can('author')) {
                 ?>
-                    <li class="nav-li"><a href="./create-post">Skapa annons</a></li>
+                    <li class="nav-li"><a href="<?php echo home_url() ?>/create-post">Skapa annons</a></li>
                 <?php
-                    }
-                ?> 
+                }
+                ?>
 
                 <select class="nav-select" name="select" onchange="location = this.value;">
-                    
+
                     <option disabled selected>
                         <?php echo get_blog_details($curr_site)->blogname ?>
                     </option>
                     <?php
-                        $sites = get_sites();
+                    $sites = get_sites();
 
-                        foreach($sites as $site) {
-                            $page = get_blog_details($site->blog_id);
+                    foreach ($sites as $site) {
+                        $page = get_blog_details($site->blog_id);
 
-                            if($curr_site != $site->blog_id) {   
+                        if ($curr_site != $site->blog_id) {
                     ?>
-                                <option value="<?php echo $site->path ?>"><?php echo $page->blogname ?></option>
-                    <?php 
-                            }
-                        }   
+                            <option value="<?php echo $site->path ?>"><?php echo $page->blogname ?></option>
+                    <?php
+                        }
+                    }
                     ?>
                 </select>
                 <?php
-                    if (is_user_logged_in()) {
+                if (is_user_logged_in()) {
                 ?>
                     <button onClick="window.location.href='<?php echo wp_logout_url(home_url()); ?>';" class="nav-cta">Logga ut</button>
                 <?php
-                    } else {
-                ?> 
+                } else {
+                ?>
                     <button onClick="window.location.href='<?php echo wp_login_url(); ?>';" class="nav-cta">Logga in</button>
                 <?php
-                    }
-                ?>  
+                }
+                ?>
             </ul>
         </div>
         <div class="menu-btn mobile">
             <div class="menu-btn__burger"></div>
         </div>
         <div class="overlay nav-flex">
-            
+
             <ul class="nav-ul">
                 <li class="nav-li"><a href="<?php echo home_url() ?>">Om oss</a></li>
                 <li class="nav-li"><a href="<?php echo home_url() ?>/blog/category/uncategorized/">Handla</a></li>
                 <?php
-                    if (is_user_logged_in() && current_user_can('author')) {
+                if (is_user_logged_in() && current_user_can('author')) {
                 ?>
                     <li class="nav-li"><a href="./create-post">Skapa annons</a></li>
                 <?php
-                    }
-                ?> 
+                }
+                ?>
 
                 <select class="nav-select" name="select" onchange="location = this.value;">
-                    
+
                     <option disabled selected>
                         <?php echo get_blog_details($curr_site)->blogname ?>
                     </option>
                     <?php
-                        $sites = get_sites();
+                    $sites = get_sites();
 
-                        foreach($sites as $site) {
-                            $page = get_blog_details($site->blog_id);
+                    foreach ($sites as $site) {
+                        $page = get_blog_details($site->blog_id);
 
-                            if($curr_site != $site->blog_id) {   
+                        if ($curr_site != $site->blog_id) {
                     ?>
-                                <option value="<?php echo $site->path ?>"><?php echo $page->blogname ?></option>
-                    <?php 
-                            }
-                        }   
+                            <option value="<?php echo $site->path ?>"><?php echo $page->blogname ?></option>
+                    <?php
+                        }
+                    }
                     ?>
                 </select>
                 <?php
-                    if (is_user_logged_in()) {
+                if (is_user_logged_in()) {
                 ?>
                     <button onClick="window.location.href='<?php echo wp_logout_url(home_url()); ?>';" class="nav-cta">Logga ut</button>
                 <?php
-                    } else {
-                ?> 
+                } else {
+                ?>
                     <button onClick="window.location.href='<?php echo wp_login_url(); ?>';" class="nav-cta">Logga in</button>
                 <?php
-                    }
-                ?> 
-            </ul>    
+                }
+                ?>
+            </ul>
         </div>
     </div>
 </div>
@@ -132,7 +132,7 @@
                     'depth' => 1,
                 ));
                 */
-                ?>
+                                        ?>
             </div>
 
         </ul>
