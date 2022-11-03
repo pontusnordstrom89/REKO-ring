@@ -62,3 +62,42 @@ button {
 .comment-body {
   border-bottom: 1px solid grey;
 }
+
+/* CSS som hör till headern. */
+.header-container>img {
+  width: 100%;
+  mix-blend-mode: overlay;
+  height: 797px;
+}
+
+.header-container {
+  max-height: 791px;
+  background: linear-gradient(to left, rgba(123, 140, 123, 0.908), rgb(74, 76, 73) 70%);
+  width: 100%;
+}
+
+.secondary {
+  color: #eeeeee;
+}
+
+.content {
+  position: absolute;
+  left: 100px;
+  color: #eeeeee;
+  flex-direction: column;
+  width: 32rem;
+  margin: 15px;
+}
+
+.content>h1 {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+
+.hero-buttons {
+  margin-top: 15px;
+}
+
+.modernare {
+  color: rgb(65, 175, 65);
+}
