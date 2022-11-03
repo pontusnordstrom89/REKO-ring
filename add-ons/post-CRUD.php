@@ -56,13 +56,31 @@ if (
             }
         }
     }
+
+    // Assign post categories
+    $categories = get_categories();
+
+    // Create array for categories
+    $set_categories = array(1,);
+
+    // For each available category assign those who are checked
+    foreach($categories as $cat) {
+        if(isset($_POST[$cat->term_id])) {
+            array_push($set_categories, $cat->term_id);
+        };
+    }
+    
+    // Set categories to post
+    wp_set_post_categories($post_id, $set_categories);
+
+    // Get post permalink so we can redirect user to post after creation
     $post_permalink = get_permalink($post_id);
     // redirect the user to the appropriate page
     wp_redirect($post_permalink);
     // When finished, die(); is required.
     die();
 
-    
+
     //$attachment_id = media_handle_upload( 'my_image_upload', $post_id );
 
     //if (is_wp_error()) {

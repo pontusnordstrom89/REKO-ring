@@ -65,6 +65,31 @@ get_header();
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <fieldset>
+                <legend>Välj kategori för din annons (möjligt att välja fler)</legend>
+                <?php
+                $categories = get_categories();
+                foreach ($categories as $cat) {
+                    if ($cat->term_id == 1) {
+                        // Skip, don't show uncategorized
+                    } else {
+                        echo '
+                        <p class="col s6 m4">
+                            <label>
+                                <input name="' . $cat->term_id . '" value="' . $cat->term_id . '" type="checkbox" class="filled-in" />
+                                <span>' . $cat->name . '</span>
+                            </label>
+                        </p>
+                        ';
+                    }
+                    }
+                    
+                ?>
+            </fieldset>
+        </div>
+
         <div class="row">
             <?php wp_nonce_field('my_image_upload', 'my_image_upload_nonce'); ?>
             <button class="btn waves-effect waves-light btn-reko" id="submit_my_image_upload" name="submit_my_image_upload" type="submit">Publicera annons</button>
