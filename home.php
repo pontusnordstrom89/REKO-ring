@@ -19,7 +19,7 @@
  * 
  * Looks for header.php file if no parameter is passed
  */
-get_header();
+    get_header();
 ?>
 
 <div class="hero">

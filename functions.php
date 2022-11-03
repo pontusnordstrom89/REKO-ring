@@ -9,7 +9,7 @@ function theme_add_style_script()
 {
     // Get materialize css
     wp_enqueue_style('materialize-css', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css');
-
+    
     // Get style.css
     wp_enqueue_style('style-css', get_template_directory_uri() . '/style.css');
 
@@ -25,6 +25,9 @@ function theme_add_style_script()
     // Get script.js
     wp_enqueue_script('script', get_template_directory_uri() . '/script.js', array(), null, true);
 
+    wp_enqueue_script('navbarJS', get_template_directory_uri() . '/resources/scripts/navbar.js', array(), null, true);
+
+    wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
     // If author.php is in use import custom css & style
     if (is_author()) {
         wp_enqueue_style('authorCSS', get_template_directory_uri() . '/resources/styles/authorStyle.css');
