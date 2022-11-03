@@ -19,67 +19,72 @@
  * 
  * Looks for header.php file if no parameter is passed
  */
-get_header();
+    get_header();
 ?>
 
-
-<header>
-    <div class="hero">
-        <div class="header-container">
-
-            <!-- Använd get_template_directory_uri() och spara i resources t.ex. <img src="<?php //echo get_template_directory_uri() . '/resources/video/Traktor - 84624.mp4' ?>">-->
-            <img src="wp-content/themes/REKO-ring/Traktor - 84624.mp4" />
-            <!-- ----------------------------------->
-        </div>
-        <div class="content">
-            <h1>En <span class="modernare">modernare</span> bondens-marknad</h1>
-            <p id="header-text">REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
-            <div class="hero-buttons">
-                <?php echo '<a class="hero-cta" href="' . home_url() . '/blog/category/uncategorized/">Handla närodlat</a>' ?>
-                <button class="hero-secondary secondary">Mer om oss</button>
-            </div>
+<div class="hero">
+    <div class="hero-content">
+        <h1>En <span class="hero-color">modernare</span> bondens-marknad</h1>
+        <p>REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
+        <div class="hero-buttons">
+            <button class="hero-cta" onClick="window.location.href='<?php echo home_url() ?>/blog/category/uncategorized/';">Besök Shoppen</button>
+            <button class="hero-secondary" onClick="window.location.href='#';">Mer om oss</button>
         </div>
     </div>
-</header>
-
+    <div class="hero-image">
+        <img src="https://cdn.discordapp.com/attachments/915592769764986881/1031936745031344168/Farmer_2x.png" />
+    </div>
+</div>
 
 <div class="product">
     <div class="product-content container">
         <h2>Våra producenter</h2>
         <div class="products">
             <?php
-            while (have_posts()) {
-                the_post();
+                $posts = get_posts(array(
+                    'numberposts' => 6,
+                    'orderby' => 'rand'
+                ));
+
+                if(count($posts) > 1){
+
+                    foreach($posts as $post) {
                 // Post Content here 
             ?>
-                <div class="post">
-                    <?php
-                    $images = get_attached_media('image');
-                    foreach ($images as $image) {
-                        $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
-                        echo '<img src="' . $ximage[0] . '"/>';
-                        break;
-                    }
-                    ?>
-                    <div class="post-container">
-                        <h3><?php echo get_the_title() ?></h3>
-                        <div class="line"></div>
-                        <div class="post-item">
-                            <p class="post-title">Producent</p>
-                            <p><?php echo get_the_author_meta('first_name'); ?></p>
-                        </div>
-                        <div class="post-item">
-                            <p class="post-title">Avstånd till utlämningsställe</p>
-                            <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
-                                ?> km</p>
-                        </div>
-                        <div class="post-button center-align">
-                            <!-- <button class="post-button">Besök producent</button> -->
-                            <a href="<?php the_permalink() ?>" class="post-button-text" ;>Besök producent</a>
+                    <div class="post">
+                        <?php
+                        $images = get_attached_media('image');
+                        foreach ($images as $image) {
+                            $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
+                            echo '<img src="' . $ximage[0] . '"/>';
+                            break;
+                        }
+                        ?>
+                        <div class="post-container">
+                            <h3><?php echo get_the_title() ?></h3>
+                            <div class="line"></div>
+                            <div class="post-item">
+                                <p class="post-title">Producent</p>
+                                <p><?php echo get_the_author_meta('first_name', $post->post_author)  ?></p>
+                            </div>
+                            <div class="post-item">
+                                <p class="post-title">Avstånd</p>
+                                <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
+                            </div>
+                            <div class="post-button center-align">
+                                <!-- <button class="post-button">Besök producent</button> -->
+                                <a href="<?php the_permalink() ?>" class="post-button-text" ;>Visa annons</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php } ?>
+            <?php 
+                    }
+                } else {
+            ?>
+                <p>Inga posts är gjorna ännu</p>
+            <?php 
+                }
+            ?>
         </div>
     </div>
 </div>

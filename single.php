@@ -2,9 +2,9 @@
 // single.php controls a single post from index.php
 ?>
 
-<?php get_header(); ?>
+<?php get_header();
 
-<?php
+
 while (have_posts()) {
     the_post();
 ?>
@@ -51,19 +51,35 @@ while (have_posts()) {
 
             <?php
 
+            // Access global db object
+            global $wpdb;
+            // Set table prefix + tablename
+            $comments_table = $wpdb->prefix . "comments";
+            // Get current Post ID
+            $post_id = get_the_ID();
+            // Get all comments in relation to this post with no comment parents to count top comments = orders
+            $get_comments = $wpdb->get_results("SELECT * FROM $comments_table WHERE comment_post_ID = $post_id AND comment_parent = '0'");
+            
+
+
             $getUser = wp_get_current_user();
             if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
-                $orderButtonText = 'Se beställningar';
+                // Count items in array $get_comments and display for user as number of orders
+                $orderButtonText = 'Du har ' . count($get_comments) . ' beställningar';
             } else {
                 $orderButtonText = 'Beställ av ' . get_the_author();
             }
             ?>
-            <button class="btn waves-effect waves" type="button" id="orderButton"><?php echo $orderButtonText; ?>
+            <button class="btn waves-effect waves" style="background-color:#f66565;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">
-                <div class="col s12 m6 offset-m3 teal">
+
+                <div class="col s12 m6 offset-m3" style="background-color:#f66565;">
+                    <div id="commentFormLoader" class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
                     <?php
 
                     if (is_user_logged_in()) {

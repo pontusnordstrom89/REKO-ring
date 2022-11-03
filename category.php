@@ -34,9 +34,12 @@ $all_categories = get_categories();
     <div class="product-content container">
 
 
-        <nav style="margin-top:20px;" class="hide-on-small-only">
+        <nav id="categoryNav" style="margin-top:20px;" class="hide-on-small-only">
             <div class="nav-wrapper row">
+
                 <?php get_search_form(); ?>
+
+
                 <div class="col s12 m6 l4 row right-align">
 
                     <!-- Dropdown Trigger -->
@@ -123,6 +126,8 @@ $all_categories = get_categories();
                 </div>
             <?php } ?>
         </div>
+
+        <?php posts_nav_link(); ?>
     </div>
 </div>
 <?php

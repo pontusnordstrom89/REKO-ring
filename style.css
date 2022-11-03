@@ -10,6 +10,43 @@ Text Domain: Rekoring
 
 /*Write custom css below this line*/
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--white-sand);
+}
+
+*,
+h1,
+h2,
+h3,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --black: #252525;
+  --white: #eeeeee;
+  --white-sand: #fffcf4;
+  --dark-green: #598b36;
+  --darker-green: #3f6325;
+  --light-green: #d5dfce;
+  --red: #f66565;
+  --darker-red: #c54d4d;
+  --red-bg: #fcf2e8;
+}
+
+.btn-reko {
+  background-color: var(--red);
+}
+
+.btn-reko:hover {
+  background-color: var(--darker-red);
+}
+
 .text-capitalize {
   text-transform: capitalize;
 }
@@ -19,35 +56,38 @@ Text Domain: Rekoring
 }
 
 .sticky-order-form {
-    min-height: 50px;
-    position: fixed;
-    bottom: 0px;
+  min-height: 50px;
+  position: fixed;
+  bottom: 0px;
 }
 
 #order-form {
-    display: none;
-    max-height: 80vh !important;
-    overflow-y: scroll;
+  display: none;
+  max-height: 80vh !important;
+  overflow-y: scroll;
 }
 
 .comment-body {
-    border-bottom: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 
 /* CSS som hör till headern. */
-.header-container > img {
+.header-container>img {
   width: 100%;
   mix-blend-mode: overlay;
   height: 797px;
 }
+
 .header-container {
   max-height: 791px;
-  background:linear-gradient(to left, rgba(123, 140, 123, 0.908), rgb(74, 76, 73) 70%);
+  background: linear-gradient(to left, rgba(123, 140, 123, 0.908), rgb(74, 76, 73) 70%);
   width: 100%;
 }
+
 .secondary {
   color: #eeeeee;
 }
+
 .content {
   position: absolute;
   left: 100px;
@@ -56,13 +96,16 @@ Text Domain: Rekoring
   width: 32rem;
   margin: 15px;
 }
-.content > h1 {
+
+.content>h1 {
   font-size: 3.5rem;
   margin-bottom: 15px;
 }
+
 .hero-buttons {
   margin-top: 15px;
 }
+
 .modernare {
   color: rgb(65, 175, 65);
 }

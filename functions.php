@@ -9,7 +9,7 @@ function theme_add_style_script()
 {
     // Get materialize css
     wp_enqueue_style('materialize-css', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css');
-
+    
     // Get style.css
     wp_enqueue_style('style-css', get_template_directory_uri() . '/style.css');
 
@@ -25,6 +25,9 @@ function theme_add_style_script()
     // Get script.js
     wp_enqueue_script('script', get_template_directory_uri() . '/script.js', array(), null, true);
 
+    wp_enqueue_script('navbarJS', get_template_directory_uri() . '/resources/scripts/navbar.js', array(), null, true);
+
+    wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
     // If author.php is in use import custom css & style
     if (is_author()) {
         wp_enqueue_style('authorCSS', get_template_directory_uri() . '/resources/styles/authorStyle.css');
@@ -35,8 +38,94 @@ function theme_add_style_script()
         wp_enqueue_style('authorCSS', get_template_directory_uri() . '/resources/styles/home.css');
         wp_enqueue_script('authorJS', get_template_directory_uri() . '/resources/scripts/home.js', array(), null, true);
     }
+
+    if (is_single()) {
+        wp_enqueue_style('singleCSS', get_template_directory_uri() . '/resources/styles/single.css');
+        wp_enqueue_script('singleJS', get_template_directory_uri() . '/resources/scripts/single.js', array(), null, true);
+    }
 }
 add_action('wp_enqueue_scripts', 'theme_add_style_script');
+
+
+/**
+ * 
+ * On Theme setup, create pages and ad templates
+ * 
+ */
+function create_pages_if_not_exist() {
+    
+    // Define table
+    global $wpdb;
+    $post_table = $wpdb->prefix . "posts";
+    
+    // Check if create page exists
+    $find_create_page_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'create-post'");
+
+    // Check if order view
+    $find_order_view_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'order-view'");
+    
+    if ($find_create_page_slug) {
+        //Create post exists
+    } else {
+        // Create new page + template for create post
+        $wpdb->insert($post_table, array(
+            'post_author' => 1,
+            'post_date' => '2022-11-03 00:00:00',
+            'post_date_gmt' => '2022-11-03 00:00:00',
+            'post_title' => 'Skapa Inlägg',
+            'post_status' => 'publish',
+            'comment_status' => 'closed',
+            'post_name' => 'create-post',
+            'ping_status' => 'closed',
+            'post_modified' => '2022-11-03 00:00:00',
+            'post_modified_gmt' => '2022-11-03 00:00:00',
+            'post_parent' => 0,
+            'post_type' => 'page',
+            'comment_count' => 0
+        ));
+
+        $post_id = $wpdb->insert_id;
+        
+        $post_meta_table = $wpdb->prefix . "postmeta";
+        $wpdb->insert($post_meta_table, array(
+            'post_id' => $post_id,
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'template-parts/createPost.php'
+        ));
+    }
+
+    if ($find_order_view_slug) {
+        // Order view exists
+    } else {
+        // Create new page + template for order view
+        $wpdb->insert($post_table, array(
+            'post_author' => 1,
+            'post_date' => '2022-11-03 00:00:00',
+            'post_date_gmt' => '2022-11-03 00:00:00',
+            'post_title' => 'Orderöversikt',
+            'post_status' => 'publish',
+            'comment_status' => 'closed',
+            'post_name' => 'order-view',
+            'ping_status' => 'closed',
+            'post_modified' => '2022-11-03 00:00:00',
+            'post_modified_gmt' => '2022-11-03 00:00:00',
+            'post_parent' => 0,
+            'post_type' => 'page',
+            'comment_count' => 0
+        ));
+
+        $post_id = $wpdb->insert_id;
+
+        $post_meta_table = $wpdb->prefix . "postmeta";
+        $wpdb->insert($post_meta_table, array(
+            'post_id' => $post_id,
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'template-parts/orderView.php'
+        ));
+    } 
+}
+
+add_action('after_setup_theme', 'create_pages_if_not_exist');
 
 
 
@@ -53,7 +142,6 @@ add_theme_support('post-thumbnails');
 // Add support for menus
 add_theme_support('menus');
 
-
 // Custom header
 $args = array(
     'width'         => 980,
@@ -61,8 +149,6 @@ $args = array(
     'default-image' => get_template_directory_uri() . '/img/banner.jpg',
 );
 add_theme_support('custom-header', $args);
-
-
 
 /**
  * Handle author update_profile form
@@ -73,6 +159,14 @@ function update_profile_callback()
     require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/author-form-submit.php');
 }
 
+/**
+ * Handle author create post form
+ */
+add_action('admin_post_create_post', 'create_post_callback');
+function create_post_callback()
+{
+    require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/post-CRUD.php');
+}
 
 //Metod för att visa wordpress-dashboard endast för administratörer
 add_action('after_setup_theme', 'remove_admin_bar');
@@ -81,7 +175,6 @@ function remove_admin_bar(){
     show_admin_bar(false);
 	}
 }
-
 
 /**
  * 
@@ -93,26 +186,6 @@ function register_my_menu()
     register_nav_menu('main-menu', __('Huvudmeny', 'REKO-ring-main-navigation'));
 }
 add_action('after_setup_theme', 'register_my_menu');
-
-/**
- * 
- * Register extra items to main navigation
- * 
- */
-add_filter('wp_nav_menu_items', 'add_extra_item_to_nav_menu',10);
-function add_extra_item_to_nav_menu($items)
-{
-    $items .= '<li><a href="'. home_url() .'/blog/category/uncategorized/">Handla närodlat</a></li>';
-    
-    if (is_user_logged_in()) {
-        $items .= '<li><a href="' . wp_logout_url(home_url()) . '">Logga ut</a></li>';
-    } elseif (!is_user_logged_in()) {
-        $items .= '<li><a href="'. wp_login_url().'">Logga in / Registrera</a></li>';
-    }
-    
-    return $items;
-}
-
 
 /**
  * 
@@ -131,3 +204,11 @@ function custom_search_form($form)
     return $form;
 }
 add_filter('get_search_form', 'custom_search_form', 40);
+
+function add_additional_class_on_li($classes, $item, $args) {
+    if(isset($args->add_li_class)) {
+        $classes[] = $args->add_li_class;
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);

@@ -9,7 +9,10 @@ $(document).ready(function () {
     $('.dropdown-trigger').dropdown();
 });
 
-$('#orderButton').click(function() {
+$('#orderButton').click(function () {
 
     $('#order-form').toggle();
 })
+
+
+
