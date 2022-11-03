@@ -44,7 +44,47 @@ get_header();
     <input id="submit_my_image_upload" name="submit_my_image_upload" type="submit" value="Publicera Annons">
 </form>
 
-<?php
+//Previous posts start here
+<h4>Dina tidigare annonser</h4>
+
+<?php 
+$user = wp_get_current_user();
+$usatual = $user->user_login;
+$usemail = $user->user_email;
+$query_args = array(
+    'post_type' => 'post',
+    'author' => $user->ID,
+);
+
+$query = new WP_Query($query_args);
+if ($query->have_posts()) {
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post = $query->post;
+        $title = $post->post_title;
+        $content = $post->post_content;
+        $date = $post->post_date;
+        $images = get_attached_media('image');
+        echo '<div><h5>' . $title . '</h5>';
+        echo '<p>' . $date . '</p>';
+        echo '<p>' . $content . '</p>';
+        echo '<input type="submit" value="Kopiera Annons">';
+        /*foreach ($images as $image) {
+            $ximage = wp_get_attachment_image_src($image->ID, 'medium');
+            echo '<img class="image" src="' . $ximage[0] . '"/>';
+            break;
+        }*/
+        echo '</div>';
+        
+    }
+    wp_reset_postdata();
+}
+else{
+    echo 'Du har inga tidigare annonser.';
+}
+
+//Previous posts end here
+
 $post_id = 0;
 
 if(isset($_POST['title'], $_POST['desc'])) {
