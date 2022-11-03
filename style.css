@@ -39,6 +39,14 @@ button {
   --red-bg: #fcf2e8;
 }
 
+.btn-reko {
+  background-color: var(--red);
+}
+
+.btn-reko:hover {
+  background-color: var(--darker-red);
+}
+
 .text-capitalize {
   text-transform: capitalize;
 }

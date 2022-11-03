@@ -46,6 +46,90 @@ function theme_add_style_script()
 }
 add_action('wp_enqueue_scripts', 'theme_add_style_script');
 
+
+/**
+ * 
+ * On Theme setup, create pages and ad templates
+ * 
+ */
+function create_pages_if_not_exist() {
+    
+    // Define table
+    global $wpdb;
+    $post_table = $wpdb->prefix . "posts";
+    
+    // Check if create page exists
+    $find_create_page_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'create-post'");
+
+    // Check if order view
+    $find_corder_view_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'order-view'");
+    
+    if ($find_create_page_slug) {
+        //Create post exists
+    } else {
+        // Create new page + template for create post
+        $wpdb->insert($post_table, array(
+            'post_author' => 1,
+            'post_date' => '2022-11-03 00:00:00',
+            'post_date_gmt' => '2022-11-03 00:00:00',
+            'post_title' => 'Skapa Inlägg',
+            'post_status' => 'publish',
+            'comment_status' => 'closed',
+            'post_name' => 'create-post',
+            'ping_status' => 'closed',
+            'post_modified' => '2022-11-03 00:00:00',
+            'post_modified_gmt' => '2022-11-03 00:00:00',
+            'post_parent' => 0,
+            'post_type' => 'page',
+            'comment_count' => 0
+        ));
+
+        $post_id = $wpdb->insert_id;
+        
+        $post_meta_table = $wpdb->prefix . "postmeta";
+        $wpdb->insert($post_meta_table, array(
+            'post_id' => $post_id,
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'template-parts/createPost.php'
+        ));
+    }
+
+    if ($find_corder_view_slug) {
+        // Order view exists
+    } else {
+        // Create new page + template for order view
+        $wpdb->insert($post_table, array(
+            'post_author' => 1,
+            'post_date' => '2022-11-03 00:00:00',
+            'post_date_gmt' => '2022-11-03 00:00:00',
+            'post_title' => 'Orderöversikt',
+            'post_status' => 'publish',
+            'comment_status' => 'closed',
+            'post_name' => 'order-view',
+            'ping_status' => 'closed',
+            'post_modified' => '2022-11-03 00:00:00',
+            'post_modified_gmt' => '2022-11-03 00:00:00',
+            'post_parent' => 0,
+            'post_type' => 'page',
+            'comment_count' => 0
+        ));
+
+        $post_id = $wpdb->insert_id;
+
+        $post_meta_table = $wpdb->prefix . "postmeta";
+        $wpdb->insert($post_meta_table, array(
+            'post_id' => $post_id,
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'template-parts/orderView.php'
+        ));
+    } 
+}
+
+add_action('after_setup_theme', 'create_pages_if_not_exist');
+
+
+
+
 /**
  * Add theme support so that logo, headers, menus etc can be changed in admin area
  * @link https://developer.wordpress.org/reference/functions/add_theme_support/
@@ -73,6 +157,15 @@ add_action('admin_post_update_profile', 'update_profile_callback');
 function update_profile_callback()
 {
     require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/author-form-submit.php');
+}
+
+/**
+ * Handle author create post form
+ */
+add_action('admin_post_create_post', 'create_post_callback');
+function create_post_callback()
+{
+    require_once(ABSPATH . 'wp-content/themes/REKO-ring/add-ons/post-CRUD.php');
 }
 
 //Metod för att visa wordpress-dashboard endast för administratörer
