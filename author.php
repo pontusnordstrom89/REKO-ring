@@ -141,19 +141,19 @@ $count = get_comments( array(
                     <div class="col s12 m8">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="first_name" name="first_name" type="text" class="validate" value="<?php echo get_the_author_meta('first_name'); ?>">
-                                <label for="first_name">Förnamn</label>
+                                <input id="first_name" name="first_name" required type="text" class="validate" value="<?php echo get_the_author_meta('first_name'); ?>">
+                                <label for="first_name">Förnamn <span class="req">*</span></label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="last_name" name="last_name" type="text" class="validate" value="<?php echo get_the_author_meta('last_name'); ?>">
-                                <label for="last_name">Efternamn</label>
+                                <input id="last_name" name="last_name" required type="text" class="validate" value="<?php echo get_the_author_meta('last_name'); ?>">
+                                <label for="last_name">Efternamn <span class="req">*</span></label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="custom_email" name="custom_email" type="text" class="validate" value="<?php echo get_the_author_meta('custom_email'); ?>">
-                                <label for="custom_email">Epost</label>
+                                <input id="custom_email" name="custom_email" type="text" required class="validate" value="<?php echo get_the_author_meta('custom_email'); ?>">
+                                <label for="custom_email">Epost <span class="req">*</span></label>
                             </div>
                             <div class="input-field col s6">
                                 <input id="user_url" name="user_url" type="text" class="validate" value="<?php echo get_the_author_meta('user_url'); ?>">
@@ -162,7 +162,7 @@ $count = get_comments( array(
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <!--<textarea id="description" name="description" class="materialize-textarea"><?php // echo get_the_author_meta('description'); 
+                                <!--<textarea id="description" name="description" required class="materialize-textarea"><?php // echo get_the_author_meta('description'); 
                                                                                                                 ?></textarea>-->
                                 <?php wp_editor(get_the_author_meta('description'), "description", array(
                                     'media_buttons' => FALSE,
@@ -170,7 +170,7 @@ $count = get_comments( array(
                                     'editor_height' => 425,
                                     'textarea_rows' => 20
                                 )) ?>
-                                <!--<label for="description">Beskrivning</label>-->
+                                <!--<label for="description">Beskrivning <span class="req">*</span></label>-->
                             </div>
                         </div>
 
