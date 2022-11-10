@@ -7,6 +7,8 @@ $(document).ready(function () {
     $('.tap-target').tapTarget();
     $('.sidenav').sidenav();
     $('.dropdown-trigger').dropdown();
+
+   
 });
 
 $('#orderButton').click(function () {
@@ -15,4 +17,9 @@ $('#orderButton').click(function () {
 })
 
 
+
+$('#nav-profile').hover(function (e) {
+    $('#postCommentsDropDown').show()
+    $('.dropdown-trigger').dropdown('open');
+})
 

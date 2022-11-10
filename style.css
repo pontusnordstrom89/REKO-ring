@@ -22,8 +22,6 @@ h1,
 h2,
 h3,
 button {
-  margin: 0;
-  padding: 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -109,6 +107,8 @@ button {
 .modernare {
   color: rgb(65, 175, 65);
 }
+
 .req {
   color: red;
 }
+

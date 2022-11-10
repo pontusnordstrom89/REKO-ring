@@ -10,3 +10,6 @@ window.addEventListener("scroll", (event) => {
         document.getElementById("nav").style.backgroundColor = "red"
     }
 });
+
+
+
