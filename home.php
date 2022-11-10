@@ -71,10 +71,7 @@
                                 <p class="post-title">Avstånd</p>
                                 <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
                             </div>
-                            <div class="post-button center-align">
-                                <!-- <button class="post-button">Besök producent</button> -->
-                                <a href="<?php the_permalink() ?>" class="post-button-text" ;>Visa annons</a>
-                            </div>
+                            <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
                         </div>
                     </div>
             <?php 
