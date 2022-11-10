@@ -53,6 +53,10 @@ add_action('wp_enqueue_scripts', 'theme_add_style_script');
  * 
  */
 function create_pages_if_not_exist() {
+
+    add_filter('thread_comments_depth_max', function ($max) {
+        return 2;
+    });
     
     // Define table
     global $wpdb;
@@ -212,3 +216,54 @@ function add_additional_class_on_li($classes, $item, $args) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+
+
+
+
+
+function comments_count($comment_id)
+{
+    $comment = get_comment($comment_id);
+    $author = $comment->user_id;
+    $post_id = $comment->comment_post_ID;
+
+    $user_meta_as_string = get_user_meta($author, 'comments', true);
+    $post_that_got_comment = get_post($post_id);
+
+    if ($author == $post_that_got_comment->post_author) {
+        $user_meta = unserialize($user_meta_as_string);
+        unset($user_meta[$post_id]);
+
+        $user_meta_serialized = serialize($user_meta);
+        update_user_meta($author, 'comments', $user_meta_serialized);
+    } else {
+        if (!$user_meta_as_string) {
+            $data = array($post_id => 1);
+            $t = serialize($data);
+            add_metadata('user', $author, 'comments', $t);
+        } else {
+
+            $user_meta = unserialize($user_meta_as_string);
+
+            foreach ($user_meta as $key => $value) {
+
+                if ($key == $post_id) {
+                    $user_meta[$post_id] = intval($value) + 1;
+                } else {
+                    $user_meta[$post_id] = 1;
+                }
+            }
+
+
+            $user_meta_serialized = serialize($user_meta);
+            update_user_meta($author, 'comments', $user_meta_serialized);
+        }
+    }
+
+    
+
+    
+    
+    
+}
+add_action('comment_post', 'comments_count', 10,1);

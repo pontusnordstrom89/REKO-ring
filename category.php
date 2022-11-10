@@ -86,9 +86,9 @@ $all_categories = get_categories();
         $term = get_queried_object();
 
         if ($term->name == 'Uncategorized') {
-            echo '<h2>Alla annonser</h2>';
+            echo '<h3>Alla annonser</h3>';
         } else {
-            echo '<h2>Visar annonser i kategorin: <span class="green-text">' . $term->name . '</span></h2>';
+            echo '<h3>Visar annonser i kategorin: <span class="green-text">' . $term->name . '</span></h3>';
         }
         ?>
         <div class="products">

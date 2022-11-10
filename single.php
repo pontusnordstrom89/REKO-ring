@@ -5,8 +5,11 @@
 <?php get_header();
 
 
+
+
 while (have_posts()) {
     the_post();
+
 ?>
 
 
@@ -59,7 +62,7 @@ while (have_posts()) {
             $post_id = get_the_ID();
             // Get all comments in relation to this post with no comment parents to count top comments = orders
             $get_comments = $wpdb->get_results("SELECT * FROM $comments_table WHERE comment_post_ID = $post_id AND comment_parent = '0'");
-            
+
 
 
             $getUser = wp_get_current_user();
@@ -70,6 +73,8 @@ while (have_posts()) {
                 $orderButtonText = 'Beställ av ' . get_the_author();
             }
             ?>
+
+            
             <button class="btn waves-effect waves" style="background-color:#f66565;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i class="material-icons right">shopping_basket</i>
             </button>

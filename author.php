@@ -1,9 +1,9 @@
 <?php get_header();
 $getUser = wp_get_current_user();
-$count = get_comments( array(
+$count = get_comments(array(
     'user_id' => $getUser->ID, // include only comments by this user
-    'count' => true// it will return only count of comments and not the comments
-) );
+    'count' => true // it will return only count of comments and not the comments
+));
 
 
 ?>
@@ -15,35 +15,36 @@ $count = get_comments( array(
     </div>
 
     <div class="col s12 m4">
-       
+
         <?php if (get_user_meta(get_the_author_meta('ID'), 'profile_picture', true)) {
 
         ?>
-            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img">
+            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="circle mt-5 responsive-img" style="width:100px;height:100px; display:block;margin:auto;">
         <?php
         } else { ?>
-            <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="mt-5 responsive-img">
+            <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="circle mt-5 responsive-img">
         <?php } ?>
 
-        <?php if (get_the_author_meta('user_url')) { ?>
-            <p><a href="<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons">language</i> Besök odlarens webbplats</a></p>
-        <?php } ?>
+        <div>
+            <?php if (get_the_author_meta('user_url')) { ?>
+                <p><a href="<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons">language</i> Besök odlarens webbplats</a></p>
+            <?php } ?>
 
 
-        <?php if (get_user_meta(get_the_author_meta('ID'), 'custom_email', true)) { ?>
-            <p><a href="mailto:<?php echo get_user_meta(get_the_author_meta('ID'), 'custom_email', true) ?>"><i class="material-icons">mail</i> Kontakta odlaren</a></p>
-        <?php } ?>
+            <?php if (get_user_meta(get_the_author_meta('ID'), 'custom_email', true)) { ?>
+                <p><a href="mailto:<?php echo get_user_meta(get_the_author_meta('ID'), 'custom_email', true) ?>"><i class="material-icons">mail</i> Kontakta odlaren</a></p>
+            <?php } ?>
 
 
-        <?php
-        if (is_user_logged_in() && is_author(get_current_user_id())) { ?>
+            <?php
+            if (is_user_logged_in() && is_author(get_current_user_id())) { ?>
 
-            <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ändra din profil</a>
+                <!-- Modal Trigger -->
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ändra din profil</a>
 
-        <?php
-        } ?>
-
+            <?php
+            } ?>
+        </div>
     </div>
 
     <div class="col s12 m8">
@@ -163,7 +164,7 @@ $count = get_comments( array(
                         <div class="row">
                             <div class="input-field col s12">
                                 <!--<textarea id="description" name="description" required class="materialize-textarea"><?php // echo get_the_author_meta('description'); 
-                                                                                                                ?></textarea>-->
+                                                                                                                        ?></textarea>-->
                                 <?php wp_editor(get_the_author_meta('description'), "description", array(
                                     'media_buttons' => FALSE,
                                     'quicktags' => FALSE,
