@@ -4,7 +4,7 @@ $count = get_comments( array(
     'user_id' => $getUser->ID, // include only comments by this user
     'count' => true// it will return only count of comments and not the comments
 ) );
-echo $count;
+
 
 ?>
 
