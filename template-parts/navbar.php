@@ -39,7 +39,7 @@
                 <?php
                 if (is_user_logged_in()) { ?>
 
-                    <div id="nav-profile">
+                    <div id="nav-profile" class="dropdown-trigger" data-target='dropdown2'>
                         <?php if (get_user_meta(get_current_user_id(), 'profile_picture', true)) {
 
                         ?>
@@ -56,13 +56,27 @@
 
 
                         ?>
-                        <a class='dropdown-trigger' href='#' data-target='postCommentsDropDown'></a>
-                        <ul id='postCommentsDropDown' class='dropdown-content' style="min-width:300px;">
+
+                        <ul id='dropdown2' class='dropdown-content' style="min-width:300px;">
                             <?php
-                            foreach ($arre as $key => $value) { ?>
-                                <li class="row"><a href="<?php echo the_permalink($key) ?>"> <?php echo substr(get_the_title($key), 0, 20) ?> .... <i class="right"><span class="new badge"><?php echo $value ?></span></i> </a></li>
-                                <li class="divider" tabindex="-1"></li>
+                            if ($arre) {
+
+                                foreach ($arre as $key => $value) {
+                                   
+                                    $pieces = explode("_", $key);
+                                    if(count($pieces) > 2) {
+                                        $id = $pieces[2];
+                                        $prefix = $pieces[0] . $pieces[1];
+                                    } else {
+                                        $id = $pieces[1];
+                                        $prefix = $pieces[0];
+                                    }
+                                    ?>
+                                    <li class="row"><a href="<?php echo the_permalink($id) ?>"> <?php echo substr(get_the_title($id), 0, 20) ?> .... <i class="right"><span class="new badge"><?php echo $value ?></span></i> </a></li>
+                                    <li class="divider" tabindex="-1"></li>
                             <?php }
+                            }
+
                             ?>
                         </ul>
                     </div>
@@ -136,17 +150,16 @@
 
                 <?php if (is_user_logged_in()) { ?>
 
-                    <div class="user-view left-text" style="margin:1rem;">
+                    <div class="user-view center-align" style="margin:1rem;">
 
                         <?php if (get_user_meta(get_current_user_id(), 'profile_picture', true)) {
 
                         ?>
-                            <a href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>"><img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle" height="48px" width="48px"></a>
+                            <a href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a>
                             <br>
                             <a href="#name"><span class="white-text name"><?php the_author(); ?></span></a><br>
-                            <a href="#email"><span class="white-text email"><?php if (get_user_meta(get_the_author_meta('ID'), 'custom_email', true)) { ?></span></a>
                         <?php
-                                                                            } else { ?>
+                        } else { ?>
 
                             <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>">account_circle</a></li>
                     </div>
@@ -155,8 +168,8 @@
 
 
 
-        <?php }
-                    } ?>
+            <?php }
+            ?>
 
 
             </ul>

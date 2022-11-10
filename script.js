@@ -6,9 +6,13 @@ $(document).ready(function () {
     $('.carousel').carousel();
     $('.tap-target').tapTarget();
     $('.sidenav').sidenav();
-    $('.dropdown-trigger').dropdown();
+    $('.dropdown-trigger').dropdown({
+        'closeOnClick': true,
+        'hover': true,
+    });
 
-   
+    
+    
 });
 
 $('#orderButton').click(function () {
@@ -17,9 +21,4 @@ $('#orderButton').click(function () {
 })
 
 
-
-$('#nav-profile').hover(function (e) {
-    $('#postCommentsDropDown').show()
-    $('.dropdown-trigger').dropdown('open');
-})
 

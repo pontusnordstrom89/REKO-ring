@@ -20,6 +20,11 @@
   width: auto;
 }
 
+#nav-profile-picture {
+  height: 64px;
+  width: 64px;
+}
+
 .nav ul {
   display: flex;
   gap: 2rem;

@@ -223,40 +223,66 @@ add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
 
 function comments_count($comment_id)
 {
+    global $wpdb;
+    // Get site prefix
+    $site_prefix = $wpdb->prefix;
+
+    // Get comment data
     $comment = get_comment($comment_id);
+
+    // From comment data get user id from comment author
     $author = $comment->user_id;
+
+    // from comment get post id from the post that recieved a comment
     $post_id = $comment->comment_post_ID;
 
-    $user_meta_as_string = get_user_meta($author, 'comments', true);
+    // Get data about post that recived comment
     $post_that_got_comment = get_post($post_id);
 
+    // Get post author -> comment count will be stored in relation to post author
+    $the_post_author = $post_that_got_comment->post_author;
+
+    // Check if we previousley have stored comments in relation to user
+    $user_meta_as_string = get_user_meta($the_post_author, 'comments', true);
+
+    
+    /**
+     * IF COMMENT AUTHOR === POST AUTHOR mark comments as read = delete post_id => comment_count
+     */
     if ($author == $post_that_got_comment->post_author) {
         $user_meta = unserialize($user_meta_as_string);
-        unset($user_meta[$post_id]);
+        unset($user_meta[$site_prefix . $post_id]);
 
         $user_meta_serialized = serialize($user_meta);
-        update_user_meta($author, 'comments', $user_meta_serialized);
-    } else {
-        if (!$user_meta_as_string) {
-            $data = array($post_id => 1);
-            $t = serialize($data);
-            add_metadata('user', $author, 'comments', $t);
-        } else {
+        update_user_meta($the_post_author, 'comments', $user_meta_serialized);
 
+    /**
+     * IF someone else makes a comment on a post. save post_id and comment_count in relation to post author in table usermeta
+     */
+    } else {
+        // If we can't find row with metakey "comments" in relation to post_author in usermetatable create
+        if (!$user_meta_as_string) {
+            $data = array($site_prefix . $post_id => 1);
+            $t = serialize($data);
+            add_metadata('user', $the_post_author, 'comments', $t);
+        } else {
+            // Get row and unserialize
             $user_meta = unserialize($user_meta_as_string);
 
+            // For each key, if one matches +1 on count
             foreach ($user_meta as $key => $value) {
 
                 if ($key == $post_id) {
-                    $user_meta[$post_id] = intval($value) + 1;
+                    $user_meta[$site_prefix . $post_id] = intval($value) + 1;
                 } else {
-                    $user_meta[$post_id] = 1;
+                    // Else, append new key=>value in array
+                    $user_meta[$site_prefix . $post_id] = 1;
                 }
             }
 
-
+            //serialize and update
             $user_meta_serialized = serialize($user_meta);
-            update_user_meta($author, 'comments', $user_meta_serialized);
+            update_user_meta($the_post_author, 'comments', $user_meta_serialized);
         }
     }
 

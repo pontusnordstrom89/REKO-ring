@@ -5,8 +5,6 @@
 <?php get_header();
 
 
-
-
 while (have_posts()) {
     the_post();
 
@@ -66,7 +64,7 @@ while (have_posts()) {
 
 
             $getUser = wp_get_current_user();
-            if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
+            if (is_user_logged_in() && get_the_author_meta('ID') == $getUser->ID) {
                 // Count items in array $get_comments and display for user as number of orders
                 $orderButtonText = 'Du har ' . count($get_comments) . ' beställningar';
             } else {
