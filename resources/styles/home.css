@@ -272,11 +272,19 @@ h2 {
 }
 
 #categoryNav {
-  background-color: var(--red);
+  background-color: var(--white-sand);
 }
 
 #searchNav {
-  background-color: var(--red);
+  background-color: var(--white-sand);
+}
+
+nav {
+  box-shadow: none;
+}
+
+.bg-color-white {
+  background-color: var(--white-sand);
 }
 
 @media screen and (max-width: 1450px) {
@@ -287,10 +295,17 @@ h2 {
 
 @media screen and (max-width: 800px) {
   .post {
-    width: 60%;
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .post {
+    width: 90%;
+    margin: 0 auto;
   }
 
-  .post-item {
-    flex-direction: column;
+  .products {
+    justify-content: none;
   }
 }
