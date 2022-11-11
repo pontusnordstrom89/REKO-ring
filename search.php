@@ -63,6 +63,12 @@ $all_categories = get_categories();
 
             if (have_posts()) {
                 while (have_posts()) {
+
+                    if (get_post_type(the_post()) === "page") {
+                        // Exclude
+                    } else {
+
+                    
                     the_post();
                     // Post Content here 
             ?>
@@ -92,7 +98,9 @@ $all_categories = get_categories();
                             
                         </div>
                     </div>
-                <?php }
+                <?php 
+                }
+                }
             } else { ?>
                 <div>
                     <img style="display:block; margin:auto;" height="100px" src="<?php echo get_template_directory_uri() . '/resources/icon/detective.png' ?>">
