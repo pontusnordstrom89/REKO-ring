@@ -30,10 +30,10 @@ $all_categories = get_categories();
 
 
 
-<div class="product">
+<div class="product bg-color-white">
     <div class="product-content container">
-        <nav id="searchNav" style="margin-top:20px;">
-            <div class="nav-wrapper row">
+        <nav id="searchNav">
+            <div class="search-bar">
                 <?php get_search_form(); ?>
                 <div class="col s12 m4 row right-align">
 
@@ -83,9 +83,8 @@ $all_categories = get_categories();
                                 <p><?php echo get_the_author_meta('first_name'); ?></p>
                             </div>
                             <div class="post-item">
-                                <p class="post-title">Avstånd till utlämningsställe</p>
-                                <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
-                                    ?> km</p>
+                                <p class="post-title">Avstånd</p>
+                                <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
                             </div>
                             
                             <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>

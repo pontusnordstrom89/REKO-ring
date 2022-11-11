@@ -29,13 +29,12 @@ $all_categories = get_categories();
 
 
 
-
-<div class="product">
+<div class="product bg-color-white">
     <div class="product-content container">
 
 
-        <nav id="categoryNav" style="margin-top:20px;" class="hide-on-small-only">
-            <div class="nav-wrapper row">
+        <nav id="categoryNav" class="hide-on-small-only">
+            <div class="search-bar">
 
                 <?php get_search_form(); ?>
 
@@ -85,13 +84,13 @@ $all_categories = get_categories();
         <?php
         $term = get_queried_object();
 
-        if ($term->name == 'Uncategorized') {
-            echo '<h3>Alla annonser</h3>';
+        if ($term->name == 'Uncategorized' || $term->name == 'Okategoriserade') {
+            echo '<h2>Alla annonser</h2>';
         } else {
-            echo '<h3>Visar annonser i kategorin: <span class="green-text">' . $term->name . '</span></h3>';
+            echo '<h2>Visar annonser i kategorin: <span class="green-text">' . $term->name . '</span></h2>';
         }
         ?>
-        <div class="products">
+        <div class="products bg-color-white">
             <?php
             while (have_posts()) {
                 the_post();
@@ -114,9 +113,8 @@ $all_categories = get_categories();
                             <p><?php echo get_the_author_meta('first_name'); ?></p>
                         </div>
                         <div class="post-item">
-                            <p class="post-title">Avstånd till utlämningsställe</p>
-                            <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] 
-                                ?> km</p>
+                            <p class="post-title">Avstånd</p>
+                            <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
                         </div>
                         
                         <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
