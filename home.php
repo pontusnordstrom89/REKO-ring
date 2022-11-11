@@ -19,7 +19,7 @@
  * 
  * Looks for header.php file if no parameter is passed
  */
-    get_header();
+get_header();
 ?>
 
 <div class="hero">
@@ -27,7 +27,7 @@
         <h1>En <span class="hero-color">modernare</span> bondens-marknad</h1>
         <p>REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
         <div class="hero-buttons">
-            <button class="hero-cta" onClick="window.location.href='<?php echo home_url() ?>/category/shop/';">Besök Shoppen</button>
+            <button class="hero-cta" onClick="window.location.href='<?php echo get_category_link(1) ?>">Besök Shoppen</button>
             <button class="hero-secondary" onClick="window.location.href='#';">Mer om oss</button>
         </div>
     </div>
@@ -41,15 +41,15 @@
         <h2>Våra producenter</h2>
         <div class="products">
             <?php
-                $posts = get_posts(array(
-                    'numberposts' => 6,
-                    'orderby' => 'rand'
-                ));
+            $posts = get_posts(array(
+                'numberposts' => 6,
+                'orderby' => 'rand'
+            ));
 
-                if(count($posts) > 1){
+            if (count($posts) > 1) {
 
-                    foreach($posts as $post) {
-                // Post Content here 
+                foreach ($posts as $post) {
+                    // Post Content here 
             ?>
                     <div class="post">
                         <?php
@@ -74,13 +74,13 @@
                             <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
                         </div>
                     </div>
-            <?php 
-                    }
-                } else {
-            ?>
-                <p>Inga posts är gjorna ännu</p>
-            <?php 
+                <?php
                 }
+            } else {
+                ?>
+                <p>Inga posts är gjorna ännu</p>
+            <?php
+            }
             ?>
         </div>
     </div>

@@ -58,10 +58,10 @@ function create_pages_if_not_exist() {
     $wp_terms_table = $wpdb->prefix . "terms";
     $first_category = $wpdb->get_row("SELECT * FROM $wp_terms_table WHERE term_id = 1");
 
+    // Change category
     if($first_category->slug == "uncategorized") {
         $wpdb->update($wp_terms_table, array('name' => 'Shop', 'slug' => 'shop'), array('term_id' => 1));
     }
-    
     
     // And limit nested comments to two levels
     add_filter('thread_comments_depth_max', function ($max) {

@@ -17,7 +17,7 @@ $comment_counter = 0;
             ?>
             <ul class="nav-ul">
                 <li class="nav-li"><a href="<?php echo home_url() ?>">Om oss</a></li>
-                <li class="nav-li"><a href="<?php echo home_url() ?>/category/shop/">Handla</a></li>
+                <li class="nav-li"><a href="<?php echo get_category_link(1) ?>">Handla</a></li>
                 <?php
                 if (is_user_logged_in() && current_user_can('author')) {
                 ?>
@@ -96,7 +96,7 @@ $comment_counter = 0;
                                         <span id="dropdown-comment-blogname"><?php echo $blog_title ?></span>
                                     </li>
                                     <li class="divider" tabindex="-1"></li>
-                            <?php }
+                                <?php }
                             } else { ?>
                                 <li> Inga nya meddelanden</li>
                             <?php }
@@ -137,7 +137,7 @@ $comment_counter = 0;
 
             <ul class="nav-ul">
                 <li class="nav-li"><a href="<?php echo home_url() ?>">Om oss</a></li>
-                <li class="nav-li"><a href="<?php echo home_url() ?>/category/shop/">Handla</a></li>
+                <li class="nav-li"><a href="<?php echo get_category_link(1) ?>">Handla</a></li>
                 <?php
                 if (is_user_logged_in() && current_user_can('author')) {
                 ?>
