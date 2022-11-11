@@ -3,16 +3,9 @@
 ?>
 
 <?php get_header();
-global $wpdb;
-    $wp_terms_table = $wpdb->prefix . "terms";
-    $first_category = $wpdb->get_row("SELECT * FROM $wp_terms_table WHERE term_id = 1");
-
-    echo $first_category->name;
-    echo gettype($first_category->name);
 
 while (have_posts()) {
     the_post();
-
 ?>
 
 
