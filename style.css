@@ -116,6 +116,7 @@ button {
   color: red;
 }
 
+
 .search-bar {
   display: flex;
   flex-direction: column;
@@ -124,3 +125,39 @@ button {
 .searchform {
   width: 100%;
 }
+
+.dropdown2 {
+  top: 120px !important;
+}
+
+.dropdown3 {
+  top: 120px !important;
+}
+
+#nav-profile {
+  position: relative;
+}
+
+
+.comment-counter-badge {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  font-size: small;
+  border-radius: 50%;
+  background-color: #ff0000;
+  padding: 1px 7px 1px 7px;
+  color: #eeeeee;
+}
+
+#dropdown-comment-blogname {
+  font-size: small;
+  padding: 0;
+  padding-left: 16px;
+  color: #252525;
+}
+
+#mobile-comment-counter-div {
+  position: relative;
+}
+

@@ -53,7 +53,17 @@ add_action('wp_enqueue_scripts', 'theme_add_style_script');
  * 
  */
 function create_pages_if_not_exist() {
+    // Create categories for all posts (ads)
+    global $wpdb;
+    $wp_terms_table = $wpdb->prefix . "terms";
+    $first_category = $wpdb->get_row("SELECT * FROM $wp_terms_table WHERE term_id = 1");
 
+    if($first_category->slug == "uncategorized") {
+        $wpdb->update($wp_terms_table, array('name' => 'Shop', 'slug' => 'shop'), array('term_id' => 1));
+    }
+    
+    
+    // And limit nested comments to two levels
     add_filter('thread_comments_depth_max', function ($max) {
         return 2;
     });

@@ -48,7 +48,7 @@ $all_categories = get_categories();
                     <ul id='categoryDropdown' class='dropdown-content left hide-on-med-and-down'>
                         <?php foreach ($all_categories as $category) {
                             $text_output = $category->name;
-                            if ($text_output == 'Uncategorized') {
+                            if ($text_output == 'Shop') {
                                 $text_output = 'Visa alla annonser';
                             }
                             echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
@@ -69,7 +69,7 @@ $all_categories = get_categories();
                 <ul id='dropdown1' class='dropdown-content left'>
                     <?php foreach ($all_categories as $category) {
                         $text_output = $category->name;
-                        if ($text_output == 'Uncategorized') {
+                        if ($text_output == 'Shop') {
                             $text_output = 'Visa alla annonser';
                         }
                         echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
@@ -84,8 +84,8 @@ $all_categories = get_categories();
         <?php
         $term = get_queried_object();
 
-        if ($term->name == 'Uncategorized' || $term->name == 'Okategoriserade') {
-            echo '<h2>Alla annonser</h2>';
+        if ($term->name == 'Shop') {
+            echo '<h3>Alla annonser</h3>';
         } else {
             echo '<h2>Visar annonser i kategorin: <span class="green-text">' . $term->name . '</span></h2>';
         }
