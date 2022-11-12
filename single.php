@@ -4,6 +4,15 @@
 
 <?php get_header();
 
+
+    $user = wp_get_current_user();
+
+    $roles = (array) $user->roles;
+
+    var_dump($roles); // This will returns an array
+
+
+
 while (have_posts()) {
     the_post();
 ?>
@@ -70,13 +79,13 @@ while (have_posts()) {
             }
             ?>
 
-            
+
             <button class="btn waves-effect waves" style="background-color:#f66565;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">
-
+            
                 <div class="col s12 m6 offset-m3" style="background-color:#f66565;">
                     <div id="commentFormLoader" class="progress">
                         <div class="indeterminate"></div>

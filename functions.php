@@ -47,23 +47,16 @@ function theme_add_style_script()
 add_action('wp_enqueue_scripts', 'theme_add_style_script');
 
 
+
+
 /**
  * 
  * On Theme setup, create pages and ad templates
  * 
  */
 function create_pages_if_not_exist() {
-    // Create categories for all posts (ads)
-    global $wpdb;
-    $wp_terms_table = $wpdb->prefix . "terms";
-    $first_category = $wpdb->get_row("SELECT * FROM $wp_terms_table WHERE term_id = 1");
 
-    // Change category
-    if($first_category->slug == "uncategorized") {
-        $wpdb->update($wp_terms_table, array('name' => 'Shop', 'slug' => 'shop'), array('term_id' => 1));
-    }
-    
-    // And limit nested comments to two levels
+    // Limit nested comments to two levels
     add_filter('thread_comments_depth_max', function ($max) {
         return 2;
     });
@@ -174,6 +167,20 @@ function update_profile_callback()
 }
 
 /**
+ * Handle author clear notifications form
+ */
+add_action('admin_post_clear_notifications', 'clear_notifications_callback');
+function clear_notifications_callback()
+{
+    delete_user_meta(get_current_user_id(), 'comments');
+
+    // redirect the user to the appropriate page
+    wp_redirect(wp_get_referer());
+    // When finished, die(); is required.
+    die();
+}
+
+/**
  * Handle author create post form
  */
 add_action('admin_post_create_post', 'create_post_callback');
@@ -270,7 +277,7 @@ function comments_count($comment_id)
      * IF someone else makes a comment on a post. save post_id and comment_count in relation to post author in table usermeta
      */
     } else {
-        // If we can't find row with metakey "comments" in relation to post_author in usermetatable create
+        // If we can't find row with metakey "comments" in relation to post_author in usermetatable, create
         if (!$user_meta_as_string) {
             $data = array($site_prefix . $post_id => 1);
             $t = serialize($data);
@@ -294,12 +301,8 @@ function comments_count($comment_id)
             $user_meta_serialized = serialize($user_meta);
             update_user_meta($the_post_author, 'comments', $user_meta_serialized);
         }
-    }
-
-    
-
-    
-    
-    
+    } 
 }
 add_action('comment_post', 'comments_count', 10,1);
+
+

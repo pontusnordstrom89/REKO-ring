@@ -45,7 +45,7 @@ $all_categories = get_categories();
                     <ul id='categoryDropdown' class='dropdown-content left hide-on-med-and-down'>
                         <?php foreach ($all_categories as $category) {
                             $text_output = $category->name;
-                            if ($text_output == 'Shop') {
+                            if ($text_output == 'shop') {
                                 $text_output = 'Visa alla annonser';
                             }
                             echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';

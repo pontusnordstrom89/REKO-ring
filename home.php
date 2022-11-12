@@ -27,7 +27,7 @@ get_header();
         <h1>En <span class="hero-color">modernare</span> bondens-marknad</h1>
         <p>REKO-Ring Lund är en köp- och säljplattform utan mellanhänder skapad för att erbjuda en hållbar produktion för producenten samt erbjuda klimatsmarta och kvalitativa varor till rimliga priser för konsumenten.</p>
         <div class="hero-buttons">
-            <button class="hero-cta" onClick="window.location.href='<?php echo get_category_link(1) ?>">Besök Shoppen</button>
+            <button class="hero-cta" onClick="window.location.href='<?php echo get_category_link(1) ?>'">Besök Shoppen</button>
             <button class="hero-secondary" onClick="window.location.href='#';">Mer om oss</button>
         </div>
     </div>

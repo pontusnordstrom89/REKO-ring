@@ -22,6 +22,7 @@ $comment_counter = 0;
                 if (is_user_logged_in() && current_user_can('author')) {
                 ?>
                     <li class="nav-li"><a href="<?php echo home_url() ?>/create-post">Skapa annons</a></li>
+                    <li class="nav-li"><a href="<?php echo home_url() ?>/order-view">Orderöversikt</a></li>
                 <?php
                 }
                 ?>
@@ -80,10 +81,13 @@ $comment_counter = 0;
                                     if (count($pieces) > 2) {
                                         $id = $pieces[2];
                                         $prefix = $pieces[0] . '_' . $pieces[1] . '_';
+                                        $blog_id = $pieces[1];
                                     } else {
                                         $id = $pieces[1];
                                         $prefix = $pieces[0] . '_';
+                                        $blog_id = 1;
                                     }
+
 
                                     global $wpdb;
                                     $post_table = $prefix . "posts";
@@ -92,13 +96,20 @@ $comment_counter = 0;
                                     $post_title = $wpdb->get_var("SELECT post_title FROM $post_table WHERE ID = $id");
                                     $blog_title = $wpdb->get_var("SELECT option_value FROM $options_table WHERE option_name = 'blogname'");
                             ?>
-                                    <li class="row"><a class="comment-link" href="<?php echo the_permalink($id) ?>"> <?php echo substr($post_title, 0, 20) ?> .... <i class="right"><span class="new badge"><?php echo $value ?></span></i></a>
+                                    <li class="row"><a class="comment-link" href="<?php echo get_blog_permalink($blog_id, $id); ?>"> <?php echo substr($post_title, 0, 20) ?> .... <i class="right"><span class="new badge"><?php echo $value ?></span></i></a>
                                         <span id="dropdown-comment-blogname"><?php echo $blog_title ?></span>
                                     </li>
                                     <li class="divider" tabindex="-1"></li>
-                                <?php }
-                            } else { ?>
-                                <li> Inga nya meddelanden</li>
+                                <?php } ?>
+                                <li class="row">
+                                    <form method="post" action="<?php echo home_url() . '/wp-admin/admin-post.php'; ?>" class="center-align">
+                                        <!-- Send to function update_profile -->
+                                        <input type="hidden" name="action" value="clear_notifications">
+                                        <button class="btn grey center-align" type="submit">Rensa notifikationer</button>
+                                    </form>
+                                </li>
+                            <?php } else { ?>
+                                <li><p class="center-align">Inga nya meddelanden</p></li>
                             <?php }
 
                             ?>
@@ -141,7 +152,8 @@ $comment_counter = 0;
                 <?php
                 if (is_user_logged_in() && current_user_can('author')) {
                 ?>
-                    <li class="nav-li"><a href="./create-post">Skapa annons</a></li>
+                    <li class="nav-li"><a href="<?php echo home_url() ?>/create-post">Skapa annons</a></li>
+                    <li class="nav-li"><a href="<?php echo home_url() ?>/order-view">Orderöversikt</a></li>
                 <?php
                 }
                 ?>
