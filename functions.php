@@ -299,7 +299,32 @@ function comments_count($comment_id)
     
 
     
-    
-    
 }
 add_action('comment_post', 'comments_count', 10,1);
+
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/resources/img/reko_black.png);
+		height:40px;
+		width:120px;
+		background-size: 120px 40px;
+		background-repeat: no-repeat;
+        
+        	padding-bottom: 30px;
+        }
+    </style>
+<?php }
+
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+
+function my_login_stylesheet() {
+    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/resources/styles/style-login.css' );
+}
+add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
