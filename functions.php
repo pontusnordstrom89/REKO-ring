@@ -306,3 +306,13 @@ function comments_count($comment_id)
 add_action('comment_post', 'comments_count', 10,1);
 
 
+/**
+ * When an existing user is added to a site in network. Meaning becoming a producer for a REKO-ring. 
+ * Bump up the user to contributor on main site https://rekoring/ so that the user can admin their profile
+ * 
+ */
+add_action('added_existing_user', 'wpdocs_when_update_any_user_meta', 10, 2);
+function wpdocs_when_update_any_user_meta($user_id, $result)
+{
+    update_user_meta($user_id, 'wp_capabilities', array('contributor' => 1));
+}

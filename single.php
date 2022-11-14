@@ -5,14 +5,6 @@
 <?php get_header();
 
 
-    $user = wp_get_current_user();
-
-    $roles = (array) $user->roles;
-
-    var_dump($roles); // This will returns an array
-
-
-
 while (have_posts()) {
     the_post();
 ?>

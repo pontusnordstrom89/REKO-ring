@@ -1,11 +1,13 @@
 <?php
 $comment_counter = 0;
+$current_user = wp_get_current_user();
+
 ?>
 <div class="nav">
     <div class="container nav-flex">
         <a class="image-a" href="<?php echo home_url(); ?>"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/img/reko_black.png' ?>"></a>
 
-        <div id="mobile-comment-counter-div" class="hide-on-med-and-up dropdown-trigger" data-target='dropdown3'>
+        <div id="mobile-comment-counter-div" class="hide-on-large-only dropdown-trigger" data-target='dropdown3'>
             <i class="material-icons teal-text" style="font-size:48px;">chat</i><span id="comment-counter-badge-phone" class="comment-counter-badge"></span>
             <ul id='dropdown3' class='dropdown-content dropdown3' style="min-width:300px;">
             </ul>
@@ -57,12 +59,12 @@ $comment_counter = 0;
                         if (get_user_meta(get_current_user_id(), 'profile_picture', true)) {
 
                         ?>
-                            <li class="nav-li"><a href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a></li>
+                            <li class="nav-li"><a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a></li>
 
                         <?php
                         } else { ?>
 
-                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>">account_circle</a></li>
+                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>">account_circle</a></li>
                         <?php }
 
                         $user_meta = get_user_meta(get_current_user_id(), 'comments', true);
@@ -109,7 +111,9 @@ $comment_counter = 0;
                                     </form>
                                 </li>
                             <?php } else { ?>
-                                <li><p class="center-align">Inga nya meddelanden</p></li>
+                                <li>
+                                    <p class="center-align">Inga nya meddelanden</p>
+                                </li>
                             <?php }
 
                             ?>
@@ -198,15 +202,15 @@ $comment_counter = 0;
 
                         ?>
 
-                            <a href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a>
+                            <a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a>
                             <br>
-                            <a href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>"><span class="white-text name"><?php $user = wp_get_current_user();
-                                                                                                                                        echo $user->display_name ?></span></a><br>
+                            <a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><span class="white-text name"><?php $user = wp_get_current_user();
+                                                                                                                                                    echo $user->display_name ?></span></a><br>
 
                         <?php
                         } else { ?>
 
-                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo esc_url(get_author_posts_url(get_current_user_id())) ?>">account_circle</a></li>
+                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo home_url() . '/blog/author/' . $current_user->user_login; ?>">account_circle</a></li>
 
                         <?php } ?>
 
