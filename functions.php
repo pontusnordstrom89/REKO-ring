@@ -206,7 +206,7 @@ add_action('after_setup_theme', 'register_my_menu');
  * Style wordpress search form
  * 
  */
-function custom_search_form($form)
+/* function custom_search_form($form)
 {
     $form = '<form role="search" method="get" id="searchform" class="searchform row col s12 m6 l4 offset-l4 center-align" action="' . home_url('/') . '" >
         
@@ -225,7 +225,7 @@ function add_additional_class_on_li($classes, $item, $args) {
     }
     return $classes;
 }
-add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);*/
 
 
 
@@ -303,3 +303,4 @@ function comments_count($comment_id)
     
 }
 add_action('comment_post', 'comments_count', 10,1);
+

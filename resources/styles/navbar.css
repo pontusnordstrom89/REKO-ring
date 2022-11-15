@@ -110,7 +110,7 @@
 .menu-btn {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   width: 80px;
   height: 80px;
