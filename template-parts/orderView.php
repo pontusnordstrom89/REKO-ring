@@ -28,46 +28,64 @@ $arr = array(
 );
 $currUserSites = get_blogs_of_user($arr);
 ?>
+
 <h1>Mina Annonser</h1>
-<ul class="collection">
-    <?php
-    foreach ($currUserSites as $sites) {
-        switch_to_blog($sites->userblog_id);
-    ?>
-
+<div class="ul-container">
+    <ul class="ul-styling">
         <?php
-        $args = array(
-            'author' => get_current_user_id(),
-            'orderby'       =>  'post_date'
-        );
-        $current_posts = get_posts($args);
+        foreach ($currUserSites as $sites) {
+            switch_to_blog($sites->userblog_id);
         ?>
 
+            <?php
+            $args = array(
+                'author' => get_current_user_id(),
+                'orderby'       =>  'post_date'
+            );
+            $current_posts = get_posts($args);
+            ?>
 
+            <?php
+            foreach ($current_posts as $p) {
+            ?>
+            
+                <li class="list-container">
+                    <a href="<?php the_permalink($p) ?>" class="list-anchor">
+                        <div class="li-content-container">
+                            <div class="li-content-info-container">
+                                <?php
+                                $images = get_attached_media('image', $p);
+                                foreach ($images as $image) {
+                                    $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
+                                    echo '<img src="' . $ximage[0] . '" alt="" class="circle">';
+                                    break;
+                                }
+                                ?>
+                                <div class="li-text-content-container">
+                                    <h4><?php echo $p->post_title ?></h4>
+                                    <p>
+                                        <?php echo $p->post_date ?>
+                                        <br>
+                                        <?php echo $sites->blogname ?>
+                                        <br>
+                                        <?php 
+                                        $comments = get_comments_number($p);
+                                        echo 'Antal beställningar: ' . $comments
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="view-btn">Visa Annons</p> 
+                        </div>
+                    </a> 
+                </li>
         <?php
-        foreach ($current_posts as $p) {
-        ?>
-            <li class="collection-item avatar">
-                <?php
-                $images = get_attached_media('image', $p);
-                foreach ($images as $image) {
-                    $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
-                    echo '<img src="' . $ximage[0] . '" alt="" class="circle">';
-                    break;
-                }
-                ?>
-                <span class="title"><?php echo $p->post_title ?></span>
-                <p><?php echo $p->post_date ?><br>
-                <?php echo $sites->blogname?></p>
-                <a href="<?php the_permalink($p) ?>" class="secondary-content"><i class="waves-effect waves-light btn red lighten-2">Se Annons</i></a>
-            </li>
-
-    <?php
+            }
+            restore_current_blog();
         }
-        restore_current_blog();
-    }
-    ?>
-</ul>
+        ?>
+    </ul>
+</div>
 
 
 <?php

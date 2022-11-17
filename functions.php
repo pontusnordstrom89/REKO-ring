@@ -15,6 +15,12 @@ function theme_add_style_script()
 
     //get navbar style
     wp_enqueue_style('nav-css', get_template_directory_uri() . '/resources/styles/navbar.css');
+    
+    //get create post style
+    wp_enqueue_style('create-post-css', get_template_directory_uri() . '/resources/styles/createPost.css');
+
+     //get create orderView style
+     wp_enqueue_style('orderView-css', get_template_directory_uri() . '/resources/styles/orderView.css');
 
     // Get jQuery
     wp_enqueue_script('jQuery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), '3.6.0', false);

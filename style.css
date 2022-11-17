@@ -15,6 +15,19 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   background-color: var(--white-sand);
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container {
+  flex: 1 0 auto;
+}
+footer {
+  flex-shrink: 0;
 }
 
 *,
@@ -29,12 +42,13 @@ button {
   --black: #252525;
   --white: #eeeeee;
   --white-sand: #fffcf4;
-  --dark-green: #598b36;
+  --dark-green: #7b955b;
   --darker-green: #3f6325;
   --light-green: #d5dfce;
-  --red: #f66565;
-  --darker-red: #c54d4d;
+  --red: #7b955b;
+  --darker-red: #266d37;
   --red-bg: #fcf2e8;
+  --footer-green: #283539;
 }
 
 .btn-reko {
@@ -116,7 +130,6 @@ button {
   color: red;
 }
 
-
 .search-bar {
   display: flex;
   flex-direction: column;
@@ -186,7 +199,6 @@ button {
   position: relative;
 }
 
-
 .comment-counter-badge {
   position: absolute;
   top: 0;
@@ -231,4 +243,9 @@ button {
 .search-red-border:focus {
   border-bottom: 1px solid var(--red) !important;
   box-shadow: none !important;
+}
+
+.custom-footer {
+  background-color: var(--footer-green);
+  margin-top: auto;
 }

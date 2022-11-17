@@ -49,4 +49,4 @@
     <?php get_template_part('template-parts/navbar'); ?>
     
     <!-- Site container closed in footer -->
-    <div class="container">
+    <div class="container flex-container">

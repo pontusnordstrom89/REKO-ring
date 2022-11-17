@@ -83,7 +83,7 @@ $all_categories = get_categories();
         </div>
 </div>
 
-<div class="products bg-color-white">
+<div class="products container bg-color-white">
             <?php
             while (have_posts()) {
                 the_post();
