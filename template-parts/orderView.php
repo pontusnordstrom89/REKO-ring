@@ -48,37 +48,58 @@ $currUserSites = get_blogs_of_user($arr);
             <?php
             foreach ($current_posts as $p) {
             ?>
-            
-                <li class="list-container">
-                    <a href="<?php the_permalink($p) ?>" class="list-anchor">
-                        <div class="li-content-container">
-                            <div class="li-content-info-container">
-                                <?php
-                                $images = get_attached_media('image', $p);
-                                foreach ($images as $image) {
-                                    $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
-                                    echo '<img src="' . $ximage[0] . '" alt="" class="circle">';
-                                    break;
-                                }
-                                ?>
-                                <div class="li-text-content-container">
-                                    <h4><?php echo $p->post_title ?></h4>
-                                    <p>
-                                        <?php echo $p->post_date ?>
-                                        <br>
-                                        <?php echo $sites->blogname ?>
-                                        <br>
-                                        <?php 
-                                        $comments = get_comments_number($p);
-                                        echo 'Antal beställningar: ' . $comments
-                                        ?>
-                                    </p>
+                <div>
+                    <li class="list-container">
+                        <a href="<?php the_permalink($p) ?>" class="list-anchor">
+                            <div class="li-content-container">
+                                <div class="li-content-info-container">
+                                    <?php
+                                    $images = get_attached_media('image', $p);
+                                    foreach ($images as $image) {
+                                        $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
+                                        echo '<img src="' . $ximage[0] . '" alt="" class="circle">';
+                                        break;
+                                    }
+                                    ?>
+                                    <div class="li-text-content-container">
+                                        <h4><?php echo $p->post_title ?></h4>
+                                        <p>
+                                            <?php echo $p->post_date ?>
+                                            <br>
+                                            <?php echo $sites->blogname ?>
+                                        </p>
+                                    </div>
                                 </div>
+                                <p class="view-btn">Visa Annons</p> 
                             </div>
-                            <p class="view-btn">Visa Annons</p> 
+                        </a>
+                    </li>
+                    <div>
+                        <button type="button" class="orders-collapsible">Visa beställningar</button>
+                        <div class="orders-content">
+                            <ul class="orders-list">
+                                <li class="orders-list-element">
+                                    <p>Nummer</p>
+                                    <p>Användare</p>
+                                    <p>Datum</p>
+                                    <p>Beställning</p>
+                                </li>
+                            <?php 
+                                $comments = get_comments($p);
+                                $nbr = 1;
+                                foreach ($comments as $c) {
+                                    echo '<li class="orders-list-element">';
+                                    echo '<p>' . $nbr . '</p>';
+                                    echo '<p>' . $c->comment_author . '</p>';
+                                    echo '<p>' . $c->comment_date . '</p>';
+                                    echo '<p>' . $c->comment_content . '</p>';
+                                    echo '</li>';
+                                };
+                            ?>
+                            <ul>
                         </div>
-                    </a> 
-                </li>
+                    </div>
+                </div>
         <?php
             }
             restore_current_blog();

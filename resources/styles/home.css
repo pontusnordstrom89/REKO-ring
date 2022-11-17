@@ -309,3 +309,7 @@ nav {
     justify-content: none;
   }
 }
+
+body {
+  overflow: visible;
+}

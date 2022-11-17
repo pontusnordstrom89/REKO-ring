@@ -15,3 +15,5 @@ $(".collapsible-header").click(function (event) {
     event.target.classList.add("collapsible-closed");
   }
 });
+
+
