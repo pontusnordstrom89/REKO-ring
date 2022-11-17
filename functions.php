@@ -2,19 +2,25 @@
 
 /**
  * Import styles and scripts
- * 
+ *
  *  @link https://developer.wordpress.org/reference/functions/wp_enqueue_script/
  */
 function theme_add_style_script()
 {
     // Get materialize css
     wp_enqueue_style('materialize-css', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css');
-    
+
     // Get style.css
     wp_enqueue_style('style-css', get_template_directory_uri() . '/style.css');
 
     //get navbar style
     wp_enqueue_style('nav-css', get_template_directory_uri() . '/resources/styles/navbar.css');
+    
+    //get create post style
+    wp_enqueue_style('create-post-css', get_template_directory_uri() . '/resources/styles/createPost.css');
+
+     //get create orderView style
+     wp_enqueue_style('orderView-css', get_template_directory_uri() . '/resources/styles/orderView.css');
 
     // Get jQuery
     wp_enqueue_script('jQuery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), '3.6.0', false);
@@ -50,9 +56,9 @@ add_action('wp_enqueue_scripts', 'theme_add_style_script');
 
 
 /**
- * 
+ *
  * On Theme setup, create pages and ad templates
- * 
+ *
  */
 function create_pages_if_not_exist() {
 
@@ -60,17 +66,17 @@ function create_pages_if_not_exist() {
     add_filter('thread_comments_depth_max', function ($max) {
         return 2;
     });
-    
+
     // Define table
     global $wpdb;
     $post_table = $wpdb->prefix . "posts";
-    
+
     // Check if create page exists
     $find_create_page_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'create-post'");
 
     // Check if order view
     $find_order_view_slug = $wpdb->get_row("SELECT * FROM $post_table WHERE post_name = 'order-view'");
-    
+
     if ($find_create_page_slug) {
         //Create post exists
     } else {
@@ -92,7 +98,7 @@ function create_pages_if_not_exist() {
         ));
 
         $post_id = $wpdb->insert_id;
-        
+
         $post_meta_table = $wpdb->prefix . "postmeta";
         $wpdb->insert($post_meta_table, array(
             'post_id' => $post_id,
@@ -129,7 +135,7 @@ function create_pages_if_not_exist() {
             'meta_key' => '_wp_page_template',
             'meta_value' => 'template-parts/orderView.php'
         ));
-    } 
+    }
 }
 
 add_action('after_setup_theme', 'create_pages_if_not_exist');
@@ -198,9 +204,9 @@ function remove_admin_bar(){
 }
 
 /**
- * 
+ *
  * Register main menu and special submenus
- * 
+ *
  */
 function register_my_menu()
 {
@@ -209,17 +215,17 @@ function register_my_menu()
 add_action('after_setup_theme', 'register_my_menu');
 
 /**
- * 
+ *
  * Style wordpress search form
- * 
+ *
  */
-function custom_search_form($form)
+/* function custom_search_form($form)
 {
     $form = '<form role="search" method="get" id="searchform" class="searchform row col s12 m6 l4 offset-l4 center-align" action="' . home_url('/') . '" >
-        
+
         <input style="font-size:24px; margin-top:10px;" class="col s10 m8 l8 white-text" type="text" placeholder="Sök" value="' . get_search_query() . '" name="s" id="s" />
         <button class="waves-effect waves-light btn" type="submit" id="searchsubmit">Sök</button>
-      
+
       </form>';
 
     return $form;
@@ -232,7 +238,7 @@ function add_additional_class_on_li($classes, $item, $args) {
     }
     return $classes;
 }
-add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);*/
 
 
 
@@ -262,7 +268,7 @@ function comments_count($comment_id)
     // Check if we previousley have stored comments in relation to user
     $user_meta_as_string = get_user_meta($the_post_author, 'comments', true);
 
-    
+
     /**
      * IF COMMENT AUTHOR === POST AUTHOR mark comments as read = delete post_id => comment_count
      */
@@ -303,34 +309,10 @@ function comments_count($comment_id)
         }
     }
 
-    
 
-    
-    
-    
+
+
+
+
 }
 add_action('comment_post', 'comments_count', 10,1);
-
-
-function my_login_logo_url() {
-    return home_url();
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-
-
-function my_login_stylesheet() {
-    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/resources/styles/style-login.css' );
-}
-add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
-
-
-/**
- * When an existing user is added to a site in network. Meaning becoming a producer for a REKO-ring. 
- * Bump up the user to contributor on main site https://rekoring/ so that the user can admin their profile
- * 
- */
-add_action('added_existing_user', 'wpdocs_when_update_any_user_meta', 10, 2);
-function wpdocs_when_update_any_user_meta($user_id, $result)
-{
-    update_user_meta($user_id, 'wp_capabilities', array('contributor' => 1));
-}
