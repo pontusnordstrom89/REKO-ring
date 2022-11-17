@@ -19,7 +19,7 @@ $count = get_comments(array(
         <?php if (get_user_meta(get_the_author_meta('ID'), 'profile_picture', true)) {
 
         ?>
-            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="circle mt-5 responsive-img" style="width:100px;height:100px; display:block;margin:auto;">
+            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="profilePic mt-5 responsive-img">
         <?php
         } else { ?>
             <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="circle mt-5 responsive-img">

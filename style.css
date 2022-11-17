@@ -249,3 +249,15 @@ button {
   background-color: var(--footer-green);
   margin-top: auto;
 }
+
+/* CSS till navbaren. */
+
+.nav-cta {
+  width: 110px;
+  height: 45px;
+  font-size: 90%;
+}
+
+.profilePic {
+  border-radius: 3%;
+}

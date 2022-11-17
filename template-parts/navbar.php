@@ -5,7 +5,7 @@ $current_user = wp_get_current_user();
 ?>
 <div class="nav">
     <div class="container nav-flex">
-        <a class="image-a" href="<?php echo home_url(); ?>"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/img/reko_black.png' ?>"></a>
+        <a class="image-a" href="<?php echo home_url(); ?>"><img height="50px" style="padding-right: 20px;" src="<?php echo get_template_directory_uri() . '/resources/img/reko_black.png' ?>"></a>
 
         <div id="mobile-comment-counter-div" class="hide-on-large-only dropdown-trigger" data-target='dropdown3'>
             <i class="material-icons teal-text" style="font-size:48px;">chat</i><span id="comment-counter-badge-phone" class="comment-counter-badge"></span>
