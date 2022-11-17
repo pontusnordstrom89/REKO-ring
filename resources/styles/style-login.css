@@ -1,0 +1,7 @@
+body.login {
+    background-color: #fffcf4 !important;
+}
+
+body.login div#login h1 a {
+    background-image: url('../img/reko_black.png');
+  }

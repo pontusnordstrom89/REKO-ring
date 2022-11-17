@@ -3,16 +3,10 @@
 ?>
 
 <?php get_header();
-global $wpdb;
-    $wp_terms_table = $wpdb->prefix . "terms";
-    $first_category = $wpdb->get_row("SELECT * FROM $wp_terms_table WHERE term_id = 1");
 
-    echo $first_category->name;
-    echo gettype($first_category->name);
 
 while (have_posts()) {
     the_post();
-
 ?>
 
 
@@ -77,13 +71,13 @@ while (have_posts()) {
             }
             ?>
 
-            
+
             <button class="btn waves-effect waves" style="background-color:#f66565;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">
-
+            
                 <div class="col s12 m6 offset-m3" style="background-color:#f66565;">
                     <div id="commentFormLoader" class="progress">
                         <div class="indeterminate"></div>
