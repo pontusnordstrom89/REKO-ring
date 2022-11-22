@@ -154,6 +154,33 @@ body {
     font-size: 1.5rem;
 }
 
+@keyframes animateBasket {
+    0% {
+        transform: rotate(0.1turn);
+    }
+
+    25% {
+        transform: rotate(-0.1turn);
+    }
+
+    50% {
+        transform: rotate(0.1turn);
+    }
+
+    75% {
+        transform: rotate(-0.1turn);
+    }
+
+    100% {
+        transform: rotate(0.turn);
+    }
+}
+
+#basket-animation {
+    font-size: 2rem;
+    animation-name: animateBasket;
+    animation-duration: 2s;
+}
 
 /* Mobile */
 @media screen and (max-width: 600px) {
