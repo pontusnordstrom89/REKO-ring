@@ -282,9 +282,7 @@ button {
   font-size: 90%;
 }
 
-.profilePic {
-  border-radius: 3%;
-}
+
 
 
 @media screen and (max-width: 601px) {
