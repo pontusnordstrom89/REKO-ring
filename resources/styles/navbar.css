@@ -1,5 +1,4 @@
 .nav {
-  width: 100vw;
   margin: 2rem 0;
 }
 
@@ -25,7 +24,7 @@
   width: 58px;
 }
 
-.nav ul {
+.nav-ul {
   display: flex;
   gap: 2rem;
   align-items: center;
@@ -165,7 +164,7 @@
   transform: rotate(-45deg) translate(35px, 35px);
 }
 
-.mobile {
+.mobilen {
   display: none;
 }
 
@@ -199,13 +198,13 @@
 
   .nav-li a {
     color: var(--white-sand);
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .nav-select {
     margin-top: 0.5rem;
     width: 80%;
-    height: 6rem;
+    height: 4rem;
     background-color: var(--white-sand);
     background: var(--white-sand);
     border-radius: 0;
@@ -219,17 +218,13 @@
   }
 
   .nav-cta {
-    height: 6rem;
+    height: 4rem;
     width: 80%;
     margin-top: 1.5rem;
     font-size: 2rem;
   }
 
-  .mobile {
+  .mobilen {
     display: flex;
   }
-}
-
-body {
-  overflow: visible;
 }
