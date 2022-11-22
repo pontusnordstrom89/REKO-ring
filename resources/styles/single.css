@@ -109,3 +109,8 @@ li.comment:last-child {
 body {
     overflow: visible;
 }
+
+#orderButton {
+    display:block;
+    margin: auto;
+}
