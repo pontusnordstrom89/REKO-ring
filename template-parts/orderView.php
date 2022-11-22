@@ -70,36 +70,35 @@ $currUserSites = get_blogs_of_user($arr);
                                         </p>
                                     </div>
                                 </div>
-                                <p class="view-btn">Visa Annons</p> 
+                                <p class="view-btn">Visa Annons</p>
                             </div>
                         </a>
                     </li>
-                    <div>
-                        <button type="button" class="orders-collapsible">Visa beställningar</button>
-                        <div class="orders-content">
-                            <ul class="orders-list">
-                                <li class="orders-list-element">
-                                    <p>Nummer</p>
-                                    <p>Användare</p>
-                                    <p>Datum</p>
-                                    <p>Beställning</p>
-                                </li>
-                            <?php 
-                                $comments = get_comments($p);
-                                $nbr = 1;
-                                foreach ($comments as $c) {
-                                    echo '<li class="orders-list-element">';
-                                    echo '<p>' . $nbr . '</p>';
-                                    echo '<p>' . $c->comment_author . '</p>';
-                                    echo '<p>' . $c->comment_date . '</p>';
-                                    echo '<p>' . $c->comment_content . '</p>';
-                                    echo '</li>';
-                                };
+                    <button type="button" class="orders-collapsible">Visa beställningar</button>
+                    <div class="orders-content">
+                        <ul class="orders-list">
+                            <li class="orders-list-element">
+                                <p>Nummer</p>
+                                <p>Användare</p>
+                                <p>Datum</p>
+                                <p>Beställning</p>
+                            </li>
+                            <?php
+                            $comments = get_comments($p);
+                            $nbr = 1;
+                            foreach ($comments as $c) {
+                                echo '<li class="orders-list-element">';
+                                echo '<p>' . $nbr . '</p>';
+                                echo '<p>' . $c->comment_author . '</p>';
+                                echo '<p>' . $c->comment_date . '</p>';
+                                echo '<p>' . $c->comment_content . '</p>';
+                                echo '</li>';
+                            };
                             ?>
                             <ul>
-                        </div>
                     </div>
                 </div>
+
         <?php
             }
             restore_current_blog();

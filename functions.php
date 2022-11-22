@@ -161,6 +161,14 @@ add_theme_support('post-thumbnails');
 // Add support for menus
 add_theme_support('menus');
 
+add_action('after_setup_theme', 'wpdocs_theme_setup');
+function wpdocs_theme_setup()
+{
+    add_image_size('carousel-image', 600); // 300 pixels wide (and unlimited height)
+    add_image_size('category-thumb', 300); // 300 pixels wide (and unlimited height)
+    add_image_size('homepage-thumb', 220, 180, true); // (cropped)
+}
+
 // Custom header
 $args = array(
     'width'         => 980,

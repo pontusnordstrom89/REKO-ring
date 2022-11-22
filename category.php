@@ -49,7 +49,7 @@ $all_categories = get_categories();
     </div>
 </div>
 
-
+</div>
 
 <div class="products container bg-color-white">
     <?php
@@ -85,5 +85,9 @@ $all_categories = get_categories();
         </div>
     <?php } ?>
 </div>
-<?php posts_nav_link(); ?>
-<?php get_footer(); ?>
+
+<!--Open new main container for margin width-->
+<div class="container flex-container">
+    <?php posts_nav_link(); ?>
+
+    <?php get_footer(); ?>
