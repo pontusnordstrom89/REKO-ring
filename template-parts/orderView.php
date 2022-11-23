@@ -40,7 +40,8 @@ $currUserSites = get_blogs_of_user($arr);
             <?php
             $args = array(
                 'author' => get_current_user_id(),
-                'orderby'       =>  'post_date'
+                'orderby'       =>  'post_date',
+                'post_status' => array('private','publish')
             );
             $current_posts = get_posts($args);
             ?>
@@ -71,6 +72,7 @@ $currUserSites = get_blogs_of_user($arr);
                                     </div>
                                 </div>
                                 <p class="view-btn">Visa Annons</p>
+                                <a href="#edit" onclick="setPrivate(<?php echo $p->ID ?>);"><button class="btn">Dölj Annons</button></a>
                             </div>
                         </a>
                     </li>
@@ -107,6 +109,19 @@ $currUserSites = get_blogs_of_user($arr);
     </ul>
 </div>
 
+<script>
+    function setPrivate(postID){
+     var ajaxurl ="<?php echo admin_url('admin-ajax.php')?>";
+     jQuery.ajax({
+        url: ajaxurl,
+        type: 'POST',
+        data: {
+            action: 'make_post_private',
+            id : postID
+        },
+     });
+    };
+    </script>
 
 <?php
 /**
