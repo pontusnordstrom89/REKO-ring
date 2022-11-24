@@ -110,6 +110,10 @@
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .orders-collapsible {
+
+}
+
+.desktop-styling {
   background-color: var(--red);
   color: var(--white);
   cursor: pointer;
@@ -122,16 +126,17 @@
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.orders-active {
+
+.desktop-styling:hover {
   background-color: var(--red);
 }
 
-.orders-collapsible:hover {
+.desktop-styling:focus {
   background-color: var(--red);
 }
 
-.orders-collapsible:focus {
-  background-color: var(--red);
+.comment-styling {
+  text-align: center;
 }
 
 /* Style the collapsible content. Note: hidden by default */
@@ -142,11 +147,51 @@
   width: 100%;
 }
 
+.orders-content-mobile {
+  display: none;
+  overflow: hidden;
+  background-color: var(--white);
+  width: 100%;
+}
+
 .orders-list {
   width: 100%;
 }
 
-.orders-list-element {
+@media screen and (max-width: 600px) {
+  .orders-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item-container {
+    flex-direction: column;
+  }
+
+  .img-text-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .btn-container {
+    flex-direction: row;
+  }
+  
+  .img-text-container h4 {
+    width: 100%;
+  }
+
+}
+
+.mobile-styling {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid lightgray;
 }
 
 table,

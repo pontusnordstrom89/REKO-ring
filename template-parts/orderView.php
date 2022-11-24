@@ -83,26 +83,28 @@ $currUserSites = get_blogs_of_user($arr);
                         </div>
                     </div>
                     <!-- collapsible -->
-                    <button type="button" class="orders-collapsible">Visa beställningar</button>
+                    <button type="button" class="orders-collapsible desktop-styling">Visa beställningar</button>
                     <div class="orders-content">
-                        <table class="orders-list">
-                            <tr class="orders-list-element">
+                        <!-- On pad/desktop -->
+                        <?php 
+                            $args = array(
+                                'post_id'     => $p->ID,
+                                'order'       => 'DESC',
+                                'parent'      => 0
+                            );
+                            $comments = get_comments($args);
+                            $nbr = 1;
+                        ?>
+                        <table class="orders-list hide-on-small-and-down">
+                            <tr>
                                 <th>Nummer</th>
                                 <th>Användare</th>
                                 <th>Datum</th>
                                 <th>Beställning</th>
                             </tr>
-                        <?php 
-                            $args = array(
-                                'post_id'     => $p->ID,
-                                'order'       => 'DESC',
-                                'status'      => 'approve',
-                                'parent'      => 0
-                            );
-                            $comments = get_comments( $args );
-                            $nbr = 1;
+                        <?php
                             foreach ($comments as $c) {
-                                echo '<tr class="orders-list-element">';
+                                echo '<tr>';
                                 echo '<td>' . $nbr . '</td>';
                                 echo '<td>' . $c->comment_author . '</td>';
                                 echo '<td>' . $c->comment_date . '</td>';
@@ -112,6 +114,27 @@ $currUserSites = get_blogs_of_user($arr);
                             };
                         ?>
                         </table>
+                        <!-- On mobile -->
+                        <div class="orders-list hide-on-med-and-up">
+                            <?php 
+                                foreach ($comments as $c) {
+                            ?>
+                            <div type="button" class="orders-collapsible mobile-styling">
+                                <p><?php echo $nbr; ?></p>
+                                <p><?php echo $c->comment_author; ?></p>
+                                <p><?php echo $c->comment_date; ?></p>
+                                <p>+</p>
+                            </div>
+
+                            <div class="orders-content comment-styling">
+                                <?php echo '<p>' . $c->comment_content . '</p>' ?>
+                            </div>
+                            <?php
+                                };
+                            ?>
+
+                            </div>
+                        </div>
                     </div> 
                 </li>                
         
