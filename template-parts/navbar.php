@@ -5,7 +5,7 @@ $current_user = wp_get_current_user();
 ?>
 <div class="nav">
     <div class="container nav-flex">
-        <a class="image-a" href="<?php echo home_url(); ?>"><img height="50px" style="padding-right: 20px;" src="<?php echo get_template_directory_uri() . '/resources/img/reko_black.png' ?>"></a>
+        <a class="image-a" href="<?php echo home_url(); ?>"><img height="50px" src="<?php echo get_template_directory_uri() . '/resources/img/reko_black.png' ?>"></a>
 
         <div id="mobile-comment-counter-div" class="hide-on-large-only dropdown-trigger" data-target='dropdown3'>
             <i class="material-icons teal-text" style="font-size:48px;">chat</i><span id="comment-counter-badge-phone" class="comment-counter-badge"></span>
@@ -18,7 +18,7 @@ $current_user = wp_get_current_user();
             $curr_site = get_current_blog_id();
             ?>
             <ul class="nav-ul">
-                <li class="nav-li"><a href="<?php echo network_site_url() . '#about-reko' ?>">Om REKO</a></li>
+                <li class="nav-li"><a href="<?php echo home_url() ?>">Om oss</a></li>
                 <li class="nav-li"><a href="<?php echo get_category_link(1) ?>">Handla</a></li>
                 <?php
                 if (is_user_logged_in() && current_user_can('author')) {
@@ -143,7 +143,7 @@ $current_user = wp_get_current_user();
 
             </ul>
         </div>
-        <div class="menu-btn mobilen">
+        <div class="menu-btn mobile">
             <div class="menu-btn__burger"></div>
         </div>
         <div class="overlay nav-flex">
