@@ -77,7 +77,7 @@ $currUserSites = get_blogs_of_user($arr);
                             <?php if ($p->post_status=='publish') {?>
                                 <a href="#edit" class="toggle-btn" onclick="setPrivate(<?php echo $p->ID ?>);">Gör privat</a>
                             <?php }?>
-                            <a class="view-btn">Visa Annons</a> 
+                            <a href="<?php echo get_permalink($p) ?>" class="view-btn">Visa Annons</a> 
                         </div>
                     </div>
                     <!-- collapsible -->
