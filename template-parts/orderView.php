@@ -40,8 +40,7 @@ $currUserSites = get_blogs_of_user($arr);
             <?php
             $args = array(
                 'author' => get_current_user_id(),
-                'orderby'       =>  'post_date',
-                'post_status' => array('private','publish')
+                'orderby'       =>  'post_date'
             );
             $current_posts = get_posts($args);
             ?>
@@ -71,36 +70,36 @@ $currUserSites = get_blogs_of_user($arr);
                                         </p>
                                     </div>
                                 </div>
-                                <p class="view-btn">Visa Annons</p>
-                                <a href="#edit" onclick="setPrivate(<?php echo $p->ID ?>);"><button class="btn">Dölj Annons</button></a>
+                                <p class="view-btn">Visa Annons</p> 
                             </div>
                         </a>
                     </li>
-                    <button type="button" class="orders-collapsible">Visa beställningar</button>
-                    <div class="orders-content">
-                        <ul class="orders-list">
-                            <li class="orders-list-element">
-                                <p>Nummer</p>
-                                <p>Användare</p>
-                                <p>Datum</p>
-                                <p>Beställning</p>
-                            </li>
-                            <?php
-                            $comments = get_comments($p);
-                            $nbr = 1;
-                            foreach ($comments as $c) {
-                                echo '<li class="orders-list-element">';
-                                echo '<p>' . $nbr . '</p>';
-                                echo '<p>' . $c->comment_author . '</p>';
-                                echo '<p>' . $c->comment_date . '</p>';
-                                echo '<p>' . $c->comment_content . '</p>';
-                                echo '</li>';
-                            };
+                    <div>
+                        <button type="button" class="orders-collapsible">Visa beställningar</button>
+                        <div class="orders-content">
+                            <ul class="orders-list">
+                                <li class="orders-list-element">
+                                    <p>Nummer</p>
+                                    <p>Användare</p>
+                                    <p>Datum</p>
+                                    <p>Beställning</p>
+                                </li>
+                            <?php 
+                                $comments = get_comments($p);
+                                $nbr = 1;
+                                foreach ($comments as $c) {
+                                    echo '<li class="orders-list-element">';
+                                    echo '<p>' . $nbr . '</p>';
+                                    echo '<p>' . $c->comment_author . '</p>';
+                                    echo '<p>' . $c->comment_date . '</p>';
+                                    echo '<p>' . $c->comment_content . '</p>';
+                                    echo '</li>';
+                                };
                             ?>
                             <ul>
+                        </div>
                     </div>
                 </div>
-
         <?php
             }
             restore_current_blog();
@@ -109,19 +108,6 @@ $currUserSites = get_blogs_of_user($arr);
     </ul>
 </div>
 
-<script>
-    function setPrivate(postID){
-     var ajaxurl ="<?php echo admin_url('admin-ajax.php')?>";
-     jQuery.ajax({
-        url: ajaxurl,
-        type: 'POST',
-        data: {
-            action: 'make_post_private',
-            id : postID
-        },
-     });
-    };
-    </script>
 
 <?php
 /**
