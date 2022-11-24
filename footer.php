@@ -25,7 +25,7 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Länkar</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/groups/652752628264300">Facebook</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Länk 2</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Länk 3 </a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Länk 4</a></li>
