@@ -11,7 +11,7 @@ $count = get_comments(array(
 <div class="row footer-spacing">
 
     <div class="col s12 row border-bottom">
-        <h4 class="col s12 m6 text-capitalize"><img width="32px" src="<?php echo get_template_directory_uri() . '/resources/icon/farmer.png' ?>" alt=""><?php echo get_the_author_meta('display_name'); ?></h4>
+        <h5 class="col s12 m6 text-capitalize"><?php echo get_the_author_meta('display_name'); ?></h5>
     </div>
 
     <div class="col s12 m4">
@@ -19,20 +19,24 @@ $count = get_comments(array(
         <?php if (get_user_meta(get_the_author_meta('ID'), 'profile_picture', true)) {
 
         ?>
-            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="profilePic mt-5 responsive-img">
+            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="profilePic responsive-img">
         <?php
         } else { ?>
-            <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="circle mt-5 responsive-img">
+            <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="">
         <?php } ?>
 
         <div>
             <?php if (get_the_author_meta('user_url')) { ?>
-                <p><a href="<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons">language</i> Besök odlarens webbplats</a></p>
+                <p>
+                    <a class="waves-effect waves-light btn authorButtons" style="width:100%;" href="<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons left">language</i>Besök odlarens webbplats</a>
+                </p>
             <?php } ?>
 
 
             <?php if (get_user_meta(get_the_author_meta('ID'), 'custom_email', true)) { ?>
-                <p><a href="mailto:<?php echo get_user_meta(get_the_author_meta('ID'), 'custom_email', true) ?>"><i class="material-icons">mail</i> Kontakta odlaren</a></p>
+                <p>
+                    <a class="waves-effect waves-light btn authorButtons" style="width:100%;" href="mailto:<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons left">mail</i> Kontakta odlaren</a>
+                </p>
             <?php } ?>
 
 
@@ -40,8 +44,9 @@ $count = get_comments(array(
             if (is_user_logged_in() && is_author(get_current_user_id())) { ?>
 
                 <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ändra din profil</a>
-
+                <p>
+                    <a class="waves-effect waves-light btn modal-trigger authorButtons" style="width:100%;" href="#modal1"><i class="material-icons left">edit</i> Ändra profil</a>
+                </p>
             <?php
             } ?>
         </div>
@@ -52,7 +57,7 @@ $count = get_comments(array(
         <?php if (get_the_author_meta('description')) {
 
         ?>
-            <p><?php echo get_the_author_meta('description'); ?></p>
+            <?php echo get_the_author_meta('description'); ?>
         <?php
         } else { ?>
             <p><?php echo get_the_author_meta('display_name'); ?> har ännu inte skapat en beskrivning om sig själv.</p>
@@ -61,30 +66,7 @@ $count = get_comments(array(
 
     </div>
 
-    <div class="col s12">
-        <h4>Annonser av: <?php echo get_the_author_meta('display_name'); ?>:</h4>
 
-        <ul>
-            <!-- The Loop -->
-
-            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                    <li>
-                        <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>">
-                            <?php the_title(); ?></a>,
-                        <?php the_time('d M Y'); ?> in <?php the_category('&'); ?>
-                    </li>
-
-                <?php endwhile;
-            else : ?>
-                <p><?php _e('No posts by this author.'); ?></p>
-
-            <?php endif; ?>
-
-            <!-- End Loop -->
-
-        </ul>
-
-    </div>
 
 
 

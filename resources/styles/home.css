@@ -1,3 +1,8 @@
+.reko-site-link:hover {
+  text-decoration: underline;
+  color: rgb(20, 167, 7);
+}
+
 h2 {
   text-align: center;
   margin: 10rem 0;
@@ -12,6 +17,10 @@ h2 {
   align-items: center;
 }
 
+.hero-image-container {
+  margin-top: 5%;
+}
+
 .hero-content {
   display: column;
   flex-direction: column;
@@ -19,12 +28,12 @@ h2 {
 }
 
 .hero-image {
-  max-width: 32rem;
+  width: 80%;
+  display: block;
+  margin: auto;
+  align-self: middle;
 }
 
-.hero-image img {
-  width: 30rem;
-}
 
 .hero-buttons {
   display: flex;
@@ -99,8 +108,7 @@ h2 {
 }
 
 .product {
-  width: 100vw;
-  margin-left: calc((100% - 100vw) / 2);
+
   background-color: var(--red-bg);
 }
 
@@ -267,7 +275,7 @@ h2 {
 }
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-settings: "FILL"0, "wght"400, "GRAD"0, "opsz"48;
   color: var(--white-sand);
 }
 
@@ -291,11 +299,19 @@ nav {
   .post {
     width: 40%;
   }
+
+  .hero-image-container {
+    margin-top: 10%;
+  }
 }
 
 @media screen and (max-width: 800px) {
   .post {
     width: 70%;
+  }
+
+  .hero-image-container {
+    margin-top: 20%;
   }
 }
 
@@ -308,8 +324,8 @@ nav {
   .products {
     justify-content: none;
   }
-}
 
-body {
-  overflow: visible;
+  .hero-image-container {
+    margin-top: 10%;
+  }
 }

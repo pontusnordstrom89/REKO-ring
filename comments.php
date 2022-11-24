@@ -40,7 +40,7 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
         $x = $_GET['replytocom'];
 
         comment_form(array(
-            'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="btn waves-effect waves" />Publicera kommentar</button>',
+            'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="btn waves" />Publicera kommentar</button>',
             'comment_field' => '<textarea class="materialize-textarea white" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
             'title_reply' => '',
             'title_reply_to' => 'Lämna en kommentar på ' . $getUser->user_login . '´s beställning <br>',
@@ -68,7 +68,7 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
         comment_form(array(
             'logged_in_as' => $currentUser,
 
-            'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="btn waves-effect waves" />Beställ</button>',
+            'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="btn waves" />Beställ</button>',
             'comment_field' => '<textarea class="materialize-textarea white" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
             'title_reply' => '',
             'title_reply_to' => 'Svara',

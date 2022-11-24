@@ -3,7 +3,7 @@
 ?>
 
 <?php get_header();
-
+$current_user = wp_get_current_user();
 
 while (have_posts()) {
     the_post();
@@ -13,19 +13,15 @@ while (have_posts()) {
 
     <div class="row">
 
-        <div class="col s12 m4">
+        <div class="col s12 m12">
             <h4><?php the_title(); ?></h4>
-            <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a>
-            <hr>
-            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="profilePic mt-5 responsive-img" id="display_new_profile_picture">
-
         </div>
-        <div class="col s12 m8 carousel">
+        <div class="col s12 carousel">
 
             <?php
             $images = get_attached_media('image'); // get attached media
             foreach ($images as $image) {
-                $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
+                $ximage =  wp_get_attachment_image_src($image->ID, 'thumbnail');
                 echo '<a class="carousel-item" href="#one!"><img src=' . $ximage[0] . '></a>';
             }
             ?>
@@ -33,14 +29,22 @@ while (have_posts()) {
 
         <div class="col s12 m12">
             <hr>
+            <div class="row">
+                <div class="col">
+                    <a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a>
+
+                </div>
+                <div class="col">
+                    <a class="waves-light btn authorButtons" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><i class="material-icons left">person</i> Besök producenten</a>
+                </div>
+            </div>
+            <hr>
+            <br>
+
             <?php the_content(); ?>
         </div>
 
-        <div class="col s12 m12">
-            <hr>
-            <h4>Om <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a></h4>
-            <?php echo get_the_author_meta('description') ?>
-        </div>
+
     </div>
 
     </div> <!-- Stänger body container eftersom den va så jävla bråkig-->
@@ -72,13 +76,13 @@ while (have_posts()) {
             ?>
 
 
-            <button class="btn waves-effect waves" style="background-color:#f66565;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
-                <i class="material-icons right">shopping_basket</i>
+            <button class="btn waves-effect waves" style="background-color:#283539;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
+                <i id="basket-animation" class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">
-            
-                <div class="col s12 m6 offset-m3" style="background-color:#f66565;">
+
+                <div class="col s12 m6 offset-m3" style="background-color:#283539;">
                     <div id="commentFormLoader" class="progress">
                         <div class="indeterminate"></div>
                     </div>
