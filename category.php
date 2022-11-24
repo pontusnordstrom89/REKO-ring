@@ -88,12 +88,11 @@ $all_categories = get_categories();
             $args = array(
                 'author' => get_current_user_id(),
                 'orderby'       =>  'post_date',
-                'post_status' => array('private','publish')
+                'post_status' => 'publish'
             );
             $current_posts = get_posts($args);
-            
-            while (have_posts()) {
-                the_post();
+            foreach ($current_posts as $p) {
+                
                 // Post Content here
             ?>
                 <div class="post">
@@ -106,19 +105,18 @@ $all_categories = get_categories();
                     }
                     ?>
                     <div class="post-container">
-                        <h3><?php echo get_the_title() ?></h3>
+                        <h3><?php echo $p->post_title ?></h3>
                         <div class="line"></div>
                         <div class="post-item">
                             <p class="post-title">Producent</p>
-                            <p><?php echo get_the_author_meta('first_name'); ?></p>
+                            <p><?php  echo get_the_author_meta('first_name', $p->post_author)  ?></p>
                         </div>
                         <div class="post-item">
                             <p class="post-title">Avstånd</p>
                             <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
                         </div>
 
-                        <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
-
+                        <button class="post-button" onClick="window.location.href='<?php echo get_permalink($p) ?>'">Besök producent</button>
                     </div>
                 </div>
             <?php } ?>
