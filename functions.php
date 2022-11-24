@@ -316,3 +316,27 @@ function comments_count($comment_id)
 
 }
 add_action('comment_post', 'comments_count', 10,1);
+
+
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+
+function my_login_stylesheet() {
+    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/resources/styles/style-login.css' );
+}
+
+add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
+
+add_action( 'wp_ajax_nopriv_make_post_private', 'make_post_private' );
+add_action( 'wp_ajax_make_post_private', 'make_post_private' );
+
+function make_post_private($post) {
+    $post_id = $_POST["id"];
+    $post = get_post($post_id);
+    $post->post_status ="private";
+    wp_update_post( $post);
+    wp_die();
+}
