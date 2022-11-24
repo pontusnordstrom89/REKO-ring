@@ -86,7 +86,6 @@ $all_categories = get_categories();
 <div class="products container bg-color-white">
             <?php
             $args = array(
-                'author' => get_current_user_id(),
                 'orderby'       =>  'post_date',
                 'post_status' => 'publish'
             );
