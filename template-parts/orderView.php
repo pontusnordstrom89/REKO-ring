@@ -23,18 +23,17 @@
 get_header();
 ?>
 <?php
+     $siteName = get_bloginfo('name' );
 $arr = array(
     'author' => get_current_user_id()
 );
 $currUserSites = get_blogs_of_user($arr);
 ?>
 
-<h1>Mina Annonser</h1>
+<h1>Mina Annonser i <?php echo $siteName?></h1>
 <div class="ul-container">
     <ul class="ul-styling">
-        <?php
-        foreach ($currUserSites as $sites) {
-            switch_to_blog($sites->userblog_id);
+        <?php  
         ?>
 
             <?php
@@ -67,7 +66,7 @@ $currUserSites = get_blogs_of_user($arr);
                                 <p>
                                     <?php echo $p->post_date ?>
                                     <br>
-                                    <?php echo $sites->blogname ?>
+                                    <?php echo $siteName ?>
                                 </p>
                             </div>
                         </div>
@@ -118,8 +117,8 @@ $currUserSites = get_blogs_of_user($arr);
         
         <?php
             }
-            restore_current_blog();
-        }
+          
+        
         ?>
     </ul>
 </div>
