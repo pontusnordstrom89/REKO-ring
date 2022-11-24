@@ -48,8 +48,6 @@ $currUserSites = get_blogs_of_user($arr);
             <?php
             foreach ($current_posts as $p) {
             ?>
-
-            
                 <li class="list-container">
                     <div class="item-container">
                         <div class="img-text-container">
@@ -85,7 +83,6 @@ $currUserSites = get_blogs_of_user($arr);
                     <!-- collapsible -->
                     <button type="button" class="orders-collapsible desktop-styling">Visa beställningar</button>
                     <div class="orders-content">
-                        <!-- On pad/desktop -->
                         <?php 
                             $args = array(
                                 'post_id'     => $p->ID,
@@ -95,6 +92,7 @@ $currUserSites = get_blogs_of_user($arr);
                             $comments = get_comments($args);
                             $nbr = 1;
                         ?>
+                        <!-- On pad/desktop -->
                         <table class="orders-list hide-on-small-and-down">
                             <tr>
                                 <th>Nummer</th>
@@ -132,12 +130,10 @@ $currUserSites = get_blogs_of_user($arr);
                             <?php
                                 };
                             ?>
-
-                            </div>
                         </div>
                     </div> 
                 </li>                
-        
+
         <?php
             }        
         ?>
