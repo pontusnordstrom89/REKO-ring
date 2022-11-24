@@ -116,14 +116,15 @@ $currUserSites = get_blogs_of_user($arr);
                 </li>                
         
         <?php
-            }
-          
-        
+            }        
         ?>
     </ul>
 </div>
 
 <script>
+    $(document).ajaxStop(function(){
+        location.reload();
+    })
     function setPrivate(postID){
      var ajaxurl ="<?php echo admin_url('admin-ajax.php')?>";
      jQuery.ajax({
@@ -134,7 +135,6 @@ $currUserSites = get_blogs_of_user($arr);
             id : postID
         },
      });
-     location.reload();
     };
     function setPublish(postID){
      var ajaxurl ="<?php echo admin_url('admin-ajax.php')?>";
@@ -146,7 +146,6 @@ $currUserSites = get_blogs_of_user($arr);
             id : postID
         },
      });
-     location.reload();
     };
 </script>
 
