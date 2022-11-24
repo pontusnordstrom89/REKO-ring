@@ -78,7 +78,7 @@ get_header();
                 }
             } else {
                 ?>
-                <p>Inga posts är gjorna ännu</p>
+                <p>Inga posts är gjorda ännu</p>
             <?php
             }
             ?>
