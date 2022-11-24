@@ -249,3 +249,7 @@ button {
   background-color: var(--footer-green);
   margin-top: auto;
 }
+
+.order-container {
+  margin-left: 0;
+}

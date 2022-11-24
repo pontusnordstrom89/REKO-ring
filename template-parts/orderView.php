@@ -49,65 +49,73 @@ $currUserSites = get_blogs_of_user($arr);
             <?php
             foreach ($current_posts as $p) {
             ?>
-                <div>
-                    <li class="list-container">
-                        <a href="<?php the_permalink($p) ?>" class="list-anchor">
-                            <div class="li-content-container">
-                                <div class="li-content-info-container">
-                                    <?php
-                                    $images = get_attached_media('image', $p);
-                                    foreach ($images as $image) {
-                                        $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
-                                        echo '<img src="' . $ximage[0] . '" alt="" class="circle">';
-                                        break;
-                                    }
-                                    ?>
-                                    <div class="li-text-content-container">
-                                        <h4><?php echo $p->post_title ?></h4>
-                                        <p>
-                                            <?php echo $p->post_date ?>
-                                            <br>
-                                            <?php echo $sites->blogname ?>
-                                        </p>
-                                    </div>
-                                </div>
-                                <p class="view-btn">Visa Annons</p> 
-                                <?php if ($p->post_status=='private') {?>
-                                   <a href="#edit" onclick="setPublish(<?php echo $p->ID ?>);"><button class="btn">Visa Annons</button></a>
-                                 <?php }?>
-                                 <?php if ($p->post_status=='publish') {?>
-                                   <a href="#edit" onclick="setPrivate(<?php echo $p->ID ?>);"><button class="btn">Dölj Annons</button></a>
-                                   <?php }?>
-                               
-                            </div>
-                        </a>
-                    </li>
-                    <div>
-                        <button type="button" class="orders-collapsible">Visa beställningar</button>
-                        <div class="orders-content">
-                            <ul class="orders-list">
-                                <li class="orders-list-element">
-                                    <p>Nummer</p>
-                                    <p>Användare</p>
-                                    <p>Datum</p>
-                                    <p>Beställning</p>
-                                </li>
-                            <?php 
-                                $comments = get_comments($p);
-                                $nbr = 1;
-                                foreach ($comments as $c) {
-                                    echo '<li class="orders-list-element">';
-                                    echo '<p>' . $nbr . '</p>';
-                                    echo '<p>' . $c->comment_author . '</p>';
-                                    echo '<p>' . $c->comment_date . '</p>';
-                                    echo '<p>' . $c->comment_content . '</p>';
-                                    echo '</li>';
-                                };
+
+            
+                <li class="list-container">
+                    <div class="item-container">
+                        <div class="img-text-container">
+                            <?php
+                                $images = get_attached_media('image', $p);
+                                foreach ($images as $image) {
+                                    $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
+                                    echo '<img src="' . $ximage[0] . '" alt="" class="circle">';
+                                    break;
+                                }
                             ?>
-                            <ul>
+                            <div class="li-text-content-container">
+                                <h4><?php echo $p->post_title ?></h4>
+                                <p>
+                                    <?php echo $p->post_date ?>
+                                    <br>
+                                    <?php echo $sites->blogname ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="btn-container">
+                            <?php 
+                                if ($p->post_status=='private') {
+                            ?>
+                            <a href="#edit" class="toggle-btn" onclick="setPublish(<?php echo $p->ID ?>);">Gör publik</a>
+                            <?php }?>
+                            <?php if ($p->post_status=='publish') {?>
+                                <a href="#edit" class="toggle-btn" onclick="setPrivate(<?php echo $p->ID ?>);">Gör privat</a>
+                            <?php }?>
+                            <a class="view-btn">Visa Annons</a> 
                         </div>
                     </div>
-                </div>
+                    <!-- collapsible -->
+                    <button type="button" class="orders-collapsible">Visa beställningar</button>
+                    <div class="orders-content">
+                        <table class="orders-list">
+                            <tr class="orders-list-element">
+                                <th>Nummer</th>
+                                <th>Användare</th>
+                                <th>Datum</th>
+                                <th>Beställning</th>
+                            </tr>
+                        <?php 
+                            $args = array(
+                                'post_id'     => $p->ID,
+                                'order'       => 'DESC',
+                                'status'      => 'approve',
+                                'parent'      => 0
+                            );
+                            $comments = get_comments( $args );
+                            $nbr = 1;
+                            foreach ($comments as $c) {
+                                echo '<tr class="orders-list-element">';
+                                echo '<td>' . $nbr . '</td>';
+                                echo '<td>' . $c->comment_author . '</td>';
+                                echo '<td>' . $c->comment_date . '</td>';
+                                echo '<td>' . $c->comment_content . '</td>';
+                                echo '</tr>';
+                                $nbr = $nbr+1;
+                            };
+                        ?>
+                        </table>
+                    </div> 
+                </li>                
+        
         <?php
             }
             restore_current_blog();
@@ -127,6 +135,7 @@ $currUserSites = get_blogs_of_user($arr);
             id : postID
         },
      });
+     location.reload();
     };
     function setPublish(postID){
      var ajaxurl ="<?php echo admin_url('admin-ajax.php')?>";
@@ -138,8 +147,9 @@ $currUserSites = get_blogs_of_user($arr);
             id : postID
         },
      });
+     location.reload();
     };
-    </script>
+</script>
 
 
 <?php

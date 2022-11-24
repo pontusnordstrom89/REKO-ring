@@ -46,7 +46,7 @@ while (have_posts()) {
     </div> <!-- Stänger body container eftersom den va så jävla bråkig-->
 
 
-    <div class="row">
+    <div class="row order-container">
         <div class="col s12 sticky-order-form center-align">
 
             <?php
@@ -72,13 +72,13 @@ while (have_posts()) {
             ?>
 
 
-            <button class="btn waves-effect waves" style="background-color:#f66565;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
+            <button class="btn waves-effect waves" style="background-color:#283539;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">
             
-                <div class="col s12 m6 offset-m3" style="background-color:#f66565;">
+                <div class="col s12 m6 offset-m3" style="background-color:#283539;">
                     <div id="commentFormLoader" class="progress">
                         <div class="indeterminate"></div>
                     </div>

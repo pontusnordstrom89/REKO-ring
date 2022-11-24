@@ -85,6 +85,13 @@ $all_categories = get_categories();
 
 <div class="products container bg-color-white">
             <?php
+            $args = array(
+                'author' => get_current_user_id(),
+                'orderby'       =>  'post_date',
+                'post_status' => array('private','publish')
+            );
+            $current_posts = get_posts($args);
+            
             while (have_posts()) {
                 the_post();
                 // Post Content here
