@@ -72,7 +72,13 @@ $currUserSites = get_blogs_of_user($arr);
                                     </div>
                                 </div>
                                 <p class="view-btn">Visa Annons</p> 
-                                <a href="#edit" onclick="setPrivate(<?php echo $p->ID ?>);"><button class="btn">Dölj Annons</button></a>
+                                <?php if ($p->post_status=='private') {?>
+                                   <a href="#edit" onclick="setPublish(<?php echo $p->ID ?>);"><button class="btn">Visa Annons</button></a>
+                                 <?php }?>
+                                 <?php if ($p->post_status=='publish') {?>
+                                   <a href="#edit" onclick="setPrivate(<?php echo $p->ID ?>);"><button class="btn">Dölj Annons</button></a>
+                                   <?php }?>
+                               
                             </div>
                         </a>
                     </li>
@@ -118,6 +124,17 @@ $currUserSites = get_blogs_of_user($arr);
         type: 'POST',
         data: {
             action: 'make_post_private',
+            id : postID
+        },
+     });
+    };
+    function setPublish(postID){
+     var ajaxurl ="<?php echo admin_url('admin-ajax.php')?>";
+     jQuery.ajax({
+        url: ajaxurl,
+        type: 'POST',
+        data: {
+            action: 'make_post_publish',
             id : postID
         },
      });

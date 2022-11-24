@@ -340,3 +340,13 @@ function make_post_private($post) {
     wp_update_post( $post);
     wp_die();
 }
+
+add_action( 'wp_ajax_nopriv_make_post_publish', 'make_post_publish' );
+add_action( 'wp_ajax_make_post_publish', 'make_post_publish' );
+function make_post_publish($post) {
+    $post_id = $_POST["id"];
+    $post = get_post($post_id);
+    $post->post_status ="publish";
+    wp_update_post( $post);
+    wp_die();
+}
