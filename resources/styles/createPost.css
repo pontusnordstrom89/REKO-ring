@@ -2,6 +2,17 @@
   width: 100%;
 }
 
+.input-align {
+  width: 50%;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+}
+
 .image-btn {
   box-shadow: none;
 }
@@ -151,6 +162,16 @@
 }
 
 @media screen and (max-width: 680px) {
+  .input-align {
+    width: 100%;
+  }
+
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .products {
     grid-template-columns: 1fr;
   }

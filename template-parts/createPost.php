@@ -29,13 +29,13 @@ $user = wp_get_current_user();
         <input type="hidden" name="action" value="create_post">
 
 
-        <div class="row">
-            <div class="input-field col s6">
+        <div class="info-container">
+            <div class="input-field input-align">
                 <input class="validate" type="text" name="title" id="title" required>
                 <label for="title">Titel</label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field input-align">
                 <input class="validate" type="text" name="distance" id="distance" required>
                 <label for="distance">Distans till utlämning</label>
             </div>
