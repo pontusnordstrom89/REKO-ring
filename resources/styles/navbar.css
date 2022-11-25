@@ -25,7 +25,7 @@
   width: 58px;
 }
 
-.nav ul {
+.nav-ul {
   display: flex;
   gap: 2rem;
   align-items: center;
@@ -232,4 +232,13 @@
 
 body {
   overflow: visible;
+}
+
+.dropdown2 {
+  top: 90px !important;
+}
+
+#comment-counter-badge-pc {
+  
+  font-size: small;
 }

@@ -13,3 +13,4 @@ $(".menu-btn").on("click", function () {
   $(".menu-btn__burger").toggleClass("color");
   open = !open;
 });
+

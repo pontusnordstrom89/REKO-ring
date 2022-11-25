@@ -24,7 +24,59 @@ $current_user = wp_get_current_user();
                 if (is_user_logged_in() && current_user_can('author')) {
                 ?>
                     <li class="nav-li"><a href="<?php echo home_url() ?>/create-post">Skapa annons</a></li>
-                    <li class="nav-li"><a href="<?php echo home_url() ?>/order-view">Orderöversikt</a></li>
+                    <li class="nav-li dropdown-trigger" data-target='dropdown2'><a href=" <?php echo home_url() ?>/order-view">Orderöversikt <span id="comment-counter-badge-pc" class="comment-counter-badge"></span></a></li>
+                    <ul id='dropdown2' class='dropdown-content dropdown2' style="min-width:300px;">
+                        <?php
+                        $user_meta = get_user_meta(get_current_user_id(), 'comments', true);
+                        $arre = unserialize($user_meta);
+                        if ($arre) {
+
+                            foreach ($arre as $key => $value) {
+                                $comment_counter = $comment_counter + $value;
+                                $pieces = explode("_", $key);
+                                if (count($pieces) > 2) {
+                                    $id = $pieces[2];
+                                    $prefix = $pieces[0] . '_' . $pieces[1] . '_';
+                                    $blog_id = $pieces[1];
+                                } else {
+                                    $id = $pieces[1];
+                                    $prefix = $pieces[0] . '_';
+                                    $blog_id = 1;
+                                }
+
+
+                                global $wpdb;
+                                $post_table = $prefix . "posts";
+                                $options_table = $prefix . "options";
+
+                                $post_title = $wpdb->get_var("SELECT post_title FROM $post_table WHERE ID = $id");
+                                $blog_title = $wpdb->get_var("SELECT option_value FROM $options_table WHERE option_name = 'blogname'");
+                        ?>
+                                <li class="row"><a class="comment-link" href="<?php echo get_blog_permalink($blog_id, $id); ?>"> <?php echo substr($post_title, 0, 20) ?> .... <i class="right"><span class="new badge"><?php echo $value ?></span></i></a>
+                                    <span id="dropdown-comment-blogname"><?php echo $blog_title ?></span>
+                                </li>
+                                <li class="divider" tabindex="-1"></li>
+                            <?php } ?>
+                            <li class="row">
+                                <form method="post" action="<?php echo home_url() . '/wp-admin/admin-post.php'; ?>" class="center-align">
+                                    <!-- Send to function update_profile -->
+                                    <input type="hidden" name="action" value="clear_notifications">
+                                    <button class="btn grey center-align" type="submit">Rensa notifikationer</button>
+                                </form>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <p class="center-align">Inga nya meddelanden</p>
+                            </li>
+                        <?php }
+
+                        ?>
+                    </ul>
+                    <?php if (!$comment_counter) {
+                        // Don't show badge
+                    } else { ?>
+                        <span id="comment-counter-placeholder" class="comment-counter-badge hide"><?php echo $comment_counter ?></span>
+                    <?php } ?>
                 <?php
                 }
                 ?>
@@ -51,7 +103,7 @@ $current_user = wp_get_current_user();
                 <?php
                 if (is_user_logged_in()) { ?>
 
-                    <div id="nav-profile" class="dropdown-trigger" data-target='dropdown2'>
+                    <div id="nav-profile">
 
                         <?php
 
@@ -67,62 +119,12 @@ $current_user = wp_get_current_user();
                             <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>">account_circle</a></li>
                         <?php }
 
-                        $user_meta = get_user_meta(get_current_user_id(), 'comments', true);
-                        $arre = unserialize($user_meta);
+
 
 
                         ?>
 
-                        <ul id='dropdown2' class='dropdown-content dropdown2' style="min-width:300px;">
-                            <?php
-                            if ($arre) {
 
-                                foreach ($arre as $key => $value) {
-                                    $comment_counter = $comment_counter + $value;
-                                    $pieces = explode("_", $key);
-                                    if (count($pieces) > 2) {
-                                        $id = $pieces[2];
-                                        $prefix = $pieces[0] . '_' . $pieces[1] . '_';
-                                        $blog_id = $pieces[1];
-                                    } else {
-                                        $id = $pieces[1];
-                                        $prefix = $pieces[0] . '_';
-                                        $blog_id = 1;
-                                    }
-
-
-                                    global $wpdb;
-                                    $post_table = $prefix . "posts";
-                                    $options_table = $prefix . "options";
-
-                                    $post_title = $wpdb->get_var("SELECT post_title FROM $post_table WHERE ID = $id");
-                                    $blog_title = $wpdb->get_var("SELECT option_value FROM $options_table WHERE option_name = 'blogname'");
-                            ?>
-                                    <li class="row"><a class="comment-link" href="<?php echo get_blog_permalink($blog_id, $id); ?>"> <?php echo substr($post_title, 0, 20) ?> .... <i class="right"><span class="new badge"><?php echo $value ?></span></i></a>
-                                        <span id="dropdown-comment-blogname"><?php echo $blog_title ?></span>
-                                    </li>
-                                    <li class="divider" tabindex="-1"></li>
-                                <?php } ?>
-                                <li class="row">
-                                    <form method="post" action="<?php echo home_url() . '/wp-admin/admin-post.php'; ?>" class="center-align">
-                                        <!-- Send to function update_profile -->
-                                        <input type="hidden" name="action" value="clear_notifications">
-                                        <button class="btn grey center-align" type="submit">Rensa notifikationer</button>
-                                    </form>
-                                </li>
-                            <?php } else { ?>
-                                <li>
-                                    <p class="center-align">Inga nya meddelanden</p>
-                                </li>
-                            <?php }
-
-                            ?>
-                        </ul>
-                        <?php if (!$comment_counter) {
-                            // Don't show badge
-                        } else { ?>
-                            <span id="comment-counter-badge-pc" class="comment-counter-badge"><?php echo $comment_counter ?></span>
-                        <?php } ?>
 
                     </div>
 
