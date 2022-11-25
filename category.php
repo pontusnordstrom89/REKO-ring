@@ -96,7 +96,7 @@ $all_categories = get_categories();
             ?>
                 <div class="post">
                     <?php
-                    $images = get_attached_media('image');
+                    $images = get_attached_media('image', $p);
                     foreach ($images as $image) {
                         $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
                         echo '<img src="' . $ximage[0] . '"/>';
@@ -112,7 +112,7 @@ $all_categories = get_categories();
                         </div>
                         <div class="post-item">
                             <p class="post-title">Avstånd</p>
-                            <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
+                            <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
                         </div>
 
                         <button class="post-button" onClick="window.location.href='<?php echo get_permalink($p) ?>'">Besök producent</button>

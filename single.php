@@ -73,7 +73,7 @@ while (have_posts()) {
 
 
             <button class="btn waves-effect waves" style="background-color:#283539;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
-                <i class="material-icons right">shopping_basket</i>
+                <i id="basket-animation" class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">

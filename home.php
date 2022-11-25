@@ -54,7 +54,7 @@ get_header();
             ?>
                     <div class="post">
                         <?php
-                        $images = get_attached_media('image');
+                        $images = get_attached_media('image', $post);
                         foreach ($images as $image) {
                             $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
                             echo '<img src="' . $ximage[0] . '"/>';
