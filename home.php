@@ -79,7 +79,7 @@ get_header();
                 }
             } else {
                 ?>
-                <p>Inga posts är gjorna ännu</p>
+                <p>Inga posts är gjorda ännu</p>
             <?php
             }
             ?>
@@ -99,21 +99,21 @@ get_header();
                     <p>Hur betalar jag när jag beställt?</p>
                     <i class="material-icons white-text">remove</i>
                 </div>
-                <div class="collapsible-body"><span>Fråga Håkan</span></div>
+                <div class="collapsible-body"><span>Under utveckling, relevanta frågor och svar kommer inom kort.</span></div>
             </li>
             <li>
                 <div class="collapsible-header collapsible-closed">
                     <p>Är allt närodlat?</p>
                     <i class="material-icons white-text">add</i>
                 </div>
-                <div class="collapsible-body"><span>Det hoppas jag!</span></div>
+                <div class="collapsible-body"><span>Under utveckling, relevanta frågor och svar kommer inom kort.</span></div>
             </li>
             <li>
                 <div class="collapsible-header collapsible-closed">
                     <p>Var hämtar jag ut mina varor?</p>
                     <i class="material-icons white-text">add</i>
                 </div>
-                <div class="collapsible-body"><span>På parkeringen</span></div>
+                <div class="collapsible-body"><span>Under utveckling, relevanta frågor och svar kommer inom kort.</span></div>
             </li>
         </ul>
     </div>
