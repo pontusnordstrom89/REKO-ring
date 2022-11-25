@@ -105,14 +105,6 @@
   background-color: rgba(var(--darker-red), 0.8);
 }
 
-.title {
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.orders-collapsible {
-
-}
-
 .desktop-styling {
   background-color: var(--red);
   color: var(--white);
@@ -177,11 +169,10 @@
   .btn-container {
     flex-direction: row;
   }
-  
+
   .img-text-container h4 {
     width: 100%;
   }
-
 }
 
 .mobile-styling {

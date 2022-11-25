@@ -22,89 +22,79 @@
 get_header();
 $all_categories = get_categories();
 ?>
-<div class="search-container hide-on-small-only">
-    <?php get_search_form(); ?>
-    <div class="category-container">
-        <a class='dropdown-trigger categoryform' href='#' data-target='categoryDropdown'>Välj kategori</a>
 
-        <!-- Dropdown Structure -->
-        <ul id='categoryDropdown' class='dropdown-content left hide-on-med-and-down'>
+<div class="filter-container">
+    <!-- Search bar -->
+    <?php get_search_form(); ?>
+
+    <!-- Dropdown -->
+    <div class="dropdown1">
+    <button onClick="dropdown_trigger()" class="dropbtn">Välj kategori<i class="material-symbols-outlined icon-eye-open">expand_more</i></button>
+        <div id="category_dropdown" class="dropdown-content1">
             <?php foreach ($all_categories as $category) {
                 $text_output = $category->name;
                 if ($text_output == 'Shop') {
                     $text_output = 'Visa alla annonser';
                 }
-                echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
+                echo '<a href="' . get_category_link($category) . '">' . $text_output . '</a>';
             }
             ?>
-        </ul>
+        </div>
     </div>
 </div>
-                    <!-- Dropdown Structure -->
-                    <ul id='categoryDropdown' class='dropdown-content left hide-on-med-and-down'>
-                        <?php foreach ($all_categories as $category) {
-                            $text_output = $category->name;
-                            if ($text_output == 'shop') {
-                                $text_output = 'Visa alla annonser';
-                            }
-                            echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
-                        }
-                        ?>
-                    </ul>
-                </div>
 
-<div class="hide-on-med-and-up">
-    <?php get_search_form(); ?>
-        <div class="col s12 center-align">
-            <!-- Dropdown Trigger -->
-            <a class='dropdown-trigger categoryform' href='#' data-target='dropdown1'>Välj kategori</a>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function dropdown_trigger() {
+  document.getElementById("category_dropdown").classList.toggle("show");
+}
 
-            <!-- Dropdown Structure -->
-            <ul id='dropdown1' class='dropdown-content left'>
-                <?php foreach ($all_categories as $category) {
-                    $text_output = $category->name;
-                    if ($text_output == 'Shop') {
-                        $text_output = 'Visa alla annonser';
-                    }
-                        echo '<li><a href="' . get_category_link($category) . '">' . $text_output . '</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-</div>
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content1");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 <div class="products bg-color-white">
-            <?php
-            while (have_posts()) {
-                the_post();
-                // Post Content here
-            ?>
-                <div class="post">
-                    <?php
-                    $images = get_attached_media('image');
-                    foreach ($images as $image) {
-                        $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
-                        echo '<img src="' . $ximage[0] . '"/>';
-                        break;
-                    }
-                    ?>
-                    <div class="post-container">
-                        <h3><?php echo get_the_title() ?></h3>
-                        <div class="line"></div>
-                        <div class="post-item">
-                            <p class="post-title">Producent</p>
-                            <p><?php echo get_the_author_meta('first_name'); ?></p>
-                        </div>
-                        <div class="post-item">
-                            <p class="post-title">Avstånd</p>
-                            <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
-                        </div>
-
-                        <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
-
-                    </div>
+    <?php
+        while (have_posts()) {
+            the_post();
+            // Post Content here
+    ?>
+    <div class="post">
+        <?php
+        $images = get_attached_media('image');
+        foreach ($images as $image) {
+            $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
+            echo '<img src="' . $ximage[0] . '"/>';
+            break;
+        }
+        ?>
+        <div class="post-container">
+            <h3><?php echo get_the_title() ?></h3>
+            <div class="line"></div>
+                <div class="post-item">
+                    <p class="post-title">Producent</p>
+                    <p><?php echo get_the_author_meta('first_name'); ?></p>
                 </div>
-            <?php } ?>
+            <div class="post-item">
+                <p class="post-title">Avstånd</p>
+                <p><?php //echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
+            </div>
+            <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
         </div>
-        <?php posts_nav_link(); ?>
+    </div>
+        <?php } ?>
+    </div>
+    <?php posts_nav_link(); ?>
 <?php get_footer(); ?>

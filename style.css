@@ -130,17 +130,79 @@ button {
   color: red;
 }
 
-.search-bar {
-  display: flex;
-  flex-direction: column;
-}
-
-.searchform {
+/* Search area*/
+.filter-container {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 8rem;
 }
 
-.searchform button {
+/* Searchbar */
+.wrapper {
+  width: 100%;
+  margin-right: 2rem;
+}
+
+.label {
+  font-size: 0.625rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: +1.3px;
+  margin-bottom: 1rem;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#searchInput {
+  width: 100%;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 1rem;
+  outline: 1px solid #cacaca;
+  filter: none;
+}
+
+#searchInput:focus,
+#searchInput:hover {
+  box-shadow: none;
+  background-color: var(--white);
+  outline: none;
+}
+
+#searchInput::placeholder,
+#searchInput::placeholder {
+  color: gray;
+}
+
+#searchQuerySubmit {
+  width: 3.5rem;
+  height: 2.8rem;
+  margin-left: -3.5rem;
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 99;
+}
+
+#searchQuerySubmit:hover {
+  cursor: pointer;
+}
+
+/* Cateogry dropdown */
+.dropbtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
   border: none;
   background-color: var(--red);
@@ -148,101 +210,76 @@ button {
   border-radius: 0.375rem;
   transition: background-color ease-in 0.15s;
   height: 3rem;
+  width: 10rem;
 }
 
-.searchform button:hover {
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: var(--darker-red);
   cursor: pointer;
-  background-color: var(--darker-red);
-  transition: background-color ease-in 0.15s;
 }
 
-.searchform button:focus {
-  background-color: var(--darker-red);
-}
-
-.search-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 6rem;
-  justify-content: space-between;
-}
-
-.categoryform {
-  padding: 1rem 1.5rem;
-  border: none;
-  background-color: var(--red);
-  color: var(--white-sand);
-  border-radius: 0.375rem;
-  transition: background-color ease-in 0.15s;
-  height: 60%;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.categoryform:hover {
-  cursor: pointer;
-  background-color: var(--darker-red);
-  transition: background-color ease-in 0.15s;
-}
-
-.dropdown2 {
-  top: 120px !important;
-}
-
-.dropdown3 {
-  top: 120px !important;
-}
-
-#nav-profile {
+.dropdown1 {
   position: relative;
+  display: inline-block;
 }
 
-.comment-counter-badge {
+.dropdown-content1 {
+  display: none;
   position: absolute;
-  top: 0;
-  right: 0%;
-  font-size: small;
-  border-radius: 50%;
-  background-color: #ff0000;
-  padding: 1px 7px 1px 7px;
-  color: #eeeeee;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
-#dropdown-comment-blogname {
-  font-size: small;
-  padding: 0;
-  padding-left: 16px;
-  color: #252525;
+.dropdown-content1 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
-#mobile-comment-counter-div {
-  position: relative;
+.dropdown1 a:hover {
+  background-color: #ddd;
 }
 
-.category-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid black;
+.show {
+  display: block;
 }
 
-.category-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0 3rem 0;
+.icon-eye-open {
+  pointer-events: none;
 }
 
-.search-red-border {
-  border-bottom: 1px solid #9e9e9e !important;
-  box-shadow: none !important;
-}
+@media screen and (max-width: 1280px) {
+  .filter-container {
+    flex-direction: column;
+    justify-content: center;
+  }
 
-.search-red-border:focus {
-  border-bottom: 1px solid var(--red) !important;
-  box-shadow: none !important;
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .dropbtn {
+    width: 100%;
+  }
+
+  .dropdown-content1 {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100%;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .show {
+    display: block;
+  }
 }
 
 .custom-footer {
