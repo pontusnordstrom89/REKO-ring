@@ -24,13 +24,14 @@ $(document).ready(function () {
         'hover': hover,
     });
 
-    $('#comment-counter-badge-phone').text($('#comment-counter-badge-pc').text());
+    $('#comment-counter-badge-phone').text($('#comment-counter-placeholder').text());
     
     // Clone data from desktop comment list to mobile comment list
     $('#dropdown2').children('li.row').clone().appendTo("#dropdown3");;
     
     
-    
+    $('#comment-counter-badge-pc').text(` (${$('#comment-counter-placeholder').text()})`)
+    console.log($('#comment-counter-placeholder').text())
 });
 
 $('#orderButton').click(function () {
