@@ -43,6 +43,10 @@ $currUserSites = get_blogs_of_user($arr);
                 'post_status' => array('private','publish')
             );
             $current_posts = get_posts($args);
+            if(!$current_posts) {
+                echo '<h5>Oj, du har inga annonser!</h5>';
+                echo '<a href="http://localhost/wordpress/create-post/">Klicka här för att skapa en annons!</a>';
+            }
             ?>
 
             <?php
