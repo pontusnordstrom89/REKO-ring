@@ -17,16 +17,15 @@ while (have_posts()) {
             <h4><?php the_title(); ?></h4>
             <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a>
             <hr>
-            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
 
         </div>
-        <div class="col s12 m8 carousel">
+        <div class="col s12 m8 carousel" style="widht: 30rem; height: 25rem; clear:both; margin: auto; float: none;">
 
             <?php
             $images = get_attached_media('image'); // get attached media
             foreach ($images as $image) {
                 $ximage =  wp_get_attachment_image_src($image->ID, 'medium');
-                echo '<a class="carousel-item" href="#one!"><img src=' . $ximage[0] . '></a>';
+                echo '<a class="carousel-item" style="width: auto; height: 20rem;" href="#one!"><img style="border-radius: 10px; margin: 10px; max-height: 25rem; max-width: 500px;" src=' . $ximage[0] . '></a>';
             }
             ?>
         </div>
@@ -39,6 +38,7 @@ while (have_posts()) {
         <div class="col s12 m12">
             <hr>
             <h4>Om <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a></h4>
+            <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
             <?php echo get_the_author_meta('description') ?>
         </div>
     </div>
@@ -72,13 +72,13 @@ while (have_posts()) {
             ?>
 
 
-            <button class="btn waves-effect waves" style="background-color:#283539;" type="button" id="orderButton"><?php echo $orderButtonText; ?>
+            <button class="btn waves-effect waves" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i id="basket-animation" class="material-icons right">shopping_basket</i>
             </button>
 
             <div id="order-form">
             
-                <div class="col s12 m6 offset-m3" style="background-color:#283539;">
+                <div class="col s12 m6 offset-m3" style="background-color: #d69a82;">
                     <div id="commentFormLoader" class="progress">
                         <div class="indeterminate"></div>
                     </div>
