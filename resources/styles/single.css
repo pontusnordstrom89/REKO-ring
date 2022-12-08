@@ -140,3 +140,30 @@ body {
   max-height: 300px;
   border-radius: 10px;
 }
+
+.title-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.title-order-button {
+  padding: 1rem 1.5rem;
+  border: none;
+  background-color: var(--red);
+  color: var(--white-sand);
+  border-radius: 0.375rem;
+  transition: background-color ease-in 0.15s;
+  cursor: pointer;
+  
+}
+
+.title-order-button:hover {
+  background-color: var(--darker-red);
+}
+
+.title-order-button a{
+  color: var(--white-sand)
+}
