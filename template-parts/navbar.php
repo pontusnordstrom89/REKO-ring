@@ -111,12 +111,12 @@ $current_user = wp_get_current_user();
                         if (get_user_meta(get_current_user_id(), 'profile_picture', true)) {
 
                         ?>
-                            <li class="nav-li"><a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a></li>
+                            <li class="nav-li"><a href="<?php echo network_site_url() . '/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a></li>
 
                         <?php
                         } else { ?>
 
-                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>">account_circle</a></li>
+                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo network_site_url() . '/author/' . $current_user->user_login; ?>">account_circle</a></li>
                         <?php }
 
 
@@ -204,15 +204,15 @@ $current_user = wp_get_current_user();
 
                         ?>
 
-                            <a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a>
+                            <a href="<?php echo network_site_url() . '/author/' . $current_user->user_login; ?>"><img id="nav-profile-picture" src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_current_user_id(), 'profile_picture', true); ?>" class="circle"></a>
                             <br>
-                            <a href="<?php echo network_site_url() . '/blog/author/' . $current_user->user_login; ?>"><span class="white-text name"><?php $user = wp_get_current_user();
+                            <a href="<?php echo network_site_url() . '/author/' . $current_user->user_login; ?>"><span class="white-text name"><?php $user = wp_get_current_user();
                                                                                                                                                     echo $user->display_name ?></span></a><br>
 
                         <?php
                         } else { ?>
 
-                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo home_url() . '/blog/author/' . $current_user->user_login; ?>">account_circle</a></li>
+                            <li class="nav-li"><a class="material-icons right" style="font-size:48px;" href="<?php echo home_url() . '/author/' . $current_user->user_login; ?>">account_circle</a></li>
 
                         <?php } ?>
 
