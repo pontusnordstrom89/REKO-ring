@@ -32,7 +32,7 @@ $user = wp_get_current_user();
         <div class="info-container">
             <div class="input-field input-align">
                 <input class="validate" type="text" name="title" id="title" required>
-                <label for="title">Titel</label>
+                <label for="title">Annonstitel</label>
             </div>
 
             <div class="input-field input-align">
