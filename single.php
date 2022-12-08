@@ -13,11 +13,21 @@ while (have_posts()) {
 
     <div class="row">
 
-        <div class="col s12 m4">
-            <h4><?php the_title(); ?></h4>
-            <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a>
-            <hr>
-
+        <div class="title-container">
+            <div>
+                <h4><?php the_title(); ?></h4>
+                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a>
+            </div>
+            <div class="title-order-button">
+                <?php
+                    $getUser = wp_get_current_user();
+                    if (is_user_logged_in() && get_the_author_meta('ID') == $getUser->ID) {
+                        echo '<a>Öppna beställningar</a>';
+                    } else {
+                        echo 'Beställ';
+                    };
+                ?>
+            </div>
         </div>
         <div class="col s12 m8 carousel" style="widht: 30rem; height: 25rem; clear:both; margin: auto; float: none;">
 
@@ -31,12 +41,10 @@ while (have_posts()) {
         </div>
 
         <div class="col s12 m12">
-            <hr>
             <?php the_content(); ?>
         </div>
 
         <div class="col s12 m12">
-            <hr>
             <h4>Om <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(get_the_author()); ?>"><?php the_author(); ?></a></h4>
             <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="mt-5 responsive-img" id="display_new_profile_picture">
             <?php echo get_the_author_meta('description') ?>
@@ -59,10 +67,7 @@ while (have_posts()) {
             $post_id = get_the_ID();
             // Get all comments in relation to this post with no comment parents to count top comments = orders
             $get_comments = $wpdb->get_results("SELECT * FROM $comments_table WHERE comment_post_ID = $post_id AND comment_parent = '0'");
-
-
-
-            $getUser = wp_get_current_user();
+            
             if (is_user_logged_in() && get_the_author_meta('ID') == $getUser->ID) {
                 // Count items in array $get_comments and display for user as number of orders
                 if(count($get_comments) == 1) {
@@ -84,7 +89,6 @@ while (have_posts()) {
             </div>
 
             <div id="order-form">
-            
                 <div class="col s12 m6 offset-m3" style="background-color: #d69a82;">
                     <div id="commentFormLoader" class="progress">
                         <div class="indeterminate"></div>

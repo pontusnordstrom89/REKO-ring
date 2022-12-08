@@ -39,4 +39,11 @@ $('.orderButton').click(function () {
     $('#order-form').toggle();
 })
 
+$('.title-order-button').click(function () {
+
+    $('#order-form').toggle();
+})
+
+
+
 
