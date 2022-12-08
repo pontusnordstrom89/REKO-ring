@@ -22,7 +22,7 @@ $count = get_comments(array(
             <img src="<?php echo home_url() . '/wp-content/uploads/' . get_user_meta(get_the_author_meta('ID'), 'profile_picture', true); ?>" class="profilePic responsive-img">
         <?php
         } else { ?>
-            <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="">
+            <img src="<?php echo get_template_directory_uri() . '/resources/img/farmer.jpg' ?>" class="profilePic responsive-img">
         <?php } ?>
 
         <div>

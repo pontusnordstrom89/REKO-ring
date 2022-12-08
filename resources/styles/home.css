@@ -8,12 +8,13 @@ h2 {
 .hero {
   height: 92vh;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
 .hero-content {
-  display: column;
+  display: flex;
   flex-direction: column;
   width: 32rem;
 }
@@ -302,6 +303,13 @@ nav {
 @media screen and (max-width: 800px) {
   .post {
     width: 70%;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    height: 65vh;
+    margin: 3rem 0 7rem 0;
   }
 }
 
