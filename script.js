@@ -34,7 +34,7 @@ $(document).ready(function () {
     console.log($('#comment-counter-placeholder').text())
 });
 
-$('#orderButton').click(function () {
+$('.orderButton').click(function () {
 
     $('#order-form').toggle();
 })

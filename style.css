@@ -36,6 +36,13 @@ h2,
 h3,
 button {
   font-family: "Poppins", sans-serif;
+  line-height: 1;
+}
+
+h6 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.75rem;
 }
 
 :root {
@@ -251,6 +258,45 @@ button {
 
 .icon-eye-open {
   pointer-events: none;
+}
+
+.comment_flex {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment_flex > i {
+  font-size: 40px;
+  height: auto;
+  width: auto;
+  padding: 0;
+  border: none;
+}
+
+.orderButton {
+  background-color: #d69a82;
+  width: 400px;
+  height: 50px;
+  cursor: pointer;
+  color: var(--white);
+  padding: 0 1rem;
+  font-size: 1.125rem;
+  border-bottom: 0.5px solid var(--white);
+  display: inline-block;
+}
+
+.orderButton:hover,
+.orderButton:focus {
+  background-color: #d38f74;
+}
+
+.orderButton_items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: italic;
 }
 
 @media screen and (max-width: 1280px) {

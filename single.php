@@ -65,16 +65,23 @@ while (have_posts()) {
             $getUser = wp_get_current_user();
             if (is_user_logged_in() && get_the_author_meta('ID') == $getUser->ID) {
                 // Count items in array $get_comments and display for user as number of orders
-                $orderButtonText = 'Du har ' . count($get_comments) . ' beställningar';
+                if(count($get_comments) == 1) {
+                    $orderButtonText = 'Du har ' . count($get_comments) . ' beställning';
+                } else {
+                    $orderButtonText = 'Du har ' . count($get_comments) . ' beställningar';
+                }
             } else {
                 $orderButtonText = 'Beställ av ' . get_the_author();
             }
             ?>
 
 
-            <button class="btn waves-effect waves" type="button" id="orderButton"><?php echo $orderButtonText; ?>
-                <i id="basket-animation" class="material-icons right">shopping_basket</i>
-            </button>
+            <div class="orderButton" type="button">
+                <div class="orderButton_items">
+                    <p><?php echo $orderButtonText; ?></p>
+                    <i id="basket-animation" class="material-icons right">shopping_basket</i>
+                </div>
+            </div>
 
             <div id="order-form">
             

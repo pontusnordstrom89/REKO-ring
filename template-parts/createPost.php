@@ -34,11 +34,6 @@ $user = wp_get_current_user();
                 <input class="validate" type="text" name="title" id="title" required>
                 <label for="title">Annonstitel</label>
             </div>
-
-            <div class="input-field input-align">
-                <input class="validate" type="text" name="distance" id="distance" required>
-                <label for="distance">Distans till utlämning</label>
-            </div>
         </div>
 
         <p>Beskrivning av din annons</p>
@@ -130,10 +125,6 @@ $user = wp_get_current_user();
                             <div class="post-item">
                                 <p class="post-title">Producent</p>
                                 <p><?php echo get_the_author_meta('first_name', $post->post_author)  ?></p>
-                            </div>
-                            <div class="post-item">
-                                <p class="post-title">Avstånd</p>
-                                <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
                             </div>
                             <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Visa annons</button>
                         </div>

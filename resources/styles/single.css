@@ -134,9 +134,7 @@ body {
   animation-name: animateBasket;
   animation-duration: 2s;
 }
-#orderButton {
-  background-color:  #d69a82;
-}
+
 #display_new_profile_picture {
   max-width: 300px;
   max-height: 300px;

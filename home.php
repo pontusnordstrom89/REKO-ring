@@ -68,10 +68,6 @@ get_header();
                                 <p class="post-title">Producent</p>
                                 <p><?php echo get_the_author_meta('first_name', $post->post_author)  ?></p>
                             </div>
-                            <div class="post-item">
-                                <p class="post-title">Avstånd</p>
-                                <p><?php echo get_post_meta(get_the_ID(), "distance_to_delivery")[0] ?> km</p>
-                            </div>
                             <button class="post-button" onClick="window.location.href='<?php the_permalink() ?>'">Besök producent</button>
                         </div>
                     </div>

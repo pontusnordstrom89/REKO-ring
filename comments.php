@@ -26,7 +26,11 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
         <a id="navigateBackComments" href="#">Tillbaka till kommentarerna</a>
     </div>
 
-    <h3 id="orderCommentTitleText" class="white-text">Beställningar</h3>
+    <div class="comment_flex" >
+        <h6 class="white-text">Beställningar</h6>
+        <i class="material-symbols-outlined orderButton">close</i>
+    </div>
+    
     <ul class="comment-list white left-align">
 
         <?php
