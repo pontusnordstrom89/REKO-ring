@@ -96,7 +96,7 @@ if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
                         //Do not show comment
                        
                     } else {
-                        echo '<li class="commentsBorder" style="padding:10px 10px;"><span style="border-bottom:1px solid grey;"><strong style="margin-right:20px;">' . $author->comment_author . '</strong>' . $author->comment_date_gmt . '</span><br>' . $author->comment_content . '<br> <a class="comment-edit-link" href="http://reko-ring.dev.com/wp-admin/comment.php?action=editcomment&amp;c=' . $author->comment_ID . '">(Redigera)</a></li>';
+                        echo '<li class="commentsBorder" style="padding:10px 10px;"><span style="border-bottom:1px solid grey;"><strong style="margin-right:20px;">' . $author->comment_author . '</strong>' . $author->comment_date_gmt . '</span><br>' . $author->comment_content . '<br></li>';
                     }
                 };
 
