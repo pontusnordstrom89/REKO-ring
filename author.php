@@ -28,15 +28,15 @@ $count = get_comments(array(
         <div>
             <?php if (get_the_author_meta('user_url')) { ?>
                 <p>
-                     <a class="waves-effect waves-light btn authorButtons" style="width:100%;" href="<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons left">language</i>Besök odlarens webbplats</a>
-                 </p>
+                    <a class="waves-effect waves-light btn authorButtons" style="width:100%;" href="<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons left">language</i>Besök odlarens webbplats</a>
+                </p>
             <?php } ?>
 
 
             <?php if (get_user_meta(get_the_author_meta('ID'), 'custom_email', true)) { ?>
                 <p>
-                     <a class="waves-effect waves-light btn authorButtons" style="width:100%;" href="mailto:<?php echo get_the_author_meta('user_url') ?>"><i class="material-icons left">mail</i> Kontakta odlaren</a>
-                 </p>
+                    <a class="waves-effect waves-light btn authorButtons" style="width:100%;" href="mailto:<?php echo get_the_author_meta('custom_email') ?>"><i class="material-icons left">mail</i> Kontakta odlaren</a>
+                </p>
             <?php } ?>
 
 
@@ -45,8 +45,8 @@ $count = get_comments(array(
 
                 <!-- Modal Trigger -->
                 <p>
-                     <a class="waves-effect waves-light btn modal-trigger authorButtons" style="width:100%;" href="#modal1"><i class="material-icons left">edit</i> Ändra profil</a>
-                 </p>
+                    <a class="waves-effect waves-light btn modal-trigger authorButtons" style="width:100%;" href="#modal1"><i class="material-icons left">edit</i> Ändra profil</a>
+                </p>
 
             <?php
             } ?>
@@ -108,7 +108,7 @@ $count = get_comments(array(
                         <div class="file-field input-field">
                             <div class="btn waves-light">
                                 <span>Byt bild</span>
-                                <input type="file" name="profile_picture_upload" id="profile_picture_upload" onchange="displayImage(event)">
+                                <input type="file" name="profile_picture_upload" id="profile_picture_upload" accept="image/*" onchange="displayImage(event)">
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -120,18 +120,18 @@ $count = get_comments(array(
                     <div class="col s12 m8">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="first_name" name="first_name" required type="text" class="validate" value="<?php echo get_the_author_meta('first_name'); ?>">
+                                <input id="first_name" name="first_name" type="text" class="validate" value="<?php echo get_the_author_meta('first_name'); ?>">
                                 <label for="first_name">Förnamn <span class="req">*</span></label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="last_name" name="last_name" required type="text" class="validate" value="<?php echo get_the_author_meta('last_name'); ?>">
+                                <input id="last_name" name="last_name" type="text" class="validate" value="<?php echo get_the_author_meta('last_name'); ?>">
                                 <label for="last_name">Efternamn <span class="req">*</span></label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="custom_email" name="custom_email" type="text" required class="validate" value="<?php echo get_the_author_meta('custom_email'); ?>">
+                                <input id="custom_email" name="custom_email" type="text" class="validate" value="<?php echo get_the_author_meta('custom_email'); ?>">
                                 <label for="custom_email">Epost <span class="req">*</span></label>
                             </div>
                             <div class="input-field col s6">
