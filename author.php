@@ -183,4 +183,5 @@ $count = get_comments(array(
 
 
 </div>
+</div> <!-- Close main container for wide footer-->
 <?php get_footer(); ?>
