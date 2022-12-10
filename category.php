@@ -44,37 +44,36 @@ $all_categories = get_categories();
 </div>
 
 <script>
-/* When the user clicks on the button, 
+    /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function dropdown_trigger() {
-  document.getElementById("category_dropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content1");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+    function dropdown_trigger() {
+        document.getElementById("category_dropdown").classList.toggle("show");
     }
-  }
-}
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content1");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 </script>
 
 <div class="products bg-color-white">
     <?php
-    $args = array(
-        'orderby'       =>  'post_date',
-        'post_status' => 'publish'
-    );
-    $current_posts = get_posts($args);
-    foreach ($current_posts as $p) {
+    while (have_posts()) {
+        the_post();
         // Post Content here
     ?>
+
+
+
         <div class="post">
             <?php
             $images = get_attached_media('image', $p);
@@ -85,16 +84,20 @@ window.onclick = function(event) {
             }
             ?>
             <div class="post-container">
-                <h3><?php echo $p->post_title ?></h3>
+                <h3><?php echo get_the_title() ?></h3>
                 <div class="line"></div>
-                    <div class="post-item">
-                        <p class="post-title">Producent</p>
-                        <p><?php  echo get_the_author_meta('first_name', $p->post_author)  ?></p>
-                    </div>
+                <div class="post-item">
+                    <p class="post-title">Producent</p>
+                    <p><?php echo get_the_author_meta('first_name'); ?></p>
+                </div>
                 <button class="post-button" onClick="window.location.href='<?php echo get_permalink($p) ?>'">Besök producent</button>
             </div>
         </div>
+
+
+
+
     <?php } ?>
 </div>
-    <?php posts_nav_link(); ?>
+<?php posts_nav_link(); ?>
 <?php get_footer(); ?>

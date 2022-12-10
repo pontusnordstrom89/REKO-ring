@@ -218,31 +218,16 @@ function register_my_menu()
 }
 add_action('after_setup_theme', 'register_my_menu');
 
-/**
- *
- * Style wordpress search form
- *
- */
-/* function custom_search_form($form)
+
+
+function SearchFilter($query)
 {
-    $form = '<form role="search" method="get" id="searchform" class="searchform row col s12 m6 l4 offset-l4 center-align" action="' . home_url('/') . '" >
-
-        <input style="font-size:24px; margin-top:10px;" class="col s10 m8 l8 white-text" type="text" placeholder="Sök" value="' . get_search_query() . '" name="s" id="s" />
-        <button class="waves-effect waves-light btn" type="submit" id="searchsubmit">Sök</button>
-
-      </form>';
-
-    return $form;
-}
-add_filter('get_search_form', 'custom_search_form', 40);
-
-function add_additional_class_on_li($classes, $item, $args) {
-    if(isset($args->add_li_class)) {
-        $classes[] = $args->add_li_class;
+    if ($query->is_search) {
+        $query->set('post_type', 'post');
     }
-    return $classes;
+    return $query;
 }
-add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);*/
+add_filter('pre_get_posts', 'SearchFilter');
 
 
 
