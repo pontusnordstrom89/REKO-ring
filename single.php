@@ -80,7 +80,7 @@ while (have_posts()) {
             ?>
 
 
-            <button class="btn waves-effect waves" type="button" id="orderButton"><?php echo $orderButtonText; ?>
+            <button class="btn waves-effect waves orderButton" type="button" id="orderButton"><?php echo $orderButtonText; ?>
                 <i id="basket-animation" class="material-icons right">shopping_basket</i>
             </button>
 
