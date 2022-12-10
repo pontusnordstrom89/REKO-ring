@@ -20,7 +20,7 @@ if (post_password_required())
 
 $getUser = wp_get_current_user();
 
-if (is_user_logged_in() && get_the_author() == $getUser->user_login) {
+if (is_user_logged_in() && get_the_author() == $getUser->display_name) {
 ?>
     <div class="left-align">
         <a id="navigateBackComments" href="#">Tillbaka till kommentarerna</a>
