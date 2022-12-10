@@ -26,6 +26,7 @@ body {
 .flex-container {
   flex: 1 0 auto;
 }
+
 footer {
   flex-shrink: 0;
 }
@@ -90,7 +91,7 @@ h6 {
 }
 
 /* CSS som hör till headern. */
-.header-container > img {
+.header-container>img {
   width: 100%;
   mix-blend-mode: overlay;
   height: 797px;
@@ -98,11 +99,9 @@ h6 {
 
 .header-container {
   max-height: 791px;
-  background: linear-gradient(
-    to left,
-    rgba(123, 140, 123, 0.908),
-    rgb(74, 76, 73) 70%
-  );
+  background: linear-gradient(to left,
+      rgba(123, 140, 123, 0.908),
+      rgb(74, 76, 73) 70%);
   width: 100%;
 }
 
@@ -119,7 +118,7 @@ h6 {
   margin: 15px;
 }
 
-.content > h1 {
+.content>h1 {
   font-size: 3.5rem;
   margin-bottom: 15px;
 }
@@ -335,4 +334,9 @@ h6 {
 
 .order-container {
   margin-left: 0;
+}
+
+
+.progress .indeterminate {
+  background-color: var(--red);
 }

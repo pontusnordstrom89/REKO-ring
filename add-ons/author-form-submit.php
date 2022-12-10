@@ -13,30 +13,31 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
 
 
     // First name
-    if (empty($_POST['first_name'])) {
-        if (get_user_meta($user_id, 'first_name', true)) {
-            // Delete user meta last name
-            delete_user_meta($user_id, 'first_name', $_POST['first_name']);
+    if (!isset($_POST['first_name'])) {
+        if (metadata_exists('user', $user_id, 'first_name')) {
+            // Delete user meta first name
+            delete_user_meta($user_id, 'first_name');
         }
     } elseif (isset($_POST['first_name'])) {
 
         // Sanitize input
         $first_name_value = sanitize_text_field( $_POST['first_name']);
 
-        if (!get_user_meta($user_id, 'first_name', true)) {
-            add_user_meta($user_id, 'first_name', $first_name_value);
-        } else {
+        if (metadata_exists('user',$user_id, 'first_name')) {
             if ($first_name_value === get_user_meta($user_id, 'first_name', true)) {
                 //Do nothing it's the same
             } else {
                 update_user_meta($user_id, 'first_name', $first_name_value);
             }
+            
+        } else {
+            add_user_meta($user_id, 'first_name', $first_name_value);
         }
     }
 
     // Last name
-    if (empty($_POST['last_name'])) {
-        if (get_user_meta($user_id, 'last_name', true)) {
+    if (!isset($_POST['last_name'])) {
+        if (metadata_exists('user', $user_id, 'last_name')) {
             // Delete user meta last name
             delete_user_meta($user_id, 'last_name', $_POST['last_name']);
         }
@@ -45,20 +46,21 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
         // Sanitize input
         $last_name_value = sanitize_text_field($_POST['last_name']);
 
-        if (!get_user_meta($user_id, 'last_name', true)) {
-            add_user_meta($user_id, 'last_name', $last_name_value);
-        } else {
+        if (metadata_exists('user', $user_id, 'last_name')) {
             if ($last_name_value === get_user_meta($user_id, 'last_name', true)) {
                 //Do nothing it's the same
             } else {
                 update_user_meta($user_id, 'last_name', $last_name_value);
             }
+            
+        } else {
+            add_user_meta($user_id, 'last_name', $last_name_value);
         }
     }
 
     // custom_email
-    if (empty($_POST['custom_email'])) {
-        if (get_user_meta($user_id, 'custom_email', true)) {
+    if (!isset($_POST['custom_email'])) {
+        if (metadata_exists('user', $user_id, 'custom_email')) {
             // Delete user meta custom_email
             delete_user_meta($user_id, 'custom_email', $_POST['custom_email']);
         }
@@ -67,19 +69,20 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
         // Sanitize input
         $email_value = sanitize_email($_POST['custom_email']);
 
-        if (!get_user_meta($user_id, 'custom_email', true)) {
-            add_user_meta($user_id, 'custom_email', $email_value);
-        } else {
+        if (metadata_exists('user', $user_id, 'custom_email')) {
             if ($email_value === get_user_meta($user_id, 'custom_email', true)) {
                 //Do nothing it's the same
             } else {
                 update_user_meta($user_id, 'custom_email', $email_value);
             }
+            
+        } else {
+            add_user_meta($user_id, 'custom_email', $email_value);
         }
     }
     
     // user_url
-    if (empty($_POST['user_url'])) {
+    if (!isset($_POST['user_url'])) {
         if (get_the_author_meta('user_url')) {
             // Delete user_url = update with empty string
             wp_update_user( array( 'ID' => $user_id, 'user_url' => '' ));
@@ -94,11 +97,8 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
 
     // user_description
 
-    if (empty($_POST['description'])) {
-        if (get_user_meta($user_id,
-            'description',
-            true
-        )) {
+    if (!isset($_POST['description'])) {
+        if (metadata_exists('user', $user_id,'description')) {
             // Delete user description
             delete_user_meta($user_id, 'description');
         }
@@ -107,20 +107,19 @@ if (!isset($_POST['update_profile_nonce']) || !wp_verify_nonce($_POST['update_pr
         // NO sanitazion, sanitazion removes formatting
         $textarea_value = $_POST['description'];
 
-        if (!get_user_meta($user_id,
-            'description',
-            true
-        )) {
-            add_user_meta($user_id,
-                'description',
-                $textarea_value
-            );
-        } else {
+        if (metadata_exists('user', $user_id,'description')) {
             if ($textarea_value === get_user_meta($user_id, 'description', true)) {
                 //Do nothing it's the same
             } else {
                 update_user_meta($user_id, 'description', $textarea_value);
             }
+            
+        } else {
+            add_user_meta(
+                $user_id,
+                'description',
+                $textarea_value
+            );
         }
     }
 

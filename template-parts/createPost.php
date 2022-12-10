@@ -81,8 +81,8 @@ $user = wp_get_current_user();
                         </p>
                         ';
                     }
-                    }
-                    
+                }
+
                 ?>
             </fieldset>
         </div>
@@ -90,6 +90,9 @@ $user = wp_get_current_user();
         <div class="row">
             <?php wp_nonce_field('my_image_upload', 'my_image_upload_nonce'); ?>
             <button class="cta-button" id="submit_my_image_upload" name="submit_my_image_upload" type="submit">Publicera annons</button>
+        </div>
+        <div id="createPostLoader" class="progress">
+            <div class="indeterminate"></div>
         </div>
     </form>
 </div>
@@ -147,5 +150,5 @@ $user = wp_get_current_user();
  *
  * Looks for footer.php file if no parameter is passed
  */
-    get_footer(); 
+get_footer();
 ?>

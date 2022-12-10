@@ -176,3 +176,8 @@
     grid-template-columns: 1fr;
   }
 }
+
+#createPostLoader {
+  display: none;
+}
+
