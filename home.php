@@ -123,21 +123,21 @@ get_header();
                     <p>Hur betalar jag när jag beställt?</p>
                     <i class="material-icons white-text">remove</i>
                 </div>
-                <div class="collapsible-body"><span>Under utveckling, relevanta frågor och svar kommer inom kort.</span></div>
+                <div class="collapsible-body"><span>Information om betalning finns att hitta i den annons du har beställt från.</span></div>
             </li>
             <li>
                 <div class="collapsible-header collapsible-closed">
-                    <p>Är allt närodlat?</p>
+                    <p>Hur fungerar beställningarna?</p>
                     <i class="material-icons white-text">add</i>
                 </div>
-                <div class="collapsible-body"><span>Under utveckling, relevanta frågor och svar kommer inom kort.</span></div>
+                <div class="collapsible-body"><span>Varje beställning är knuten till en specifik annons. Vill du beställa från flera olika producenter innebär detta att du måste lägga en beställning i varje enskild producents annons.</span></div>
             </li>
             <li>
                 <div class="collapsible-header collapsible-closed">
                     <p>Var hämtar jag ut mina varor?</p>
                     <i class="material-icons white-text">add</i>
                 </div>
-                <div class="collapsible-body"><span>Under utveckling, relevanta frågor och svar kommer inom kort.</span></div>
+                <div class="collapsible-body"><span>Utlämningsplatsen kan variera beroende på vilken ring du har beställt från. Se var just din rings utlämningsplats är genom att välja ring i menyn vilket tar dig till ringens sida.</span></div>
             </li>
         </ul>
     </div>
